@@ -1,0 +1,67 @@
+/*
+* ACTA CSS
+*/
+
+body{font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;color:#464646;background-color: #636363;}
+.orange{color:#FF8100;}
+.rouge{color:#BA1D50;}
+
+a.delete {color:#DEDEDE;text-decoration:underline;}
+
+#header1{background-color:#464646;color:#FFF}
+#header1 .menu2 {margin-top:5px;}
+#header1 .menu2 {text-align: center;margin-bottom:5px;}
+#header1 .logo {text-align:center;}
+#header1 .btn, #header2 .btn {margin-left:5px}
+
+#header2{background-color:#636363;}
+#header2 .breadcrumb {margin-bottom:0;}
+#header2 .right .btn {margin-top:5px;}
+#header2 .right {margin-bottom:5px}
+#home #header2 h4 {color:#FFFFFF;}
+#home #header2 {text-align: center;}
+#footer1{background-color:#636363;}
+#footer1 .nav a{color:#FFF;}
+#footer1 .nav a:hover{color:#FF8100}
+
+#contentctr{padding:10px 0;background-color: #FFFFFF}
+#home #contentctr{margin:0;background-image:url('../assets/bg768.jpg');background-position: center center;background-repeat: no-repeat;height:560px;background-size: 100% auto}
+
+
+#types .panel.types .btn{margin:5px;}
+#types .panel.infotype {display: none;}
+#types .panel.infotype .btn{margin-top:5px}
+#types .buy, #finitions .buy, #devis .buy{text-align:center;margin-bottom:20px;}
+#devis .buy {margin-top:10px;}
+
+.colors .thumbnail {width:72px;height:70px;overflow: hidden;word-wrap: break-word; float:left;margin:5px;text-align: center;}
+.colors .thumbnail .caption {padding:0;font-size:9px;}
+#finitions #contentctr button {margin-bottom:10px;}
+#finitions .hidden-form {width:1px;height:1px;overflow: hidden;display: none;}
+#finitions #accordion {display: none;}
+#finitions #accordion .colorblock {display: none;}
+#finitions .clr-selected {border:1px solid #FF8100}
+
+#devis .info-produit {text-align:left;}
+#devis .pic {width:30px;height:30px;margin:5px 5px 5px 0;}
+#devis .devis-detail .contremarque, #finitions .devis-detail .contremarque {padding-bottom: 5px;}
+
+/* thumbnails */
+.caption {text-align:center}
+.caption h4 {color:#BA1D50;margin:0;}
+.caption h5 {margin:5px 0;}
+.thumbnail>img, .thumbnail a>img {max-width:auto}
+#modeles .thumbnail {cursor: pointer}
+#modeles .tab-pane {padding-top:10px;}
+
+/* override classes */
+.help-block {font-size:0.8em;}
+
+@media (min-width: 768px)
+{
+#home #contentctr{margin:0;background-image:url('../assets/bghd.jpg');}
+}
+@media (max-width: 400px)
+{
+#home #contentctr{margin:0;background-image:url('../assets/bg400.jpg');}
+}
