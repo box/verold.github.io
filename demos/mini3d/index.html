@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MiniWeb</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <script src="//commondatastorage.googleapis.com/assets.verold.com/runtime/verold.loader.js"></script>
+
+  <link rel="stylesheet" href="mini_3d.css" type="text/css"/>
+
+  <script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
+</head>
+<body>
+  <div id="body-mats">
+    <a>Body Colors</a>
+    <button onclick="changeBodyColor('HighclassGrey')">Highclass Grey</button>
+    <button onclick="changeBodyColor('ChiliRed')">Chili Red</button>
+    <button onclick="changeBodyColor('SpiceOrange')">SpiceOrange</button>
+    <button onclick="changeBodyColor('MatteBlack')">Matte Black</button>
+  </div>
+  <div id="bonnet-mats">
+    <a>Body Colors</a>
+    <button onclick="changeBonnet('BonnetWhite')">White</button>
+    <button onclick="changeBonnet('BonnetSilver')">Silver</button>
+    <button onclick="changeBonnet('AccentBlack')">Black</button>
+  </div>
+	<div id="mini-container" class="mini-container"></div>
+
+  <script>
+  window.onload = function(){
+  	//TEST FOR WEBGL ENABLED
+  	
+  	//IF PASS, LOAD WEBGL EXPERIENCE
+  	verold.load('#mini-container', 'http://vrld.co/UgipNl.json');
+
+  };
+
+  function changeBodyColor(material){
+  	window.miniEvents.trigger('mini_mat_Body', material);
+  };
+
+  function changeBonnet(material){
+    window.miniEvents.trigger('mini_mat_Bonnet', material);
+  };
+
+  </script>
+ </body>
+</html>
