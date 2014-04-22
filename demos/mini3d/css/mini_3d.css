@@ -1,0 +1,50 @@
+body, html {
+	width:100%;
+	height:100%;
+	background-color: black;
+	color:white;
+}
+
+.mini-container {
+	width:90%;
+	height:90%;
+	position:relative;
+	margin:auto;
+	min-height:255px;
+}
+
+.materials {
+	display:none;
+}
+
+.fallback-container {
+	text-align:center;
+	width:100%;
+	height:100%;
+	display:none;
+	position:relative;
+	margin:auto;
+	min-height:255px;
+}
+
+.fall-img {
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	height:85%;
+	width: auto;
+	margin:auto;
+}
+
+.webgl-not-supported {
+  margin:auto;
+  width:100%;
+  position:absolute;
+  bottom : 2px;
+  text-align:center;
+  z-index:2;
+  font: 400 100%/1em 'Proxima Nova', sans-serif;
+  color:white;
+}
