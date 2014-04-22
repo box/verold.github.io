@@ -3,34 +3,54 @@
 <head>
   <title>MiniWeb</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="css/mini_3d.css" type="text/css"/>
+
   <script src="//commondatastorage.googleapis.com/assets.verold.com/runtime/verold.loader.js"></script>
-
-  <link rel="stylesheet" href="mini_3d.css" type="text/css"/>
-
   <script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
+
+  <script src="js/WebGL_Check.js"></script>
 </head>
 <body>
-  <div id="body-mats">
-    <a>Body Colors</a>
-    <button onclick="changeBodyColor('HighclassGrey')">Highclass Grey</button>
-    <button onclick="changeBodyColor('ChiliRed')">Chili Red</button>
-    <button onclick="changeBodyColor('SpiceOrange')">SpiceOrange</button>
-    <button onclick="changeBodyColor('MatteBlack')">Matte Black</button>
+  <div id="materials" class="materials">
+    <div id="body-mats">
+      <a>Body Colors</a>
+      <button onclick="changeBodyColor('HighclassGrey')">Highclass Grey</button>
+      <button onclick="changeBodyColor('ChiliRed')">Chili Red</button>
+      <button onclick="changeBodyColor('SpiceOrange')">SpiceOrange</button>
+      <button onclick="changeBodyColor('MatteBlack')">Matte Black</button>
+    </div>
+    <div id="bonnet-mats">
+      <a>Body Colors</a>
+      <button onclick="changeBonnet('BonnetWhite')">White</button>
+      <button onclick="changeBonnet('BonnetSilver')">Silver</button>
+      <button onclick="changeBonnet('AccentBlack')">Black</button>
+    </div>
   </div>
-  <div id="bonnet-mats">
-    <a>Body Colors</a>
-    <button onclick="changeBonnet('BonnetWhite')">White</button>
-    <button onclick="changeBonnet('BonnetSilver')">Silver</button>
-    <button onclick="changeBonnet('AccentBlack')">Black</button>
+
+	<div id="mini-container" class="mini-container">
+    <div id="fallback" class="fallback-container">
+      <img src="img/mini-3d-fallback.png" class="fall-img"/>
+      <div class="webgl-not-supported generic-alert">
+        WebGL is not supported in this browser. Visit <a href="http://verold.com/blog/2013/1/2/enabling-webgl-in-your-browser#.Utb-FpE3vFE" target="_blank">this link</a> to find out how to experience 3D in the browser.
+      </div><!-- /webgl-not-supported generic-alert-->
+    </div>
   </div>
-	<div id="mini-container" class="mini-container"></div>
 
   <script>
   window.onload = function(){
+    var glSupport = supportsWebGL();
   	//TEST FOR WEBGL ENABLED
-  	
-  	//IF PASS, LOAD WEBGL EXPERIENCE
-  	verold.load('#mini-container', 'http://vrld.co/UgipNl.json');
+  	if(glSupport){
+  	  //IF PASS, LOAD WEBGL EXPERIENCE
+  	  verold.load('#mini-container', 'http://vrld.co/UgipNl.json');
+      jQuery("#materials").show();
+      jQuery("#fallback").remove();
+    }
+    else {
+      console.warn("WebGL Not Enabled");
+
+      jQuery("#fallback").show();
+    }
 
   };
 
