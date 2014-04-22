@@ -20,10 +20,21 @@
       <button onclick="changeBodyColor('MatteBlack')">Matte Black</button>
     </div>
     <div id="bonnet-mats">
-      <a>Body Colors</a>
+      <a>Accent Colors</a>
       <button onclick="changeBonnet('BonnetWhite')">White</button>
       <button onclick="changeBonnet('BonnetSilver')">Silver</button>
       <button onclick="changeBonnet('AccentBlack')">Black</button>
+    </div>
+    <div id="pillar-mats">
+      <a>Pillar Colors</a>
+      <button onclick="changePillar('Pillars_Black')">Black</button>
+      <button onclick="changePillar('Pillars_silver')">Silver</button>
+    </div>
+    <div id="rim-mats">
+      <a>Rim Colors</a>
+      <button onclick="changeRims('Rim_1')">Grey</button>
+      <button onclick="changeRims('chrome_1')">Chrome</button>
+      <button onclick="changeRims('MatteBlack')">Matte Black</button>
     </div>
   </div>
 
@@ -60,6 +71,14 @@
 
   function changeBonnet(material){
     window.miniEvents.trigger('mini_mat_Bonnet', material);
+  };
+
+  function changePillar(material){
+    window.miniEvents.trigger('mini_mat_Pillars', material);
+  };
+
+  function changeRims(material){
+    window.miniEvents.trigger('mini_mat_Rim', material);
   };
 
   </script>
