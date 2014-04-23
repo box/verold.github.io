@@ -29,7 +29,7 @@
       <ul class="mat-list">
         <li><button onclick="changeBodyColor('535562f2252481020000009d')">Highclass Grey</button></li>
         <li><button onclick="changeBodyColor('53556857a6ab7802000000d0')">Chili Red</button></li>
-        <li><button onclick="changeBodyColor('535562e3252481020000009b')">SpiceOrange</button></li>
+        <li><button onclick="changeBodyColor('535562e3252481020000009b')">Spice Orange</button></li>
         <li><button onclick="changeBodyColor('535562f9252481020000009f')">Matte Black</button></li>
       </ul>
     </div>
@@ -87,8 +87,12 @@
 
       jQuery('.mat-butt').click(function(e){
         e.stopImmediatePropagation();
+        e.preventDefault();
         jQuery(this).siblings("ul").toggle();
       });
+
+      jQuery('ul').toggle();
+      jQuery('#body-mats ul').toggle();
     }
     else {
       console.warn("WebGL Not Enabled");
@@ -98,7 +102,7 @@
 
   };
 
-  var bodyMat = null;//for turning off bonnet stripes
+  var bodyMat = "53556857a6ab7802000000d0";//for turning off bonnet stripes, base is chili red
   var noBonnet = false;//whether or not to show the bonnet stripes
 
   function changeBodyColor(material){

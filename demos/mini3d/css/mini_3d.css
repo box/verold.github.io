@@ -54,7 +54,8 @@ body, html {
 .materials {
 	position:absolute;
 	top:25px;
-	width:10%;	
+	width:10%;
+	min-width:125px;
 	background-color:#4D4D4D;
 	padding:2px;
 }
@@ -68,6 +69,7 @@ body, html {
 	width:100%;
 	margin:auto 0;
 	background-color: #949494;
+	cursor:pointer;
 }
 
 .mat-butt:hover {
@@ -79,6 +81,6 @@ body, html {
 	margin:4px;
 }
 
-.mat-list ul{
-	display:none;
+.mat-list button {
+	cursor:pointer;
 }
