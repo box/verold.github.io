@@ -11,39 +11,67 @@
   <script src="js/WebGL_Check.js"></script>
 </head>
 <body>
-  <div id="materials" class="materials">
-    <div id="body-mats">
-      <a>Body Colors</a>
-      <button onclick="changeBodyColor('HighclassGrey')">Highclass Grey</button>
-      <button onclick="changeBodyColor('ChiliRed')">Chili Red</button>
-      <button onclick="changeBodyColor('SpiceOrange')">SpiceOrange</button>
-      <button onclick="changeBodyColor('MatteBlack')">Matte Black</button>
-    </div>
-    <div id="bonnet-mats">
-      <a>Accent Colors</a>
-      <button onclick="changeBonnet('BonnetWhite')">White</button>
-      <button onclick="changeBonnet('BonnetSilver')">Silver</button>
-      <button onclick="changeBonnet('AccentBlack')">Black</button>
-    </div>
-    <div id="pillar-mats">
-      <a>Pillar Colors</a>
-      <button onclick="changePillar('Pillars_Black')">Black</button>
-      <button onclick="changePillar('Pillars_silver')">Silver</button>
-    </div>
-    <div id="rim-mats">
-      <a>Rim Colors</a>
-      <button onclick="changeRims('Rim_1')">Grey</button>
-      <button onclick="changeRims('chrome_1')">Chrome</button>
-      <button onclick="changeRims('MatteBlack')">Matte Black</button>
-    </div>
-  </div>
 
-	<div id="mini-container" class="mini-container">
+
+
+  <div id="mini-container" class="mini-container">
     <div id="fallback" class="fallback-container">
       <img src="img/mini-3d-fallback.png" class="fall-img"/>
       <div class="webgl-not-supported generic-alert">
         WebGL is not supported in this browser. Visit <a href="http://verold.com/blog/2013/1/2/enabling-webgl-in-your-browser#.Utb-FpE3vFE" target="_blank">this link</a> to find out how to experience 3D in the browser.
       </div><!-- /webgl-not-supported generic-alert-->
+    </div>
+  </div>
+
+  <div id="materials" class="materials">
+    <div id="body-mats" class="mat-container">
+      <div class="mat-butt"><a>Body Colors</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeBodyColor('535562f2252481020000009d')">Highclass Grey</button></li>
+        <li><button onclick="changeBodyColor('53556857a6ab7802000000d0')">Chili Red</button></li>
+        <li><button onclick="changeBodyColor('535562e3252481020000009b')">SpiceOrange</button></li>
+        <li><button onclick="changeBodyColor('535562f9252481020000009f')">Matte Black</button></li>
+      </ul>
+    </div>
+    <div id="bonnet-mats" class="mat-container">
+      <div class="mat-butt"><a>Accent Colors</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeBonnet('5355697e423cfd02000000ba')">White</button></li>
+        <li><button onclick="changeBonnet('5356c388e68c5e020000003e')">Silver</button></li>
+        <li><button onclick="changeBonnet('5355690125248102000000cf')">Black</button></li>
+        <li><button onclick="changeBonnet()">None</button></li>
+      </ul>
+    </div>
+    <div id="pillar-mats" class="mat-container">
+      <div class="mat-butt"><a>Pillar Colors</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changePillar('5355690125248102000000cf')">Black</button></li>
+        <li><button onclick="changePillar('5356c388e68c5e020000003e')">Silver</button></li>
+      </ul>
+    </div>
+    <div id="rim-mats" class="mat-container">
+      <div class="mat-butt"><a>Rim Colors</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeRims('5356ca5ee68c5e0200000085')">Grey</button></li>
+        <li><button onclick="changeRims('53503195069dd2703b000015')">Chrome</button></li>
+        <li><button onclick="changeRims('535562f9252481020000009f')">Matte Black</button></li>
+      </ul>
+    </div>
+    <div id="roof-mats" class="mat-container">
+      <div class="mat-butt"><a>Roof and Accent Colors</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeRoof('53556857a6ab7802000000d0')">Chili Red</button></li>
+        <li><button onclick="changeRoof('5355697e423cfd02000000ba')">White</button></li>
+        <li><button onclick="changeRoof('535562f9252481020000009f')">Matte Black</button></li>
+      </ul>
+    </div>
+    <div id="light-mats" class="mat-container">
+      <div class="mat-butt"><a>Light Colors</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeLights('5356ca5ee68c5e0200000085')">Grey</button></li>
+        <li><button onclick="changeLights('53503195069dd2703b000015')">Chrome</button></li>
+        <li><button onclick="changeLights('535562f9252481020000009f')">Matte Black</button></li>
+      </ul>
     </div>
   </div>
 
@@ -56,6 +84,11 @@
   	  verold.load('#mini-container', 'http://vrld.co/UgipNl.json');
       jQuery("#materials").show();
       jQuery("#fallback").remove();
+
+      jQuery('.mat-butt').click(function(e){
+        e.stopImmediatePropagation();
+        jQuery(this).siblings("ul").toggle();
+      });
     }
     else {
       console.warn("WebGL Not Enabled");
@@ -65,11 +98,23 @@
 
   };
 
+  var bodyMat = null;//for turning off bonnet stripes
+  var noBonnet = false;//whether or not to show the bonnet stripes
+
   function changeBodyColor(material){
   	window.miniEvents.trigger('mini_mat_Body', material);
+    bodyMat = material;
+    if(noBonnet)changeBonnet();
   };
 
   function changeBonnet(material){
+    if(!material){
+      material = bodyMat;
+      noBonnet = true;
+    }
+    else {
+      noBonnet = false;
+    }
     window.miniEvents.trigger('mini_mat_Bonnet', material);
   };
 
@@ -78,7 +123,15 @@
   };
 
   function changeRims(material){
-    window.miniEvents.trigger('mini_mat_Rim', material);
+    window.miniEvents.trigger('mini_mat_Rims', material);
+  };
+
+  function changeRoof(material){
+    window.miniEvents.trigger('mini_mat_Roof', material);
+  };
+
+  function changeLights(material){
+    window.miniEvents.trigger('mini_mat_Lights', material);
   };
 
   </script>
