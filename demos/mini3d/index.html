@@ -25,7 +25,7 @@
 
   <div id="materials" class="materials">
     <div id="body-mats" class="mat-container">
-      <div class="mat-butt"><a>Body Colors</a></div>
+      <div class="mat-butt"><a>Body</a></div>
       <ul class="mat-list">
         <li><button onclick="changeBodyColor('535562f2252481020000009d')">Highclass Grey</button></li>
         <li><button onclick="changeBodyColor('53556857a6ab7802000000d0')">Chili Red</button></li>
@@ -35,7 +35,7 @@
       </ul>
     </div>
     <div id="bonnet-mats" class="mat-container">
-      <div class="mat-butt"><a>Bonnet Colors</a></div>
+      <div class="mat-butt"><a>Bonnet</a></div>
       <ul class="mat-list">
         <li><button onclick="changeBonnet('5355697e423cfd02000000ba')">White</button></li>
         <li><button onclick="changeBonnet('535569a8a6ab7802000000d9')">Silver</button></li>
@@ -44,14 +44,14 @@
       </ul>
     </div>
     <div id="pillar-mats" class="mat-container">
-      <div class="mat-butt"><a>Pillar Colors</a></div>
+      <div class="mat-butt"><a>Pillar</a></div>
       <ul class="mat-list">
         <li><button onclick="changePillar('535562f9252481020000009f')">Black</button></li>
         <li><button onclick="changePillar('535569a8a6ab7802000000d9')">Silver</button></li>
       </ul>
     </div>
     <div id="rim-mats" class="mat-container">
-      <div class="mat-butt"><a>Rim Colors</a></div>
+      <div class="mat-butt"><a>Rim</a></div>
       <ul class="mat-list">
         <li><button onclick="changeRims('5356ca5ee68c5e0200000085')">Grey</button></li>
         <li><button onclick="changeRims('53503195069dd2703b000015')">Chrome</button></li>
@@ -59,18 +59,27 @@
       </ul>
     </div>
     <div id="roof-mats" class="mat-container">
-      <div class="mat-butt"><a>Roof and Accent Colors</a></div>
+      <div class="mat-butt"><a>Roof</a></div>
       <ul class="mat-list">
         <li><button onclick="changeRoof('535562e3252481020000009b')">White</button></li>
         <li><button onclick="changeRoof('535562f9252481020000009f')">Black</button></li>
+        <li><button onclick="changeRoof()">Body Color</button></li>
       </ul>
     </div>
     <div id="light-mats" class="mat-container">
-      <div class="mat-butt"><a>Light Colors</a></div>
+      <div class="mat-butt"><a>Light</a></div>
       <ul class="mat-list">
         <li><button onclick="changeLights('5356ca5ee68c5e0200000085')">Grey</button></li>
         <li><button onclick="changeLights('53503195069dd2703b000015')">Chrome</button></li>
         <li><button onclick="changeLights('535562f9252481020000009f')">Black</button></li>
+      </ul>
+    </div>
+    <div id="mirror-mats" class="mat-container">
+      <div class="mat-butt"><a>Mirrors</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeMirrors('535562e3252481020000009b')">White</button></li>
+        <li><button onclick="changeMirrors('535562f9252481020000009f')">Black</button></li>
+        <li><button onclick="changeMirrors()">Body Color</button></li>
       </ul>
     </div>
   </div>
@@ -104,11 +113,16 @@
 
   var bodyMat = "53556857a6ab7802000000d0";//for turning off bonnet stripes, base is chili red
   var noBonnet = false;//whether or not to show the bonnet stripes
+  var noRoof = false;//whether or not to show the bonnet stripes
+  var noMirror = false;//whether or not to show the bonnet stripes
 
   function changeBodyColor(material){
   	window.miniEvents.trigger('mini_mat_Body', material);
     bodyMat = material;
+
     if(noBonnet)changeBonnet();
+    if(noRoof)changeRoof();
+    if(noMirror)changeMirrors();
   };
 
   function changeBonnet(material){
@@ -131,11 +145,29 @@
   };
 
   function changeRoof(material){
+    if(!material){
+      material = bodyMat;
+      noRoof = true;
+    }
+    else {
+      noRoof = false;
+    }
     window.miniEvents.trigger('mini_mat_Roof', material);
   };
 
   function changeLights(material){
     window.miniEvents.trigger('mini_mat_Lights', material);
+  };
+
+  function changeMirrors(material){
+    if(!material){
+      material = bodyMat;
+      noMirror = true;
+    }
+    else {
+      noMirror = false;
+    }
+    window.miniEvents.trigger('mini_mat_Mirrors', material);
   };
 
   </script>
