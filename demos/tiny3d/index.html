@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tiny3D</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="css/mini_3d.css" type="text/css"/>
+
+  <script src="//commondatastorage.googleapis.com/assets.verold.com/runtime/verold.loader.js"></script>
+  <script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
+
+  <script src="js/WebGL_Check.js"></script>
+</head>
+<body>
+
+
+
+  <div id="mini-container" class="mini-container">
+    <div id="fallback" class="fallback-container">
+      <img src="img/mini-3d-fallback.png" class="fall-img"/>
+      <div class="webgl-not-supported generic-alert">
+        WebGL is not supported in this browser. Visit <a href="http://verold.com/blog/2013/1/2/enabling-webgl-in-your-browser#.Utb-FpE3vFE" target="_blank">this link</a> to find out how to experience 3D in the browser.
+      </div><!-- /webgl-not-supported generic-alert-->
+    </div>
+  </div>
+
+  <div id="materials" class="materials">
+    <div id="body-mats" class="mat-container">
+      <div class="mat-butt"><a>Body</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeBodyColor('53556857a6ab7802000000d0')">Chili Red</button></li>
+        <li><button onclick="changeBodyColor('535562e3252481020000009b')">Pepper White</button></li>
+        <li><button onclick="changeBodyColor('53594f07a94092020000077e')">British Racing Green</button></li>
+        <li><button onclick="changeBodyColor('53594ff345564b0200000770')">Spice Orange</button></li>
+        <li><button onclick="changeBodyColor('535951c018e30d02000007ae')">Midnight Black</button></li>
+        <li><button onclick="changeBodyColor('53595230a94092020000078a')">White Silver</button></li>
+        <li><button onclick="changeBodyColor('535953d118e30d02000007b5')">Eclipse Grey</button></li>
+        <li><button onclick="changeBodyColor('5359549d45564b020000078a')">Highclass Grey</button></li>
+        <li><button onclick="changeBodyColor('5359558f18e30d02000007fc')">Iced Chocolate</button></li>
+        <li><button onclick="changeBodyColor('535956c6e75b670200000521')">Ice Blue</button></li>
+      </ul>
+    </div>
+    <div id="bonnet-mats" class="mat-container">
+      <div class="mat-butt"><a>Bonnet</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeBonnet('535957aee75b670200000523')">Silver</button></li>
+        <li><button onclick="changeBonnet('53582574a9409202000002f3')">Black</button></li>
+        <li><button onclick="changeBonnet()">None</button></li>
+      </ul>
+    </div>
+    <div id="pillar-mats" class="mat-container">
+      <div class="mat-butt"><a>Pillar</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changePillar('5359590ee75b67020000052c')">Black</button></li>
+        <li><button onclick="changePillar('5359594b18e30d020000080d')">Silver</button></li>
+      </ul>
+    </div>
+    <div id="rim-mats" class="mat-container">
+      <div class="mat-butt"><a>Rim</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeRims('5356ca5ee68c5e0200000085')">Grey</button></li>
+        <li><button onclick="changeRims('53596fafff89a40200000037')">Black</button></li>
+      </ul>
+    </div>
+    <div id="roof-mats" class="mat-container">
+      <div class="mat-butt"><a>Roof</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeRoof('5359594b18e30d020000080d')">Silver</button></li>
+        <li><button onclick="changeRoof('5359590ee75b67020000052c')">Black</button></li>
+        <li><button onclick="changeRoof('53556857a6ab7802000000d0')">Chili Red</button></li>
+        <li><button onclick="changeRoof()">Body Color</button></li>
+      </ul>
+    </div>
+    <div id="light-mats" class="mat-container">
+      <div class="mat-butt"><a>Light</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeLights('5359641055d2f10200000574')">Silver</button></li>
+        <li><button onclick="changeLights('535964bb55d2f1020000057a')">Black</button></li>
+      </ul>
+    </div>
+    <div id="mirror-mats" class="mat-container">
+      <div class="mat-butt"><a>Mirrors</a></div>
+      <ul class="mat-list">
+        <li><button onclick="changeMirrors('5359594b18e30d020000080d')">Silver</button></li>
+        <li><button onclick="changeMirrors('53596fafff89a40200000037')">Black</button></li>
+        <li><button onclick="changeMirrors('53556857a6ab7802000000d0')">Chili Red</button></li>
+        <li><button onclick="changeMirrors()">Body Color</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+  window.onload = function(){
+    var glSupport = supportsWebGL();
+  	//TEST FOR WEBGL ENABLED
+  	if(glSupport){
+  	  //IF PASS, LOAD WEBGL EXPERIENCE
+  	  verold.load('#mini-container', 'http://vrld.co/UgipNl.json');
+      jQuery("#materials").show();
+      jQuery("#fallback").remove();
+
+      jQuery('.mat-butt').click(function(e){
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        jQuery(this).siblings("ul").toggle();
+      });
+
+      jQuery('ul').toggle();
+      jQuery('#body-mats ul').toggle();
+    }
+    else {
+      console.warn("WebGL Not Enabled");
+
+      jQuery("#fallback").show();
+    }
+
+  };
+
+  var bodyMat = "53556857a6ab7802000000d0";//for turning off bonnet stripes, base is chili red
+  var noBonnet = false;//whether or not to show the bonnet stripes
+  var noRoof = false;//whether or not to show the bonnet stripes
+  var noMirror = false;//whether or not to show the bonnet stripes
+
+  function changeBodyColor(material){
+  	window.miniEvents.trigger('mini_mat_Body', material);
+    bodyMat = material;
+
+    if(noBonnet)changeBonnet();
+    if(noRoof)changeRoof();
+    if(noMirror)changeMirrors();
+  };
+
+  function changeBonnet(material){
+    if(!material){
+      material = bodyMat;
+      noBonnet = true;
+    }
+    else {
+      noBonnet = false;
+    }
+    window.miniEvents.trigger('mini_mat_Bonnet', material);
+  };
+
+  function changePillar(material){
+    window.miniEvents.trigger('mini_mat_Pillars', material);
+  };
+
+  function changeRims(material){
+    window.miniEvents.trigger('mini_mat_Rims', material);
+  };
+
+  function changeRoof(material){
+    if(!material){
+      material = bodyMat;
+      noRoof = true;
+    }
+    else {
+      noRoof = false;
+    }
+    window.miniEvents.trigger('mini_mat_Roof', material);
+  };
+
+  function changeLights(material){
+    window.miniEvents.trigger('mini_mat_Lights', material);
+  };
+
+  function changeMirrors(material){
+    if(!material){
+      material = bodyMat;
+      noMirror = true;
+    }
+    else {
+      noMirror = false;
+    }
+    window.miniEvents.trigger('mini_mat_Mirrors', material);
+  };
+
+  </script>
+ </body>
+</html>
