@@ -1,0 +1,48 @@
+.title{
+  font-family: Montserrat, sans-serif;
+  position: absolute;
+  top: 0;
+  left: 20px;
+}
+
+body{
+  background: rgb(212,228,239);
+background: -moz-radial-gradient(center, ellipse cover,  rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(212,228,239,1)), color-stop(100%,rgba(134,174,204,1)));
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(212,228,239,1) 0%,rgba(134,174,204,1) 100%);
+background: -o-radial-gradient(center, ellipse cover,  rgba(212,228,239,1) 0%,rgba(134,174,204,1) 100%);
+background: -ms-radial-gradient(center, ellipse cover,  rgba(212,228,239,1) 0%,rgba(134,174,204,1) 100%);
+background: radial-gradient(ellipse at center,  rgba(212,228,239,1) 0%,rgba(134,174,204,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e4ef', endColorstr='#86aecc',GradientType=1 );
+
+}
+
+#building-wrapper{
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 600px;
+  width: 100%;
+}
+
+#fallback{
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #fff;
+  background: #000;
+  padding: 20px;
+  width: 180px;
+  display: none;
+}
