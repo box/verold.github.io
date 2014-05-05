@@ -1,7 +1,7 @@
 body, html {
 	background-color: black;
 	color:white;
-	background: #fff;
+	background: #000;
 }
 
 
@@ -11,6 +11,7 @@ body, html {
 	height: 100%;
 	max-width: 1200px;
 	margin: 0 auto;
+	background: radial-gradient(ellipse at center, rgba(51,51,51,1) 0%,rgba(0,0,0,1) 75%);
 }
 
 .mini-container {
