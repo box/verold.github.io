@@ -1,19 +1,41 @@
 body, html {
-	width:100%;
-	height:100%;
-	min-width:1024px;
-	min-height:512px;
 	background-color: black;
 	color:white;
+	background: #fff;
+}
+
+
+.verold-wrapper{
+	position: relative; /* -> containing block */
+	width: 100%;
+	height: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
 .mini-container {
-	width:85%;
-	height:85%;
-	position:relative;
+	width:80%;
+	height:100%;
+	float: right;
 	margin:auto;
-	min-height:255px;
 }
+
+#verold3d {
+  margin: 0 auto;
+  padding: 0;
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+canvas {
+	/* it's 100% x 100% by default */
+}
+
+
+
 
 .materials {
 	display:none;
@@ -54,8 +76,7 @@ body, html {
 .materials {
 	position:absolute;
 	top:25px;
-	width:10%;
-	min-width:125px;
+	width:20%;
 	background-color:#4D4D4D;
 	padding:2px;
 }
@@ -83,4 +104,93 @@ body, html {
 
 .mat-list button {
 	cursor:pointer;
+}
+
+
+
+
+
+/* Loading */
+
+/* Application */
+
+.load-scene {
+  text-align:center;
+  position:relative;
+  height:100%;
+  width:100%;
+  z-index:10;
+}
+
+.load-verold {
+  position: absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  height:150px;
+  width:auto;
+  margin: auto;
+  z-index:10;
+}
+
+.load-cube {
+  position: absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  height:75px;
+  width:75px;
+  margin: auto;
+  z-index:2; 
+  background-color:white;
+  -webkit-animation:fade 5s linear infinite;
+  -moz-animation:fade 5s linear infinite;
+  animation:fade 5s linear infinite;
+}
+
+.load-progress{
+  margin:auto;
+  width:100%;
+  position:absolute;
+  bottom : 20%;
+  text-align:center;
+  z-index:2;
+}
+
+.load-progress a{
+  color:white;
+}
+
+.rotate-state {
+  position:absolute;
+  z-index:5;
+  left:10px;
+  top:10px;
+}
+
+.rotate-state a{
+  color:white;
+}
+
+@-webkit-keyframes fade /* Safari and Chrome */
+{
+  0%   {background: white;}
+  50%  {background: rgb(150,150,150);}
+  100% {background: white;}
+}
+
+@-moz-keyframes fade /* Safari and Chrome */
+{
+  0%   {background: white;}
+  50%  {background: rgb(150,150,150);}
+  100% {background: white;}
+}
+
+@keyframes fade /* Safari and Chrome */
+{
+  0%   {background: white;}
+  50%  {background: rgb(150,150,150);}
+  100% {background: white;}
 }
