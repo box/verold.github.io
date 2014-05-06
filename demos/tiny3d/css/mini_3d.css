@@ -35,9 +35,7 @@ canvas {
 
 
 
-.materials {
-	display:none;
-}
+/* FALLBACK */
 
 .fallback-container {
 	text-align:center;
@@ -51,11 +49,11 @@ canvas {
 
 .fall-img {
 	position:absolute;
-	top:0;
-	bottom:0;
+	top:30px;
+
 	left:0;
 	right:0;
-	height:85%;
+	height:70%;
 	width: auto;
 	margin:auto;
 }
@@ -64,7 +62,7 @@ canvas {
   margin:auto;
   width:100%;
   position:absolute;
-  bottom : 2px;
+  bottom : 80px;
   text-align:center;
   z-index:2;
   font: 400 100%/1em 'Proxima Nova', sans-serif;
@@ -186,7 +184,7 @@ ul.mat-list li{
   height: 20px;
   text-align:center;
   z-index:2;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Proxima Nova', 'Arial', sans-serif;
   color: #666;
   font-weight: lighter;
   font-size: 11px;

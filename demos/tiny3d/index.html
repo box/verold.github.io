@@ -2970,11 +2970,18 @@ under licence.
 
   <script type="text/javascript">
 
-  $(function(){
-    $('#body-mats ul li a').click(function(){
-      $('.inherit-body-color').css('background',$(this).css("background-color"));
+    $(function(){
+      $('#body-mats ul li a').click(function(){
+        $('.inherit-body-color').css('background',$(this).css("background-color"));
+      });
     });
-  });
+
+
+    $('.mat-butt').click(function(e){
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      jQuery(this).siblings("ul").slideToggle(100);
+    });
 
 
   </script>
@@ -2987,19 +2994,11 @@ under licence.
   	if(glSupport){
   	  //IF PASS, LOAD WEBGL EXPERIENCE
   	  verold.load('#mini-container', 'http://vrld.co/UgipNl.json');
-      jQuery("#materials").show();
       jQuery("#fallback").remove();
-
-      jQuery('.mat-butt').click(function(e){
-        e.stopImmediatePropagation();
-        e.preventDefault();
-        jQuery(this).siblings("ul").slideToggle(100);
-      });
 
     }
     else {
       console.warn("WebGL Not Enabled");
-
       jQuery("#fallback").show();
     }
 
