@@ -192,9 +192,16 @@ ul.mat-list li{
   margin:auto;
   width:100%;
   position:absolute;
-  bottom : 20%;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
   text-align:center;
   z-index:2;
+  font-family: 'Verdana', sans-serif;
+  font-weight: lighter;
+  font-size: 11px;
 }
 
 .load-progress a{
