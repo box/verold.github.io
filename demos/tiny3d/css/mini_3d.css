@@ -150,7 +150,6 @@ ul.mat-list li{
 
 /* Loading */
 
-/* Application */
 
 .load-scene {
   text-align:center;
@@ -162,7 +161,7 @@ ul.mat-list li{
 
 .load-verold {
   position: absolute;
-  top:0;
+  top:-60px;
   left:0;
   bottom:0;
   right:0;
@@ -170,72 +169,50 @@ ul.mat-list li{
   width:auto;
   margin: auto;
   z-index:10;
+  -webkit-animation: fade 4s infinite; /* Safari 4+ */
+  -moz-animation:    fade 4s infinite; /* Fx 5+ */
+  -o-animation:      fade 4s infinite; /* Opera 12+ */
+  animation:         fade 4s infinite; /* IE 10+ */
 }
 
-.load-cube {
-  position: absolute;
-  top:0;
-  left:0;
-  bottom:0;
-  right:0;
-  height:75px;
-  width:75px;
-  margin: auto;
-  z-index:2; 
-  background-color:white;
-  -webkit-animation:fade 5s linear infinite;
-  -moz-animation:fade 5s linear infinite;
-  animation:fade 5s linear infinite;
-}
 
 .load-progress{
   margin:auto;
   width:100%;
   position:absolute;
-  top:0;
-  bottom: 0;
+  bottom: 170px;
   left: 0;
   right: 0;
   height: 20px;
   text-align:center;
   z-index:2;
-  font-family: 'Verdana', sans-serif;
+  font-family: 'Arial', sans-serif;
+  color: #666;
   font-weight: lighter;
   font-size: 11px;
 }
 
-.load-progress a{
-  color:white;
-}
-
-.rotate-state {
-  position:absolute;
-  z-index:5;
-  left:10px;
-  top:10px;
-}
-
-.rotate-state a{
-  color:white;
-}
 
 @-webkit-keyframes fade /* Safari and Chrome */
 {
-  0%   {background: white;}
-  50%  {background: rgb(150,150,150);}
-  100% {background: white;}
+  0%   {opacity: 1;}
+  50%  {opacity: 0.3;}
+  100% {opacity: 1;}
 }
 
 @-moz-keyframes fade /* Safari and Chrome */
 {
-  0%   {background: white;}
-  50%  {background: rgb(150,150,150);}
-  100% {background: white;}
+  0%   {opacity: 1;}
+  50%  {opacity: 0.3;}
+  100% {opacity: 1;}
 }
 
 @keyframes fade /* Safari and Chrome */
 {
-  0%   {background: white;}
-  50%  {background: rgb(150,150,150);}
-  100% {background: white;}
+  0%   {opacity: 1;}
+  50%  {opacity: 0.3;}
+  100% {opacity: 1;}
 }
+
+
+
