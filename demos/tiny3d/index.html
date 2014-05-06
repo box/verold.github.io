@@ -24,7 +24,6 @@
 
 
 
-  
 
 
 <!-- MINI SITE CODE -->
@@ -32,7 +31,7 @@
 
 
 
-<div style="z-index: 999999;" id="header" class="clearfix">
+<div style="z-index: 999999;" id="header" class="clearfix" >
     
 
   <div class="container">
@@ -60,7 +59,7 @@
   
   </div>
 
-    
+
 
   <div class="container">
 
@@ -421,67 +420,73 @@
 
         <div id="materials" class="materials">
           <div id="body-mats" class="mat-container">
-            <div class="mat-butt"><a>Body</a></div>
+            <div class="mat-butt"><a>Body:</a></div>
             <ul class="mat-list">
-              <li><button onclick="changeBodyColor('ChiliRed')">Chili Red</button></li>
-              <li><button onclick="changeBodyColor('PepperWhite')">Pepper White</button></li>
-              <li><button onclick="changeBodyColor('BritishRacingGreen')">British Racing Green</button></li>
-              <li><button onclick="changeBodyColor('SpiceOrangeMet')">Spice Orange</button></li>
-              <li><button onclick="changeBodyColor('MidnightBlackMet')">Midnight Black</button></li>
-              <li><button onclick="changeBodyColor('WhiteSilverMet')">White Silver</button></li>
-              <li><button onclick="changeBodyColor('EclipseGreyMet')">Eclipse Grey</button></li>
-              <li><button onclick="changeBodyColor('HiclassGreyMet')">Highclass Grey</button></li>
-              <li><button onclick="changeBodyColor('IcedChocolateMet')">Iced Chocolate</button></li>
-              <li><button onclick="changeBodyColor('IceBlue')">Ice Blue</button></li>
+              <li><a onclick="changeBodyColor('ChiliRed')" style="background:#CD2421"></a></li>
+              <li><a onclick="changeBodyColor('PepperWhite')" style="background:#EEE6CF"></a></li>
+              <li><a onclick="changeBodyColor('BritishRacingGreen')" style="background:#055E2A"></a></li>
+              <li><a onclick="changeBodyColor('SpiceOrangeMet')" style="background:#C24713"></a></li>
+             <!--  <li><a onclick="changeBodyColor('MidnightBlackMet')" style="background:#181716"></a></li> -->
+            <!--   <li><a onclick="changeBodyColor('WhiteSilverMet')" style="background:#E6E1D0"></a></li> -->
+              <li><a onclick="changeBodyColor('EclipseGreyMet')" style="background:#5F584F"></a></li>
+              <li><a onclick="changeBodyColor('HiclassGreyMet')" style="background:#464552"></a></li>
+              <!-- <li><a onclick="changeBodyColor('IcedChocolateMet')" style="background:#4B3F37"></a></li> -->
+              <li><a onclick="changeBodyColor('IceBlue')" style="background:#9EB6AB"></an></li>
             </ul>
           </div>
           <div id="bonnet-mats" class="mat-container">
-            <div class="mat-butt"><a>Bonnet</a></div>
+            <div class="mat-butt"><a>Bonnet:</a></div>
             <ul class="mat-list">
-              <li><button onclick="changeBonnet('Silver_BonnetStripes')">Silver</button></li>
-              <li><button onclick="changeBonnet('Black_BonnetStripes')">Black</button></li>
-              <li><button onclick="changeBonnet()">None</button></li>
+              <li><a onclick="changeBonnet('Silver_BonnetStripes')" style="background:#C2C2B8"></a></li>
+              <li><a onclick="changeBonnet('Black_BonnetStripes')" style="background:#333"></a></li>
+              <li><a onclick="changeBonnet()" class="inherit-body-color"></a></li>
             </ul>
           </div>
           <div id="pillar-mats" class="mat-container">
-            <div class="mat-butt"><a>Pillar</a></div>
+            <div class="mat-butt"><a>Pillar:</a></div>
             <ul class="mat-list">
-              <li><button onclick="changePillar('Black_RoofMirror')">Black</button></li>
-              <li><button onclick="changePillar('Silver_RoofMirror')">Silver</button></li>
+              <li><a onclick="changePillar('Black_RoofMirror')" style="background:#333"></a></li>
+              <li><a onclick="changePillar('Silver_RoofMirror')" style="background:#C2C2B8"></a></li>
             </ul>
           </div>
-          <div id="rim-mats" class="mat-container">
-            <div class="mat-butt"><a>Rim</a></div>
-            <ul class="mat-list">
-              <li><button onclick="changeRims('Rims')">Grey</button></li>
-              <li><button onclick="changeRims('Rims_Black')">Black</button></li>
-            </ul>
-          </div>
+
+          
+
           <div id="roof-mats" class="mat-container">
-            <div class="mat-butt"><a>Roof</a></div>
+            <div class="mat-butt"><a>Roof:</a></div>
             <ul class="mat-list">
-              <li><button onclick="changeRoof('Silver_RoofMirror')">Silver</button></li>
-              <li><button onclick="changeRoof('Black_RoofMirror')">Black</button></li>
-              <li><button onclick="changeRoof('ChiliRed')">Chili Red</button></li>
-              <li><button onclick="changeRoof()">Body Color</button></li>
+              <li><a onclick="changeRoof('Silver_RoofMirror')" style="background:#C2C2B8"></a></li>
+              <li><a onclick="changeRoof('Black_RoofMirror')" style="background:#333"></a></li>
+              <li><a onclick="changeRoof()" class="inherit-body-color"></a></li>
             </ul>
           </div>
+          
+          <!--   
           <div id="light-mats" class="mat-container">
-            <div class="mat-butt"><a>Light</a></div>
+            <div class="mat-butt"><a>Light:</a></div>
             <ul class="mat-list">
               <li><button onclick="changeLights('HeadLight_Reflector')">Silver</button></li>
               <li><button onclick="changeLights('HeadLight_ReflectorBlack')">Black</button></li>
             </ul>
-          </div>
+          </div> -->
+
           <div id="mirror-mats" class="mat-container">
-            <div class="mat-butt"><a>Mirrors</a></div>
+            <div class="mat-butt"><a>Mirrors:</a></div>
             <ul class="mat-list">
-              <li><button onclick="changeMirrors('Silver_RoofMirror')">Silver</button></li>
-              <li><button onclick="changeMirrors('Black_RoofMirror')">Black</button></li>
-              <li><button onclick="changeMirrors('ChiliRed')">Chili Red</button></li>
-              <li><button onclick="changeMirrors()">Body Color</button></li>
+              <li><a onclick="changeMirrors('Silver_RoofMirror')" style="background:#C2C2B8"></a></li>
+              <li><a onclick="changeMirrors('Black_RoofMirror')" style="background:#333"></a></li>
+              <li><a onclick="changeMirrors()" class="inherit-body-color"></a></li>
             </ul>
           </div>
+
+          <div id="rim-mats" class="mat-container">
+            <div class="mat-butt"><a>Wheels:</a></div>
+            <ul class="mat-list">
+              <li><a class="wheel" onclick="changeRims('Rims')"><img src="files/2E8.png"></a></li>
+              <li><a class="wheel" onclick="changeRims('Rims_Black')"><img src="files/2B0.png"></a></li>
+            </ul>
+          </div>
+
         </div>
 
       </div><!-- verold-wrapper -->   
@@ -489,6 +494,14 @@
     </div><!-- wide-body-image-header -->
 
 
+
+     <div style="display: block; width: 200%; z-index: 1000000; background: #CD8C38; color: #111; position: relative; left: -50%;">
+
+        <div class="disclaimer" style="text-align: center; font-size: 10px; max-width: 30%; margin: auto; padding: 10px;" >
+        This is a non-profit making demo site used internally by Verold Inc, for testing purposes. MINI, the MINI logo, all model designations and MINI related marks, images and symbols are the exclusive properties and/or trademarks of BMW AG, used under licence.
+      </div>
+
+    </div>
 
     <div id="model-F56-gallery" class="wide-body-image gallery light-text" style="height:604px;">
         <div class="component-left">
@@ -2954,6 +2967,19 @@ under licence.
   <!-- VEROLD SCRIPTS -->
 
 
+
+  <script type="text/javascript">
+
+  $(function(){
+    $('#body-mats ul li a').click(function(){
+      $('.inherit-body-color').css('background',$(this).css("background-color"));
+    });
+  });
+
+
+  </script>
+
+
   <script>
   window.onload = function(){
     var glSupport = supportsWebGL();
@@ -2967,11 +2993,9 @@ under licence.
       jQuery('.mat-butt').click(function(e){
         e.stopImmediatePropagation();
         e.preventDefault();
-        jQuery(this).siblings("ul").toggle();
+        jQuery(this).siblings("ul").slideToggle(100);
       });
 
-      // jQuery('ul').toggle();
-      //jQuery('#body-mats ul').toggle();
     }
     else {
       console.warn("WebGL Not Enabled");

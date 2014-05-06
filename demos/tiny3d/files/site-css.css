@@ -1524,6 +1524,7 @@ display:none;
     position:relative;
     margin-left:-195px;
     width:1600px;height:500px;  /* 3D CONTAINER HEIGHT */
+    overflow: hidden;
   } 
   
   .wide-body-image {
