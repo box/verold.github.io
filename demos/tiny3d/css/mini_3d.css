@@ -124,9 +124,29 @@ ul.mat-list li{
 	border-radius: 24px;
 	display: inline-block;
 	border: 2px solid #000;
+	overflow: hidden;
+	position: relative; /* -> containing block */
 }
 
+.mat-list li a:after{
+	background: rgba(0,0,0,0.2);
+	width: 24px;
+	height: 10px;
+	content: '';
+	position: absolute;
+	bottom: 0;
+	-webkit-transform: rotate(-25deg);
+  -moz-transform:    rotate(-25deg);
+  -ms-transform:     rotate(-25deg);
+  -o-transform:      rotate(-25deg);
+  transform:         rotate(-25deg);
+  border-radius: 24px;
+}
 
+.mat-list li a:hover:after{
+	background: rgba(255,255,255,0.1);
+	height: 24px;
+}
 
 .inherit-body-color{
 	background: #CD2421;
@@ -143,7 +163,9 @@ ul.mat-list li{
 	margin-bottom: 5px;
 }
 
-
+.mat-list li a.wheel:after{
+	background: none;
+}
 
 
 /* Loading */
