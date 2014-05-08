@@ -57,6 +57,19 @@
   color:white;
 }
 
+.load-bar {
+  max-width:80%;
+  width:0%;
+  height:4px;
+  background-color:#EEEEEE;
+  margin:auto;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+  transition: width 2s;
+}
+
 @-webkit-keyframes fade /* Safari and Chrome */
 {
   0%   {background: white;}
