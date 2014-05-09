@@ -1,8 +1,8 @@
 .modal {
   display: none;
-  width: 400px;
+  width: 800px;
   background: #fff;
-  padding: 15px 30px;
+  padding: 30px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -o-border-radius: 8px;
