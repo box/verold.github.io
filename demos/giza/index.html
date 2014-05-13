@@ -17,11 +17,21 @@
 
 		<!-- Verold -->
 		<script src="//commondatastorage.googleapis.com/assets.verold.com/runtime/verold.loader.js"></script>
-	  <script>verold.load('body', 'http://s.vrld.co/p/536909653b4e8b020000035f/49/application.json');</script>
+	  <script>verold.load('#verold-content', 'http://s.vrld.co/p/536909653b4e8b020000035f/50/application.json');</script>
 
 	</head>
 	<body>
-		<!-- Verold content loads here -->
+		
+		<div id="verold-content"></div>
+
+		<script>
+		  $(function(){
+		    $('#info-modal-trigger').click(function(){
+		      $('#info-modal').modal({zIndex: 3});
+		    });
+		  });
+		</script>
+
 	</body>
 
 
