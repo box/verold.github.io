@@ -1,0 +1,44 @@
+.verold-container{
+  display: none;
+}
+
+.verold-fallback{
+  display: none;
+  background: #f0f0f0;
+  padding: 20px;
+}
+
+.verold-fallback p{
+  text-align: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#verold3d-wrapper{
+  height: 360px;
+  width: 100%;
+  border: 1px solid #f0f0f0;
+  margin-top:10px;
+  position: relative; /* -> containing block */
+}
+
+.powered-by-verold{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: #ccc !important;
+}
+
+.spinner{
+  position: absolute;
+  top:0;bottom:0;left:0;right:0;
+  margin:auto;
+  height:32px;
+  width:32px;
+}
+
+.spinner img{
+  border:0;
+  float:none;
+  margin:0;
+}
