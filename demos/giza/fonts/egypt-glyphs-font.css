@@ -4,5 +4,5 @@
 font-family: 'OldEgyptGlyphs';
 font-style: normal;
 font-weight: normal;
-src: local('OldEgyptGlyphs'), url('OldEgyptGlyphs.woff') format('woff');
+src: local('OldEgyptGlyphs'), url('http://dev.verold.com/demos/giza/fonts/OldEgyptGlyphs.woff') format('woff');
 }
