@@ -142,6 +142,8 @@
 			// .css('left','0')
 			// .css('right','0');
 			.css('left','50%')
+			.css('-webkit-transform','translate(-50%,0)')
+			.css('-ms-transform','translate(-50%,0)')
 			.css('transform','translate(-50%,0)');
 		
 		// video element
@@ -154,6 +156,8 @@
 			.css('min-height','100%')
 			.css('margin','auto')
 			.css('left','50%')
+			.css('-webkit-transform','translate(-50%,0)')
+			.css('-ms-transform','translate(-50%,0)')
 			.css('transform','translate(-50%,0)');
 			// .css('left','0')
 			// .css('right','0');
