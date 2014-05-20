@@ -38,10 +38,10 @@
 
 			$('#video video')[0].onended = function(){
 				$('#video').remove();
-				if(verold.supportsWebGL()){
-					verold.load('#verold-content', 'http://vrld.co/pWGTko/application.json');
-					$('#verold-content').show();
-				}
+				//if(verold.supportsWebGL()){
+				verold.load('#verold-content', 'http://vrld.co/pWGTko/application.json');
+				$('#verold-content').show();
+				//}
 			};
 
 		</script>
