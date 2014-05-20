@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Verold Uploader</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="style/style.css" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <script src="LensBlurDepthExtractor.js"></script>
+    <script src="lib/zip.js"></script>
+    <script src="lib/inflate.js"></script>
+    <script src="lib/deflate.js"></script>
+  </head>
+
+  <body>
+    <div class="title">
+      <h1>Verold Uploader</h1>
+      <p>Upload a file captured with the new Android Lens Blur application, and upload to Verold.</p>
+      <div id="loading" style="opacity: 0;">
+        <p>Loading...</p>
+        <div id="progress" style="width: 0px;"></div>
+      </div>
+      <div id="message">
+        <p></p>
+        <a href="#" class="close inside">Close</a>
+      </div>
+      <input type="file" id="uploadFile" name="uploadFile" />
+      <div id='panel'>
+        <div>
+          <h1>Settings</h1>
+          <p>You'll have to reload the model for the changes to be effective.</p>
+          <ul>
+            <li>Smooth mesh: <input type="range" id="smoothRadius" min="0" max="100"><span></span></li>
+            <li>Quad size: <input type="range" id="quadSize" min="1" max="10"><span></span></li>
+            <li>Point size: <input type="range" id="pointSize" min="1" max="5"><span></span></li>
+            <li>Verold API key: <input type="text" id="veroldAPIKey"></li>
+          </ul>
+        </div>
+        <div>
+          <h1>Actions</h1>
+          <p>
+            <a class="button" href="#" id="uploadVerold">Upload to Verold</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="VeroldUploader.js"></script>
+  </body>
+</html>
