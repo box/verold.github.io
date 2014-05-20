@@ -38,6 +38,7 @@
 
 			$('#video video')[0].onended = function(){
 				$('#video').remove();
+				alert("alert test!");
 				if(verold.supportsWebGL()){
 					verold.load('#verold-content', 'http://vrld.co/pWGTko/application.json');
 					$('#verold-content').show();
