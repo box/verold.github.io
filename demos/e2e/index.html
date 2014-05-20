@@ -36,9 +36,20 @@
 				opacity:1
 			});
 
-			$('#video video')[0].onended = function(){
+			//this doesn't like kindle
+			$('#video video').bind('ended', function(){
+				startVeroldApp();
+			});
+
+
+			$('#video video')[0].play();
+
+			//so we'll use a timeout
+			//window.setTimeout(startVeroldApp, 30000);
+
+			function startVeroldApp(){
 				$('#video').remove();
-				alert("alert test!");
+
 				if(verold.supportsWebGL()){
 					verold.load('#verold-content', 'http://vrld.co/pWGTko/application.json');
 					$('#verold-content').show();
