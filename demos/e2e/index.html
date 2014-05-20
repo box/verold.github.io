@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Earth To Echo</title>
+
+		<meta name="description" content="Earth To Echo in 3D powered by Verold">
+		<meta name="author" content="Verold">
+		<meta name="keywords" content="earth to echo relativity media 3d webgl verold three.js"/>
+
+
+		<!-- Verold -->
+  		<link href='/css/e2e.css' rel='stylesheet' type='text/css'>
+		<script src="//commondatastorage.googleapis.com/assets.verold.com/runtime/verold.loader.js"></script>
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="/js/jquery.videoBG.js"></script>
+
+	</head>
+	<body>
+		
+		<div id="verold-content"></div>
+		<div id="video"></div>
+		<script>
+
+			$('#verold-content').hide();
+
+			$('#video').videoBG({
+				mp4:'http://dev.verold.com/demos/e2e/assets/trailer1.mp4',
+				ogv:'http://dev.verold.com/demos/e2e/assets/trailer1.ogv',
+				webm:'http://dev.verold.com/demos/e2e/assets/trailer1.webm',
+				poster:'http://dev.verold.com/demos/e2e/img/video-bg.jpg',
+				scale:true,
+				zIndex:10,
+				loop:0,
+				opacity:1
+			});
+
+			$('#video video')[0].onended = function(){
+				$('#video').remove();
+				if(verold.supportsWebGL()){
+					verold.load('#verold-content', 'http://vrld.co/pWGTko/application.json');
+					$('#verold-content').show();
+				}
+			};
+
+		</script>
+
+	</body>
+
+
+</html>
+
