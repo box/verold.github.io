@@ -139,8 +139,11 @@
 			.css('opacity',options.opacity)
 			.css('overflow','hidden')
 			.css('margin','auto')
-			.css('left','50%')
-			.css('transform','translate(-50%,-0)');
+			.css('left','0')
+			.css('right','0')
+
+			// .css('left','50%')
+			// .css('transform','translate(-50%,-0)');
 		
 		// video element
 		var $video = $('<video/>');
