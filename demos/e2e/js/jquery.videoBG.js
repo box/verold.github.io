@@ -150,10 +150,6 @@
 			.css('top',0)
 			.css('min-width','100%')
 			.css('min-height','100%');
-			// .css('margin','auto')
-			// .css('left','50%')
-			// .css('transform','translate(-50%,-0)');
-
 
 		
 		if (options.autoplay) {
