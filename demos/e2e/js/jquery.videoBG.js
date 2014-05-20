@@ -135,6 +135,8 @@
 			.css('z-index',options.zIndex)
 			.css('top',0)
 			.css('left',0)
+			// .css('right',0)
+			// .css('margin','auto')
 			.css('height',options.height)
 			.css('width',options.width)
 			.css('opacity',options.opacity)
@@ -147,6 +149,8 @@
 			.attr('poster',options.poster)
 			.css('top',0)
 			.css('left',0)
+			.css('right',0)
+			.css('margin','auto')
 			.css('min-width','100%')
 			.css('min-height','100%');
 		
