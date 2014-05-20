@@ -147,8 +147,6 @@
 			.attr('poster',options.poster)
 			.css('top',0)
 			.css('left',0)
-			.css('right',0)
-			.css('margin','auto')
 			.css('min-width','100%')
 			.css('min-height','100%');
 		
