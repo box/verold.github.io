@@ -141,9 +141,8 @@
 			.css('margin','auto')
 			// .css('left','0')
 			// .css('right','0');
-
 			.css('left','50%')
-			.css('transform','translate(-50%,-0)');
+			.css('transform','translate(-50%,0)');
 		
 		// video element
 		var $video = $('<video/>');
@@ -154,8 +153,10 @@
 			.css('min-width','100%')
 			.css('min-height','100%')
 			.css('margin','auto')
-			.css('left','0')
-			.css('right','0');
+			.css('left','50%')
+			.css('transform','translate(-50%,0)');
+			// .css('left','0')
+			// .css('right','0');
 		
 		if (options.autoplay) {
 			$video.attr('autoplay',options.autoplay);
