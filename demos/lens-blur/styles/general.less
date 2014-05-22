@@ -61,6 +61,7 @@ a{
   left: 0; right: 0;
   width: 92%;
   margin: auto;
+  background: @bg-color;
 }
 
 
@@ -70,6 +71,7 @@ a{
   left: 0; right: 0;
   width: 92%;
   margin: auto;
+  background: @bg-color;
 }
 
 #invalidApi{
@@ -93,6 +95,8 @@ a{
   max-width: 720px;
   margin: 0 auto;
   position: relative; /* -> containing-block */
+  z-index: 2;
+  background: @bg-color;
   h2{
     font-size: 1.5em;
     line-height: 1.2em;
@@ -149,6 +153,7 @@ a{
   bottom: 0;
   font-size: 0.85rem;
   padding: 10px;
+  z-index: -1;
   a{
     outline: none;
   }

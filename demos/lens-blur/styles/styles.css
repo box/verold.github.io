@@ -424,6 +424,7 @@ a {
   right: 0;
   width: 92%;
   margin: auto;
+  background: #f0f0f0;
 }
 #browse-view,
 #upload-view,
@@ -435,6 +436,7 @@ a {
   right: 0;
   width: 92%;
   margin: auto;
+  background: #f0f0f0;
 }
 #invalidApi {
   display: none;
@@ -456,6 +458,8 @@ a {
   position: relative;
   /* -> containing-block */
 
+  z-index: 2;
+  background: #f0f0f0;
 }
 .main-container h2 {
   font-size: 1.5em;
@@ -527,6 +531,7 @@ a {
   bottom: 0;
   font-size: 0.85rem;
   padding: 10px;
+  z-index: -1;
 }
 .main-footer a {
   outline: none;
