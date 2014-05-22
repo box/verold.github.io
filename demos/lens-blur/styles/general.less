@@ -57,11 +57,14 @@ a{
 
 
 #api-view{
-  
 }
 
 
-#browse-view, #upload-view, #upload-more-view{
+#browse-view, #upload-view, #upload-more-view, #loading{
+  display: none;
+}
+
+#invalidApi{
   display: none;
 }
 
@@ -106,6 +109,7 @@ a{
   }
   .cancel{
     color: #999;
+    outline: none;
     &:hover{
       text-decoration: underline;
     }
@@ -115,17 +119,32 @@ a{
     color: #8cc84d;
     margin: 0 0 20px;
   }
+  .warning{
+    color: #fff;
+    background: @red;
+    .border-radius(3px);
+    .clearfix;
+    margin-top: 10px;
+    padding: 0 10px;
+    i,p{
+      float: left;
+      margin: 5px;
+    }
+  }
 }
 
 
 .main-footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
   font-size: 0.85rem;
   padding: 10px;
   a{
     outline: none;
   }
   small{
-    margin-top: 20px;
+    margin: 10px 0;
     display: block;
     a{
       color: #999;

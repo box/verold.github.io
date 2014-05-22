@@ -18,8 +18,9 @@
     <meta http-equiv="cleartype" content="on">
 
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="apple-touch-icon" href="icon.png"/>
     <link rel="icon" href="icon.png"/>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="styles/styles.css" type="text/css">
     <link href="styles/ionicons.min.css" rel="stylesheet" type="text/css" />
@@ -52,7 +53,12 @@
           <div class="api-form">
             <label for="veroldAPIKey">YOUR VEROLD API KEY:</label>
             <input type="text" id="veroldAPIKey" name="veroldAPIKey">
-            <a class="submit-api" id="submit-api" href="javascript:void(0)">GO</a>
+            <a class="submit-api active" id="submitApi" href="javascript:void(0)">GO</a>
+          </div>
+
+          <div id="invalidApi" class="warning">
+            <i class="icon ion-alert-circled"></i>
+            <p>Invalid API</p>
           </div>
 
           <p class="footnote">
@@ -102,6 +108,12 @@
 
         </div><!-- /upload-more-view -->
 
+        <div id="loading">
+
+          <img src="img/preloader.gif" alt="Loading">
+
+        </div>
+
 
       </div><!-- /main-container -->
 
@@ -120,6 +132,29 @@
 
 
     <script src="VeroldUploader.js"></script>
+
+    <script type="text/javascript">
+
+
+    $(function(){
+
+      $('#submitApi').click(function(){
+
+        var charcount = $("#veroldAPIKey").val().length;
+
+        if (charcount!=32) {
+          $('#invalidApi').show();
+        }else{
+          $('#invalidApi').hide();
+          $('#api-view').slideToggle();
+          $('#browse-view').slideToggle();
+        };
+
+      });
+
+    });
+      
+    </script>
   
   </body>
 
