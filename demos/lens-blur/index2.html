@@ -22,7 +22,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/jquery-ui-1.10.4.min.js"></script>
-    
+
 
     <link rel="stylesheet" href="styles/styles.css" type="text/css">
     <link href="styles/ionicons.min.css" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@
   </head>
 
   <body>
-   
+
 
     <div class="app-wrapper">
 
@@ -75,7 +75,8 @@
 
           <h2>Hi <span id="user-name">there</span>!</h2>
 
-          <a class="action-button" class="chooseFile" href="javascript:void(0)">CHOOSE FILE</a>
+          <!--a class="action-button" id="uploadFile" class="chooseFile" href="javascript:void(0)">CHOOSE FILE</a-->
+          <input type="file" class="action-button" id="uploadFile" class="chooseFile" name="uploadFile" />
 
           <p class="footnote">
             Upload a file captured with Google Camera Lens Blur&reg; mode
@@ -133,36 +134,8 @@
 
     </div>
 
-
     <script src="VeroldUploader.js"></script>
 
-    <script type="text/javascript">
-
-
-    $(function(){
-
-      $('#submitApi').click(function(){
-
-        var charcount = $("#veroldAPIKey").val().length;
-
-        if (charcount!=32) {
-          $('#invalidApi').show();
-          $('.api-form').effect('shake');
-        }else{
-          $('#invalidApi').hide();
-          $('#api-view').hide("slide", { direction: "left" }, 500);
-          setTimeout( '$("#browse-view").show("slide", { direction: "right" }, 500);' , 200 );
-          
-          //$('#browse-view').show("slide", { direction: "right" }, 1000);
-        };
-
-      });
-
-    });
-      
-    </script>
-
-  
   </body>
 
 </html>

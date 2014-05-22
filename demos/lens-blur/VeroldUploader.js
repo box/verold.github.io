@@ -11,79 +11,6 @@
     veroldAPIKey: ''
   };
 
-  function loadSettings(){
-    if(localStorage){
-      if(localStorage.smoothRadius)
-        settings.smoothRadius = parseFloat(localStorage.smoothRadius);
-
-      if(localStorage.quadSize)
-        settings.quadSize = parseFloat(localStorage.quadSize);
-
-      if(localStorage.pointSize)
-        settings.pointSize = parseFloat(localStorage.pointSize);
-
-      if(localStorage.veroldAPIKey)
-        settings.veroldAPIKey = localStorage.veroldAPIKey;
-    }
-
-    if(settings.smoothRadius < 0)
-      settings.smoothRadius = 0;
-
-    if(settings.smoothRadius > 100)
-      settings.smoothRadius = 100;
-
-    if(settings.quadSize < 1)
-      settings.quadSize = 1;
-
-    if(settings.quadSize > 10)
-      settings.quadSize = 10;
-
-    if(settings.pointSize < 1)
-      settings.pointSize = 1;
-
-    if(settings.pointSize > 5)
-      settings.pointSize = 5;
-
-    for(var j in settings){
-      var el = document.getElementById(j);
-      el.value = settings[j];
-      var span = document.createElement('span');
-
-      if(el.getAttribute('type') == 'range'){
-        el.parentNode.insertBefore(span, el.nextSibling);
-      }
-
-      span.textContent = el.value;
-
-      (function(s){
-        el.addEventListener('change', function(e){
-          var id = this.getAttribute('id');
-
-          if(id == 'smoothRadius'){
-            if(this.value<0)this.value=0;
-            if(this.value>100)this.value=100;
-          }
-
-          if(id=='quadSize'){
-            if(this.value<1)this.value=1;
-            if(this.value>10)this.value=10;
-          }
-
-          if(id=='pointSize'){
-            if(this.value<1)this.value=1;
-            if(this.value>5)this.value=5;
-          }
-
-          settings[id]=this.value;
-
-          s.textContent=this.value;
-
-          saveSettings();
-        });
-      })(span);
-    }
-  }
-
   function setLoadingText(text){
     loading.querySelector('p').textContent=text;
   }
@@ -106,21 +33,14 @@
     message.style.opacity=1;
   }
 
-  function saveSettings(){
-    for(var j in settings){
-      localStorage[j]=settings[j];
-    }
-  }
+  //var ui=[].slice.call(document.querySelectorAll('.ui'));
+  //var container=document.getElementById('container');
+  //var loading=document.getElementById('loading');
+  //var message=document.getElementById('message');
 
-  loadSettings();
-  var ui=[].slice.call(document.querySelectorAll('.ui'));
-  var container=document.getElementById('container');
-  var loading=document.getElementById('loading');
-  var message=document.getElementById('message');
-
-  message.querySelector('a').addEventListener('click',function(e){
+  /*message.querySelector('a').addEventListener('click',function(e){
     message.style.opacity=0;
-  });
+  });*/
 
   var d = new DepthReader();
   var imgSrc = new Image();
@@ -133,35 +53,39 @@
 
     function setImg(){
       imgSrc.src='data:'+d.image.mime+';base64,'+d.image.data;
-      showLoading(false);
+      //showLoading(false);
     }
 
     function onError(msg){
-      showLoading(false);
-      showMessage(msg);
+      //showLoading(false);
+      //showMessage(msg);
     }
 
     function handleFileSelect(evt) {
-      setLoadingText('Loading...');
-      showLoading(true);
+      //setLoadingText('Loading...');
+      //showLoading(true);
 
+      console.log(evt);
       var file = evt.target.files[0];
 
       if(!file.type.match('image.*')) {
-        showMessage('Verold upload error: <span class="error">Please select an image file</span>');
+        //showMessage('Verold upload error: <span class="error">Please select an image file</span>');
       }
 
       var reader = new FileReader();
 
       reader.onload = function(theFile){
         d.parseFile(reader.result, setImg, onError);
+
+        $('#browse-view').hide("slide", { direction: "left" }, 500);
+        setTimeout( '$("#upload-view").show("slide", { direction: "right" }, 500);' , 200 );
       };
 
       reader.readAsArrayBuffer(file);
     }
 
     function exportToVerold(zip) {
-      var server = 'http://studio.verold.com';
+      var server = 'http://localhost:3000';
 
       var imgColor = new Image();
       imgColor.src = 'data:' + d.image.mime + ';base64,' + d.image.data;
@@ -186,15 +110,17 @@
         var res = JSON.parse(addToSceneRequest.responseText);
 
         if(res.errors) {
-          showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          showLoading(false);
+          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
+          //showLoading(false);
         } else {
-          var projectId = res.projectId;
+          //var projectId = res.projectId;
 
-          var displayUrl = server + '/projects/'+ projectId;
-          showMessage('Upload success: <a href="'+ displayUrl +'" target="_blank">See it here</a>');
+          $('#loading').hide();
+          $('#upload-view').hide("slide", { direction: "left" }, 500);
+          setTimeout( '$("#upload-more-view").show("slide", { direction: "right" }, 500);' , 200 );
+          //showMessage('Upload success: <a href="'+ displayUrl +'" target="_blank">See it here</a>');
 
-          showLoading(false);
+          //showLoading(false);
         }
       };
 
@@ -202,8 +128,8 @@
         var res = JSON.parse(createInstanceRequest.response);
 
         if(res.errors) {
-          showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          showLoading(false);
+          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
+          //showLoading(false);
         } else {
           var entityId = scene.id;
 
@@ -226,8 +152,8 @@
         var res = JSON.parse(updateMeshRequest.response);
 
         if(res.errors) {
-          showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          showLoading(false);
+          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
+          //showLoading(false);
         } else {
           var entityId = res.parentId;
 
@@ -249,8 +175,8 @@
         var res = JSON.parse(uploadPlaneModelRequest.responseText);
 
         if(res.errors) {
-          showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          showLoading(false);
+          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
+          //showLoading(false);
         } else {
           var modelId = res.id;
           var entityId = mesh.id;
@@ -271,8 +197,8 @@
         var res = JSON.parse(uploadPlaneMeshRequest.responseText);
 
         if(res.errors) {
-          showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          showLoading(false);
+          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
+          //showLoading(false);
         } else {
           mesh = res;
           var projectId = res.projectId;
@@ -308,8 +234,8 @@
         var res = JSON.parse(uploadMaterialRequest.responseText);
 
         if(res.errors) {
-          showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          showLoading(false);
+          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
+          //showLoading(false);
         } else {
           material = res;
           var projectId = res.projectId;
@@ -356,8 +282,8 @@
         var res = JSON.parse(assetRequest.responseText);
 
         if(res.errors) {
-          showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          showLoading(false);
+          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
+          //showLoading(false);
         } else {
           var projectId;
           var diffuseTexture;
@@ -461,8 +387,8 @@
         var res = JSON.parse(createProjectRequest.responseText);
 
         if(res.errors) {
-          showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          showLoading(false);
+          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
+          //showLoading(false);
         } else {
           var projectId = res.id;
 
@@ -488,8 +414,6 @@
       createProjectRequest.send(formData);
     }
 
-    document.getElementById('uploadFile').addEventListener('change', handleFileSelect, false);
-
     function b64toBlob(b64Data,contentType,sliceSize){
       contentType=contentType||'';
       sliceSize=sliceSize||512;
@@ -514,14 +438,32 @@
       return blob;
     }
 
+    document.getElementById('uploadFile').addEventListener('change', handleFileSelect, false);
+
+    document.getElementById('submitApi').addEventListener('click', function(e) {
+      e.preventDefault();
+
+      var charcount = $("#veroldAPIKey").val().length;
+      if (charcount!=32) {
+        $('#invalidApi').show();
+        $('.api-form').effect('shake');
+      }else{
+        settings.veroldAPIKey = $("#veroldAPIKey").val();
+        $('#invalidApi').hide();
+        $('#api-view').hide("slide", { direction: "left" }, 500);
+        setTimeout( '$("#browse-view").show("slide", { direction: "right" }, 500);' , 200 );
+      }
+    });
+
     document.getElementById('uploadVerold').addEventListener('click', function(e) {
+      $('#loading').show();
       if(settings.veroldAPIKey === '') {
-        showMessage('Please enter you <b>Verold</b> API key on the <b>Settings</b>');
+        //showMessage('Please enter you <b>Verold</b> API key on the <b>Settings</b>');
         return;
       }
 
-      setLoadingText('Exporting...');
-      showLoading(true);
+      //setLoadingText('Exporting...');
+      //showLoading(true);
 
       var blobColorImage = b64toBlob(d.image.data, d.image.mime);
       var blobDepthImage = b64toBlob(d.depth.data, d.depth.mime);
