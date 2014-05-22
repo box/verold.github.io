@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>LENS BLUR TO VEROLD</title>
+
+    <meta name="description" content="Upload your files captured with Lens Blur to Verold">
+    <meta name="author" content="Verold">
+    <meta name="keywords" content="lens blur camera 3D verold depth"/>
+
+    <!-- Mobile viewport optimization h5bp.com/ad -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"> <!-- blocks zoom -->
+
+    <meta http-equiv="cleartype" content="on">
+
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="icon.png"/>
+    <link rel="icon" href="icon.png"/>
+
+    <link rel="stylesheet" href="styles/styles.css" type="text/css">
+    <link href="styles/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="LensBlurDepthExtractor.js"></script>
+    <script src="lib/zip.js"></script>
+    <script src="lib/inflate.js"></script>
+    <script src="lib/deflate.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+   
+
+    <div class="app-wrapper">
+
+      <header class="main-header">
+
+        <h1>LENS BLUR TO VEROLD</h1>
+
+      </header>
+
+      <div class="main-container">
+
+        <div id="api-view">
+
+          <div class="api-form">
+            <label for="veroldAPIKey">YOUR VEROLD API KEY:</label>
+            <input type="text" id="veroldAPIKey" name="veroldAPIKey">
+            <a class="submit-api" id="submit-api" href="javascript:void(0)">GO</a>
+          </div>
+
+          <p class="footnote">
+            We need your API key to upload the file to your Verold account.<br />
+            You can grab it here: <a href="http://studio.verold.com/api" target="_blank">studio.verold.com/api</a>
+          </p>
+
+        </div><!-- /api-view -->
+
+        <div id="browse-view">
+
+          <h2>Hi <span id="user-name">there</span>!</h2>
+
+          <a class="action-button" class="chooseFile" href="javascript:void(0)">CHOOSE FILE</a>
+
+          <p class="footnote">
+            Upload a file captured with Google Camera Lens Blur&reg; mode
+          </p>
+
+        </div><!-- /browse-view -->
+
+
+        <div id="upload-view">
+
+          <h2 id="filenName">filename.xmp</h2>
+
+          <a class="action-button" id="uploadVerold" href="javascript:void(0)">UPLOAD TO VEROLD</a>
+
+          <p class="footnote">
+            <a class="cancel" href="javascript:void(0)">OR CANCEL</a>
+          </p>
+
+        </div><!-- /upload-view -->
+
+
+        <div id="upload-more-view">
+
+          <p class="success"><i class="icon ion-ios7-checkmark"></i></p>
+
+          <h2>You’ll receive an e-mail once your file is ready</h2>
+
+          <a class="action-button" class="chooseFile" href="javascript:void(0)">UPLOAD ANOTHER FILE</a>
+
+          <p class="footnote">
+            <a class="cancel" href="javascript:void(0)">OR CANCEL</a>
+          </p>
+
+        </div><!-- /upload-more-view -->
+
+
+      </div><!-- /main-container -->
+
+
+      <footer class="main-footer">
+
+        <a href="http://verold.com" target="_blank">
+          <img src="img/verold-logo.svg" onerror="this.src=img/verold-logo.png;this.onerror=null;">
+        </a>
+
+        <small>&copy; Verold Inc. | Based on the Lens Blur uploader created by <a href="http://www.clicktorelease.com/" target="_blank">Jaume Sanchez</a></small>
+
+      </footer>
+
+    </div>
+
+
+    <script src="VeroldUploader.js"></script>
+  
+  </body>
+
+</html>

@@ -1,0 +1,185 @@
+
+/* this way images (and the other fixed-width elements) never display larger than their containers */
+img,embed,object,video,iframe{
+	max-width:100%;  
+}
+
+
+/* apply a natural box layout model to all elements */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+
+
+.clearfix {
+  *zoom: 1; /* IE 6/7 support */
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+html{
+  font-size: 16px;
+}
+ 
+body {
+    font-family: @main-font;
+    line-height: 1.2em;
+    color: #999;
+    background: @bg-color;
+    text-align: center;
+}
+
+
+h1, h2, h3, h4, h5, h6{
+    font-size: 100%;
+    font-weight: normal;
+    margin: 0;
+}
+
+ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+
+a{
+    text-decoration: none;
+    color: @action-color;
+}
+
+
+
+#api-view{
+  
+}
+
+
+#browse-view, #upload-view, #upload-more-view{
+  display: none;
+}
+
+
+.main-header{
+  background: #242d2f;
+  h1{
+    color: #fff;
+    font-weight: lighter;
+    letter-spacing: 0.4em;
+    padding: 30px 10px;
+  }
+}
+
+.main-container{
+  padding: 30px 10px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  h2{
+    font-size: 1.5em;
+    line-height: 1.2em;
+    font-weight: lighter;
+  }
+  .footnote{
+    font-size: 0.8em;
+  }
+  .action-button{
+    display: block;
+    background: @action-color;
+    color: #fff;
+    letter-spacing: 0.1em;
+    height: 3em;
+    line-height: 3em;
+    margin: 20px 0;
+    padding: 0 10px;
+    border-bottom: 2px solid darken(@action-color, 20%);
+    .border-radius(3px);
+    &:hover, &:focus{
+      background: darken(@action-color, 5%);
+    }
+  }
+  .cancel{
+    color: #999;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+  .success{
+    font-size: 2em;
+    color: #8cc84d;
+    margin: 0 0 20px;
+  }
+}
+
+
+.main-footer{
+  font-size: 0.85rem;
+  padding: 10px;
+  a{
+    outline: none;
+  }
+  small{
+    margin-top: 20px;
+    display: block;
+    a{
+      color: #999;
+      text-decoration: underline;
+    }
+    &:before{
+      content: '';
+      width:90%;
+      height: 1px;
+      background: rgba(0,0,0,0.15);
+      border-bottom: 1px solid #fff;
+      margin: 0 auto 20px;
+      display: block;
+    }
+  }
+}
+
+
+
+.api-form{
+  text-align: left;
+  position: relative; /* -> containing block */
+  label, input{
+    width: 100%;
+    padding: 0 0.5em;
+  }
+  input{
+    height: 2.5em;
+    line-height: 2.5em;
+    margin-top: 0.5em;
+    padding-right: 65px;
+    text-overflow: ellipsis;
+  }
+  .submit-api{
+    background: #999;
+    color: #fff;
+    display: inline-block;
+    height: 2.5em;
+    line-height: 2.5em;
+    width: 60px;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    
+  }
+  .submit-api.active{
+    background: @action-color;
+    &:hover, &:focus{
+      background: darken(@action-color, 5%);
+    }
+  }
+}
+
+
+
+
