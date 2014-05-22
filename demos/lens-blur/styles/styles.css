@@ -418,11 +418,23 @@ a {
   text-decoration: none;
   color: #51adf1;
 }
+#api-view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 92%;
+  margin: auto;
+}
 #browse-view,
 #upload-view,
 #upload-more-view,
 #loading {
   display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 92%;
+  margin: auto;
 }
 #invalidApi {
   display: none;
@@ -437,10 +449,13 @@ a {
   padding: 30px 10px;
 }
 .main-container {
-  padding: 30px 10px;
+  padding: 30px 0;
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
+  position: relative;
+  /* -> containing-block */
+
 }
 .main-container h2 {
   font-size: 1.5em;
