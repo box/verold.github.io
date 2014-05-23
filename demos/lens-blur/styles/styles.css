@@ -497,6 +497,7 @@ a {
   text-align: center;
   opacity: 0;
   position: absolute;
+  left: 0;
 }
 .main-container .cancel {
   color: #999;
