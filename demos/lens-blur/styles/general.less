@@ -82,6 +82,17 @@ a{
   display: none;
 }
 
+#user-card-trigger{
+  display: inline-block;
+  padding: 10px;
+  .border-radius(3px);
+}
+
+#user-card-trigger:hover{
+  cursor: pointer;
+  background: rgba(255,255,255,0.5);
+}
+
 .main-header{
   background: #242d2f;
   h1{
@@ -229,5 +240,27 @@ a{
 }
 
 
+.ui-dialog{
+  position: absolute;
+  left: 0 !important;
+  right: 0;
+  top:0 !important;
+  bottom: 0;
+  margin: auto;
+  width: 96%;
+  max-width: 600px;
+  height: 96%;
+  max-height: 400px;
+  background: #fff;
+  .box-shadow(0 0 1000px 1000px rgba(0,0,0,0.5));
+  z-index: 2;
+  padding: 20px;
+}
 
+
+.ui-dialog-titlebar-close{
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
 

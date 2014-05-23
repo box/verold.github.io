@@ -444,6 +444,20 @@ a {
 #uploadError {
   display: none;
 }
+#user-card {
+  display: none;
+}
+#user-card-trigger {
+  display: inline-block;
+  padding: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+#user-card-trigger:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.5);
+}
 .main-header {
   background: #242d2f;
 }
@@ -604,4 +618,27 @@ a {
 .api-form .submit-api.active:hover,
 .api-form .submit-api.active:focus {
   background: #39a2ef;
+}
+.ui-dialog {
+  position: absolute;
+  left: 0 !important;
+  right: 0;
+  top: 0 !important;
+  bottom: 0;
+  margin: auto;
+  width: 96%;
+  max-width: 600px;
+  height: 96%;
+  max-height: 400px;
+  background: #fff;
+  -webkit-box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  padding: 20px;
+}
+.ui-dialog-titlebar-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
