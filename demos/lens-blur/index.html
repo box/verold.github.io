@@ -71,7 +71,7 @@
 
         <div id="browse-view">
 
-          <h2>Hi <span id="user-name">there</span>!</h2>
+          <div id="user-card-trigger"><h2>Hi <span id="user-name">there</span>!</h2></div>
 
           <div class="action-button">
             CHOOSE FILE
@@ -92,7 +92,7 @@
             Upload a file captured with Google Camera Lens Blur&reg; mode
           </p>
 
-          <div id="user-card" title="User Information">
+          <div id="user-card" title="">
             <p>-</p>
           </div>
 
@@ -155,6 +155,26 @@
 
     <script src="VeroldUploader.js"></script>
 
+    <script>
+      $(function() {
+        $( "#user-card" ).dialog({
+          autoOpen: false,
+          show: {
+          effect: "scale",
+          duration: 300
+          },
+          hide: {
+          effect: "scale",
+          duration: 300
+          }
+        });
+        
+        $( "#user-card-trigger" ).click(function() {
+          $( "#user-card" ).dialog( "open" );
+        });
+
+      });
+    </script>
   </body>
 
 </html>
