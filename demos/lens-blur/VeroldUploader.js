@@ -21,7 +21,7 @@
     var displacement=0,nDisplacement=displacement;
 
     function setImg(){
-      imgSrc.src='data:'+d.image.mime+';base64,'+d.image.data;
+      imgSrc.src = 'data:'+d.image.mime+';base64,'+d.image.data;
     }
 
     function onError(msg){
@@ -30,12 +30,13 @@
     }
 
     function handleFileSelect(evt) {
-      console.log(evt);
       var file = evt.target.files[0];
 
       if(!file.type.match('image.*')) {
         $('#invalidFile').show();
       }
+
+      $('#fileName').html(file.name);
 
       var reader = new FileReader();
 
@@ -43,8 +44,7 @@
         d.parseFile(reader.result, setImg, onError);
 
         $('#browse-view').hide("slide", { direction: "left" }, 500);
-        setTimeout( '$("#upload-view").show("slide", { direction: "right" }, 500);' , 200 );
-        console.log(file);
+        setTimeout( '$("#upload-view").show("slide", { direction: "right" }, 500);', 200 );
       };
 
       reader.readAsArrayBuffer(file);
