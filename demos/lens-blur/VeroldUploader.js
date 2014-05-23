@@ -1,8 +1,8 @@
 (function() {
 
   'use strict';
-  zip.useWebWorkers = false;
-  //zip.workerScriptsPath = "http://www.clicktorelease.com/code/depth-player/js/zip/";
+  //zip.useWebWorkers = false;
+  zip.workerScriptsPath = "js/zip/";
 
   var settings = {
     smoothRadius: 10,
@@ -10,37 +10,6 @@
     pointSize: 3,
     veroldAPIKey: ''
   };
-
-  function setLoadingText(text){
-    loading.querySelector('p').textContent=text;
-  }
-
-  function setProgress(p){
-    loading.querySelector('#progress').style.width=(loading.clientWidth*p)+'px';
-  }
-
-  function showLoading(show){
-    setProgress(0);
-
-    if(show)
-      loading.style.opacity=1;
-    else
-      loading.style.opacity=0;
-  }
-
-  function showMessage(msg){
-    message.querySelector('p').innerHTML=msg;
-    message.style.opacity=1;
-  }
-
-  //var ui=[].slice.call(document.querySelectorAll('.ui'));
-  //var container=document.getElementById('container');
-  //var loading=document.getElementById('loading');
-  //var message=document.getElementById('message');
-
-  /*message.querySelector('a').addEventListener('click',function(e){
-    message.style.opacity=0;
-  });*/
 
   var d = new DepthReader();
   var imgSrc = new Image();
@@ -53,23 +22,19 @@
 
     function setImg(){
       imgSrc.src='data:'+d.image.mime+';base64,'+d.image.data;
-      //showLoading(false);
     }
 
     function onError(msg){
-      //showLoading(false);
-      //showMessage(msg);
+      $('#parseError').querySelector('p').innerHTML = msg;
+      $('#parseError').show();
     }
 
     function handleFileSelect(evt) {
-      //setLoadingText('Loading...');
-      //showLoading(true);
-
       console.log(evt);
       var file = evt.target.files[0];
 
       if(!file.type.match('image.*')) {
-        //showMessage('Verold upload error: <span class="error">Please select an image file</span>');
+        $('#invalidImage').show();
       }
 
       var reader = new FileReader();
@@ -106,21 +71,20 @@
       var scene;
       var retry = true;
 
+      var displayError = function(msg) {
+        $('#uploadError').querySelector('p').innerHTML = msg;
+        $('#uploadError').show();
+      };
+
       var finish = function() {
         var res = JSON.parse(addToSceneRequest.responseText);
 
         if(res.errors) {
-          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          //showLoading(false);
+          displayError('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
         } else {
-          //var projectId = res.projectId;
-
           $('#loading').hide();
           $('#upload-view').hide("slide", { direction: "left" }, 500);
           setTimeout( '$("#upload-more-view").show("slide", { direction: "right" }, 500);' , 200 );
-          //showMessage('Upload success: <a href="'+ displayUrl +'" target="_blank">See it here</a>');
-
-          //showLoading(false);
         }
       };
 
@@ -128,8 +92,7 @@
         var res = JSON.parse(createInstanceRequest.response);
 
         if(res.errors) {
-          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          //showLoading(false);
+          displayError('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
         } else {
           var entityId = scene.id;
 
@@ -152,8 +115,7 @@
         var res = JSON.parse(updateMeshRequest.response);
 
         if(res.errors) {
-          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          //showLoading(false);
+          displayError('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
         } else {
           var entityId = res.parentId;
 
@@ -175,8 +137,7 @@
         var res = JSON.parse(uploadPlaneModelRequest.responseText);
 
         if(res.errors) {
-          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          //showLoading(false);
+          displayError('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
         } else {
           var modelId = res.id;
           var entityId = mesh.id;
@@ -197,8 +158,7 @@
         var res = JSON.parse(uploadPlaneMeshRequest.responseText);
 
         if(res.errors) {
-          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          //showLoading(false);
+          displayError('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
         } else {
           mesh = res;
           var projectId = res.projectId;
@@ -234,8 +194,7 @@
         var res = JSON.parse(uploadMaterialRequest.responseText);
 
         if(res.errors) {
-          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          //showLoading(false);
+          displayError('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
         } else {
           material = res;
           var projectId = res.projectId;
@@ -282,8 +241,7 @@
         var res = JSON.parse(assetRequest.responseText);
 
         if(res.errors) {
-          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          //showLoading(false);
+          displayError('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
         } else {
           var projectId;
           var diffuseTexture;
@@ -387,8 +345,7 @@
         var res = JSON.parse(createProjectRequest.responseText);
 
         if(res.errors) {
-          //showMessage('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
-          //showLoading(false);
+          displayError('Verold upload error: <span class="error">'+res.errors[0]+'</span>');
         } else {
           var projectId = res.id;
 
@@ -406,7 +363,6 @@
       formData.append('title', 'My Lens Blur Project');
       formData.append('description', 'image via\nhttp://www.clicktorelease.com/code/depth-player/');
       formData.append('tags', 'lens blur,android');
-      formData.append('allowApi', 'allowApi');
       formData.append('privacy', 'public');
 
       createProjectRequest.addEventListener('load', getProjectJobs, true);
@@ -457,13 +413,6 @@
 
     document.getElementById('uploadVerold').addEventListener('click', function(e) {
       $('#loading').show();
-      if(settings.veroldAPIKey === '') {
-        //showMessage('Please enter you <b>Verold</b> API key on the <b>Settings</b>');
-        return;
-      }
-
-      //setLoadingText('Exporting...');
-      //showLoading(true);
 
       var blobColorImage = b64toBlob(d.image.data, d.image.mime);
       var blobDepthImage = b64toBlob(d.depth.data, d.depth.mime);
