@@ -85,7 +85,7 @@
     }
 
     function exportToVerold(zip) {
-      var server = 'http://localhost:3000';
+      var server = 'http://studio.verold.com';
 
       var imgColor = new Image();
       imgColor.src = 'data:' + d.image.mime + ';base64,' + d.image.data;
