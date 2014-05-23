@@ -438,7 +438,8 @@ a {
   margin: auto;
   background: #f0f0f0;
 }
-#invalidApi {
+#invalidApi,
+#invalidFile {
   display: none;
 }
 .main-header {
