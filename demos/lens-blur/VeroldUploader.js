@@ -44,6 +44,7 @@
 
         $('#browse-view').hide("slide", { direction: "left" }, 500);
         setTimeout( '$("#upload-view").show("slide", { direction: "right" }, 500);' , 200 );
+        console.log(file);
       };
 
       reader.readAsArrayBuffer(file);
@@ -72,7 +73,8 @@
       var retry = true;
 
       var displayError = function(msg) {
-        $('#uploadError').querySelector('p').innerHTML = msg;
+        var message = document.getElementById('uploadError');
+        message.querySelector('p').innerHTML = msg;
         $('#uploadError').show();
       };
 
@@ -304,7 +306,7 @@
 
       var getProjectAssets = function(projectId) {
         assetRequest.addEventListener('load', uploadMaterial, true);
-        assetRequest.open('GET', server + '/projects/' + projectId + '/assets.json');
+        assetRequest.open('GET', server + '/projects/' + projectId + '/assets.json?api_key=' + settings.veroldAPIKey);
         assetRequest.responseType = '';
         assetRequest.send();
       };
