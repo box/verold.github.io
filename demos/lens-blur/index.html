@@ -73,10 +73,12 @@
 
           <h2>Hi <span id="user-name">there</span>!</h2>
 
-          <!--a class="action-button" id="uploadFile" class="chooseFile" href="javascript:void(0)">CHOOSE FILE</a-->
-          <input type="file" class="action-button" id="uploadFile" class="chooseFile" name="uploadFile" />
+          <div class="action-button">
+            CHOOSE FILE
+            <input type="file" id="uploadFile" class="chooseFile" name="uploadFile" />
+          </div>
 
-          <div id="invalidImage" class="warning">
+          <div id="invalidFile" class="warning">
             <i class="icon ion-alert-circled"></i>
             <p>Verold upload error: <span class="error">Please select an image file</span></p>
           </div>

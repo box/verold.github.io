@@ -34,7 +34,7 @@
       var file = evt.target.files[0];
 
       if(!file.type.match('image.*')) {
-        $('#invalidImage').show();
+        $('#invalidFile').show();
       }
 
       var reader = new FileReader();

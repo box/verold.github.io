@@ -1,7 +1,7 @@
 
 /* this way images (and the other fixed-width elements) never display larger than their containers */
 img,embed,object,video,iframe{
-	max-width:100%;  
+	max-width:100%;
 }
 
 
@@ -26,7 +26,7 @@ img,embed,object,video,iframe{
 html{
   font-size: 16px;
 }
- 
+
 body {
     font-family: @main-font;
     line-height: 1.2em;
@@ -74,7 +74,7 @@ a{
   background: @bg-color;
 }
 
-#invalidApi{
+#invalidApi, #invalidFile, #parseError, #uploadError{
   display: none;
 }
 
@@ -113,11 +113,21 @@ a{
     height: 3em;
     line-height: 3em;
     margin: 20px 0;
-    padding: 0 10px;
+    padding: 0;
     border-bottom: 2px solid darken(@action-color, 20%);
     .border-radius(3px);
+    width: 100%;
+    text-align: center;
     &:hover, &:focus{
       background: darken(@action-color, 5%);
+      cursor: pointer;
+    }
+    input{
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      opacity: 0;
+      position: absolute;
     }
   }
   .cancel{
@@ -203,7 +213,7 @@ a{
     position: absolute;
     right: 0;
     bottom: 0;
-    
+
   }
   .submit-api.active{
     background: @action-color;
