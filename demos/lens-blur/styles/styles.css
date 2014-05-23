@@ -488,6 +488,7 @@ a {
 .main-container .action-button:hover,
 .main-container .action-button:focus {
   background: #39a2ef;
+  cursor: pointer;
 }
 .main-container .action-button input {
   width: 100%;
