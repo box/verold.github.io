@@ -80,6 +80,7 @@ a{
 
 #user-card{
   display: none;
+  padding: 20px;
 }
 
 #user-card-trigger{
@@ -91,6 +92,11 @@ a{
 #user-card-trigger:hover{
   cursor: pointer;
   background: rgba(255,255,255,0.5);
+}
+
+
+.user-avatar{
+  .border-radius(100%);
 }
 
 .main-header{
@@ -116,61 +122,65 @@ a{
     line-height: 1.2em;
     font-weight: lighter;
   }
-  .footnote{
-    font-size: 0.8em;
+}
+
+
+.footnote{
+  font-size: 0.8em;
+}
+.action-button{
+  display: block;
+  background: @action-color;
+  color: #fff;
+  letter-spacing: 0.1em;
+  height: 3em;
+  line-height: 3em;
+  margin: 20px 0;
+  padding: 0;
+  border-bottom: 2px solid darken(@action-color, 20%);
+  .border-radius(3px);
+  width: 100%;
+  text-align: center;
+  &:hover, &:focus{
+    background: darken(@action-color, 5%);
+    cursor: pointer;
   }
-  .action-button{
-    display: block;
-    background: @action-color;
-    color: #fff;
-    letter-spacing: 0.1em;
-    height: 3em;
-    line-height: 3em;
-    margin: 20px 0;
-    padding: 0;
-    border-bottom: 2px solid darken(@action-color, 20%);
-    .border-radius(3px);
+  input{
     width: 100%;
+    height: 100%;
     text-align: center;
-    &:hover, &:focus{
-      background: darken(@action-color, 5%);
-      cursor: pointer;
-    }
-    input{
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      opacity: 0;
-      position: absolute;
-      left: 0;
-      cursor: pointer;
-    }
-  }
-  .cancel{
-    color: #999;
-    outline: none;
-    &:hover{
-      text-decoration: underline;
-    }
-  }
-  .success{
-    font-size: 2em;
-    color: #8cc84d;
-    margin: 0 0 20px;
-  }
-  .warning{
-    color: #fff;
-    background: @red;
-    .border-radius(3px);
-    .clearfix;
-    margin-top: 10px;
-    padding: 0 10px;
-    i,p{
-      float: left;
-      margin: 5px;
-    }
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
   }
 }
+
+.cancel{
+  color: #999;
+  outline: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+.success{
+  font-size: 2em;
+  color: #8cc84d;
+  margin: 0 0 20px;
+}
+.warning{
+  color: #fff;
+  background: @red;
+  .border-radius(3px);
+  .clearfix;
+  margin-top: 10px;
+  padding: 0 10px;
+  i,p{
+    float: left;
+    margin: 5px;
+  }
+}
+
 
 
 .main-footer{
@@ -257,10 +267,34 @@ a{
   padding: 20px;
 }
 
-
 .ui-dialog-titlebar-close{
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 0;
+  overflow: hidden;
+}
+
+.ui-dialog-titlebar-close:after{
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: '+';
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  color: #ccc;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 32px;
+  cursor: pointer;
+  -webkit-transform:rotate(45deg);
+  -moz-transform:   rotate(45deg);
+  -ms-transform:    rotate(45deg);
+  -o-transform:     rotate(45deg);  
+  transform:        rotate(45deg);
 }
 
