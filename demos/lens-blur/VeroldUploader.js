@@ -432,6 +432,15 @@
 
     });
 
+    document.getElementById('logOut').addEventListener('click', function(e) {
+      e.preventDefault();
+
+      $( "#user-card" ).dialog( "close" );
+      $('#browse-view').hide("slide", { direction: "right" }, 500);
+      setTimeout( '$("#api-view").show("slide", { direction: "left" }, 500);' , 200 );
+
+    });
+
     document.getElementById('uploadVerold').addEventListener('click', function(e) {
       $('#loading').show();
 
