@@ -413,6 +413,25 @@
       }
     });
 
+    document.getElementById('user-card-trigger').addEventListener('click', function(e) {
+      e.preventDefault();
+
+      $( "#user-card" ).dialog({
+        autoOpen: false,
+        show: {
+        effect: "scale",
+        duration: 300
+        },
+        hide: {
+        effect: "scale",
+        duration: 300
+        }
+      });
+
+      $( "#user-card" ).dialog( "open" );
+
+    });
+
     document.getElementById('uploadVerold').addEventListener('click', function(e) {
       $('#loading').show();
 
