@@ -429,8 +429,10 @@
       });
 
       $( "#user-card" ).dialog( "open" );
+      // $('#uploadFile').css('pointer-events','none');
 
     });
+
 
     document.getElementById('logOut').addEventListener('click', function(e) {
       e.preventDefault();
