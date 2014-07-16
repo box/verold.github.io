@@ -558,16 +558,19 @@ a {
 }
 .kid-fallback {
   position: absolute;
-  right: -10%;
+  right: -15%;
   margin: auto;
   top: 10px;
   bottom: 0;
   width: 100%;
   height: auto;
   max-width: 450px;
-  min-width: 300px;
+  min-width: 350px;
 }
-#configurator {
+#configurator-main {
+  display: none;
+}
+#configurator-skin {
   /*display: none;*/
 }
 ul.configurator-menu {
@@ -589,4 +592,65 @@ ul.configurator-menu li {
 ul.configurator-menu li a {
   height: 80px;
   line-height: 80px;
+}
+ul.mosaic-selector {
+  *zoom: 1;
+  /* IE 6/7 support */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto ;
+  height: 500px;
+  width: 320px;
+}
+ul.mosaic-selector:before,
+ul.mosaic-selector:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+ul.mosaic-selector:after {
+  clear: both;
+}
+ul.mosaic-selector li {
+  float: left;
+  width: 140px;
+  height: 140px;
+  margin: 0 20px 20px 0;
+  border: 2px solid #363636;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+ul.mosaic-selector li:hover {
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+ul.mosaic-selector li.selected {
+  border: 5px solid #fff;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.skin1 {
+  background: #eabfb4;
+}
+.skin2 {
+  background: #caa191;
+}
+.skin3 {
+  background: #c28979;
+}
+.skin4 {
+  background: #b27056;
+}
+.skin5 {
+  background: #d5a972;
+}
+.skin6 {
+  background: #381708;
 }
