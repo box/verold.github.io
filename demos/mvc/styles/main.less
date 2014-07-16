@@ -4,7 +4,7 @@
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 /* this way images (and the other fixed-width elements) never display larger than their containers */
-img,embed,object,video,iframe{
+embed,object,video,iframe{
   max-width:100%;  
 }
 
@@ -142,9 +142,24 @@ a{
 }
 
 
+.kid-fallback{
+  position: absolute;
+  right: -10%;
+  margin: auto;
+  top:10px;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  max-width: 450px;
+  min-width: 300px;
+}
+
+
+
 #configurator{
   /*display: none;*/
 }
+
 
 
 ul.configurator-menu{

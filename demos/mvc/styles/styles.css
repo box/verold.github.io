@@ -378,6 +378,7 @@ th {
 .fluid-row .fluid-50:first-child {
   left: 0;
 }
+/* UI Elements */
 .green-button {
   display: block;
   padding: 0 0.8em;
@@ -415,15 +416,15 @@ th {
 .prev-button {
   position: absolute;
   z-index: 2;
-  left: 20px;
-  bottom: 20px;
+  left: 10px;
+  bottom: 10px;
   padding: 1em 2em;
 }
 .next-button {
   position: absolute;
   z-index: 2;
-  right: 20px;
-  bottom: 20px;
+  right: 10px;
+  bottom: 10px;
   padding: 1em 2em;
 }
 /* apply a natural box layout model to all elements */
@@ -433,7 +434,6 @@ th {
   box-sizing: border-box;
 }
 /* this way images (and the other fixed-width elements) never display larger than their containers */
-img,
 embed,
 object,
 video,
@@ -555,6 +555,17 @@ a {
   background: -ms-linear-gradient(top, #ededed 0%, #a8a8a8 100%);
   background: linear-gradient(to bottom, #ededed 0%, #a8a8a8 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#a8a8a8', GradientType=0);
+}
+.kid-fallback {
+  position: absolute;
+  right: -10%;
+  margin: auto;
+  top: 10px;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  max-width: 450px;
+  min-width: 300px;
 }
 #configurator {
   /*display: none;*/
