@@ -1,0 +1,109 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ 
+<title></title>
+ 
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="keywords" content=""/>
+ 
+<!-- Mobile viewport optimization h5bp.com/ad -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- allows zoom -->
+
+ 
+<!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+ 
+
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="apple-touch-icon" href="icon.png"/>
+<link rel="icon" href="icon.png"/> 
+  
+<link rel="stylesheet" type="text/css" href="styles/styles.css" />
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+	
+
+
+</head>
+
+
+
+<body>
+
+<div class="banner"> 
+	<div class="banner-footer">
+		<div class="glass"> 
+			<ul class="menu">
+				<li id="featured" class="selected">Featured</li>
+				<li id="templates">Templates</li>
+				<li id="all-projects">All Projects</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<img class="grid" id="featured-grid" src="img/gallery.png">
+<img class="grid" id="templates-grid" src="img/templates.png">
+<img class="grid" id="all-projects-grid" src="img/all-projects.png">
+
+	
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+$(function(){
+
+	$('#templates').click(function(){
+
+		$('.menu li').removeClass('selected');
+		$(this).addClass('selected');
+		$('.banner').addClass('collapsed');
+		$('.grid').hide();
+		$('#templates-grid').fadeIn();
+
+	});
+
+
+	$('#all-projects').click(function(){
+
+		$('.menu li').removeClass('selected');
+		$(this).addClass('selected');
+		$('.banner').addClass('collapsed');
+		$('.grid').hide();
+		$('#all-projects-grid').fadeIn();
+
+	});
+
+
+	$('#featured').click(function(){
+
+		$('.menu li').removeClass('selected');
+		$(this).addClass('selected');
+		$('.banner').removeClass('collapsed');
+		$('.grid').hide();
+		$('#featured-grid').fadeIn();
+
+	});
+
+});
+
+
+
+</script>
+
+
+</body>
+</html>
+
