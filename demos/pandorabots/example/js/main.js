@@ -3,7 +3,7 @@
 var pb = new Pandorabot(
 	"aiaas.pandorabots.com", 
 	"1409611393853", 
-	"Verold", 
+	"veroldbot1", 
 	"6c0aaa9c8fd7d017287d876b6bf3f28e");
 function doTalk() {
   var input = document.getElementById("yousay").value;
