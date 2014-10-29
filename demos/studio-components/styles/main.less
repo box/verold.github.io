@@ -1,0 +1,106 @@
+
+
+/* apply a natural box layout model to all elements */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/* this way images (and the other fixed-width elements) never display larger than their containers */
+img,embed,object,video,iframe{
+  max-width:100%;  
+}
+
+.clearfix {
+  *zoom: 1; /* IE 6/7 support */
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+html, html a {
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+
+body {
+  font: 400 16px/1.2em @sans-serif-font;
+  color: #222;
+  background: #324449;
+}
+
+
+h1, h2, h3, h4, h5, h6{
+  font-size: 100%;
+  font-weight: normal;
+  margin: 0;
+}
+
+
+ul{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+
+a{
+  text-decoration: none;
+}
+
+
+
+header{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 44px;
+  background: #333;
+  padding-left: 60px;
+  h1{
+    color: #fff;
+    line-height: 44px;
+    font-size: 18px;
+    font-weight: 100;
+    float: left;
+  }
+}
+
+.logo-wrapper{
+  position: absolute;
+  left: 0;
+  background: #222;
+  height: 100%;
+  width: 44px;
+  text-align: center;
+  padding: 3px 6px;
+}
+
+
+.view-project-page{
+  color: #fff;
+  font-size: 24px;
+  float: left;
+  margin-left: 8px;
+  line-height: 44px;
+  &:hover{
+    color: @green;
+  }
+  visibility: hidden;
+}
+
+
+.sidebar{
+  position: absolute;
+  width: 320px;
+  top: 44px;
+  bottom: 0;
+  right: 0;
+  background: #444;
+}
+
+

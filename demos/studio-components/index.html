@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ 
+<title>Studio Components</title>
+
+ 
+<!-- Mobile viewport optimization h5bp.com/ad -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- allows zoom -->
+
+ 
+<!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+ 
+  
+<link rel="stylesheet" type="text/css" href="styles/styles.css" />
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+	
+</head>
+
+
+
+<body>
+
+
+<header>
+
+	<a class="logo-wrapper" href="#">
+		<img src="img/verold-icon.svg" alt="Verold Studio">
+	</a>
+
+	<h1>Project Title</h1> <a class="view-project-page" href="#"><i class="ion-share"></i></a>
+
+
+	<!--  STATE SELECTOR ********************************** --> 
+	<div class="state-selector draft-state">
+
+		<div class="state-selector-btn">
+			<i id="project-state-icon" class="ion-settings"></i>
+			<p id="project-state">Draft</p>
+			<i class="down-arrow ion-arrow-down-b"></i>
+		</div>
+
+		<div class="state-dropdown">
+			<ul>
+				<li id="public-option">
+						<i class="state-checkmark ion-checkmark"></i>
+					  <i class="state-icon ion-earth"></i>
+					  <h3>Public</h3>
+						<h4>project appears on the public gallery and is embeddable</h4>
+				</li>
+				<li id="private-option" class="locked-option">
+						<i class="state-checkmark ion-checkmark"></i>
+					  <i class="state-icon ion-locked"></i>
+					  <h3>Private</h3>
+					  <a class="pro-only-badge" href="#" target="_blank">Pro Only</a>
+						<h4>project is embeddable but doesn't appear on the public gallery</h4>
+				</li>
+				<li id="draft-option" class="selected-state">
+						<i class="state-checkmark ion-checkmark"></i>
+					  <i class="state-icon ion-settings"></i>
+					  <h3>Draft</h3>
+						<h4>project is only visible by you and your collaborators</h4>
+				</li>
+			</ul>
+		</div><!-- /state-dropdown -->
+
+	</div>
+
+	<!-- /STATE SELECTOR ********************************** -->
+
+
+	<!--  HEADER BUTTONS ********************************** --> 
+	<div class="header-btn"><i class="ion-help-circled"></i>HELP</div>
+	<div class="header-btn"><i class="ion-code"></i>CODE EDITOR</div>
+	<!--  /HEADER BUTTONS ********************************** --> 
+
+
+</header>
+
+
+<div class="sidebar"> 
+
+	
+
+</div><!-- /sidebar -->
+
+	
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+<script>
+
+
+
+	$(function(){
+		
+		$('.state-selector-btn').click(function(){
+			$('.state-dropdown').slideToggle('fast');
+		});
+
+		$('#public-option').click(function(){
+			$('.state-dropdown ul li').removeClass('selected-state');
+			$(this).addClass('selected-state');
+			$('.state-selector').removeClass('draft-state').removeClass('private-state').addClass('public-state');
+			$('#project-state-icon').removeClass('ion-settings').removeClass('ion-locked').addClass('ion-earth');
+			$('#project-state').html('Public');
+			$('.state-dropdown').slideToggle('fast');
+		});
+
+		$('#private-option').click(function(){
+			// MUST CHECK IF USER IS PRO TO UNLOCK
+			// $('.state-dropdown ul li').removeClass('selected-state');
+			// $(this).addClass('selected-state');
+			// $('.state-selector').removeClass('draft-state').removeClass('public-state').addClass('private-state');
+			// $('#project-state-icon').removeClass('ion-settings').removeClass('ion-earth').addClass('ion-locked');
+			// $('#project-state').html('Private');
+			// $('.state-dropdown').slideToggle('fast');
+		});
+
+		$('#draft-option').click(function(){
+			$('.state-dropdown ul li').removeClass('selected-state');
+			$(this).addClass('selected-state');
+			$('.state-selector').removeClass('public-state').removeClass('private-state').addClass('draft-state');
+			$('#project-state-icon').removeClass('ion-earth').removeClass('ion-locked').addClass('ion-settings');
+			$('#project-state').html('Draft');
+			$('.state-dropdown').slideToggle('fast');
+		});
+
+	});
+
+</script>
+
+
+</body>
+</html>
+
+
+<!-- /nonessential stylesheets -->
+<link href='http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css' rel='stylesheet' type='text/css'>
