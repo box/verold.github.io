@@ -536,6 +536,18 @@ ul.sidebar-tabs li:hover {
   font-size: 24px;
   cursor: pointer;
 }
+.build-info {
+  width: 94%;
+  margin: 0 auto 15px;
+  font-size: 11px;
+  font-weight: 100;
+  text-align: center;
+  color: #ccc;
+}
+.build-info a {
+  color: #59cfe4;
+  text-decoration: underline;
+}
 /*
 *********************************
 *
@@ -775,6 +787,52 @@ ul.project-menu-editor li:last-child {
   color: #ccc !important;
 }
 /*
+*********************************
+*
+*   API PROJECT MENU EDITOR
+*
+*********************************
+*/
+ul.api-project-menu-editor {
+  width: 94%;
+  margin: 10px auto;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 400;
+  background: #999;
+  color: #3d4351;
+}
+ul.api-project-menu-editor li {
+  display: block;
+  position: relative;
+  /* containing block */
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 15px;
+  cursor: pointer;
+}
+ul.api-project-menu-editor li span {
+  float: right;
+  font-weight: 100;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #efefef;
+}
+ul.api-project-menu-editor li span em {
+  font-style: normal;
+}
+ul.api-project-menu-editor li i {
+  margin-right: 0.5em;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+ul.api-project-menu-editor li:hover {
+  background: #8c8c8c;
+}
+ul.api-project-menu-editor li:last-child {
+  border-bottom: none;
+}
+/*
 **********************************************
 *
 *   GENERATE THUMBNAIL SHORTCUT ON SCENE
@@ -807,4 +865,38 @@ ul.project-menu-editor li:last-child {
   background: rgba(255, 255, 255, 0.9);
   color: #111;
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0);
+}
+/*
+*********************************
+*
+*   EXPORT BUTTON
+*
+*********************************
+*/
+.export-btn {
+  float: left;
+  height: 30px;
+  width: 110px;
+  line-height: 30px;
+  margin: 7px 0 0 20px;
+  padding: 0 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #333;
+  font-size: 16px;
+  background: #59cfe4;
+}
+.export-btn:hover {
+  background: #2dc2dd;
+}
+.export-btn p {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+}
+.export-btn i {
+  float: right;
 }
