@@ -57,7 +57,7 @@
 					  <h3>Public</h3>
 						<h4>project appears on the public gallery and is embeddable</h4>
 				</li>
-				<li id="private-option" class="locked-option">
+				<li id="private-option" class="locked-state">
 						<i class="state-checkmark ion-checkmark"></i>
 					  <i class="state-icon ion-locked"></i>
 					  <h3>Private</h3>
@@ -89,7 +89,19 @@
 
 <div class="sidebar"> 
 
-	
+	<!--  PROJECT MENU ********************************** --> 
+
+	<ul class="project-menu-editor">
+
+		<li><i class="ion-play"></i>Preview</li>
+		<li class="locked-menu-option"><i class="ion-share"></i>View Project Page<span>EMBED FROM HERE</span></li>
+		<li><i class="ion-android-information"></i>Edit Project Info<span><em id="project-info-percentage">0</em>% READY</span></li>
+		<li><i class="ion-ios7-browsers"></i>Duplicate</li>
+		<li><i class="ion-trash-a"></i>Delete</li>
+
+	</ul>
+
+	<!--  /PROJECT MENU ********************************** --> 
 
 </div><!-- /sidebar -->
 
@@ -114,6 +126,7 @@
 			$('#project-state-icon').removeClass('ion-settings').removeClass('ion-locked').addClass('ion-earth');
 			$('#project-state').html('Public');
 			$('.state-dropdown').slideToggle('fast');
+			$('.view-project-page').addClass('make-visible');
 		});
 
 		$('#private-option').click(function(){
@@ -124,6 +137,7 @@
 			// $('#project-state-icon').removeClass('ion-settings').removeClass('ion-earth').addClass('ion-locked');
 			// $('#project-state').html('Private');
 			// $('.state-dropdown').slideToggle('fast');
+			//$('.view-project-page').addClass('make-visible');
 		});
 
 		$('#draft-option').click(function(){
@@ -133,6 +147,7 @@
 			$('#project-state-icon').removeClass('ion-earth').removeClass('ion-locked').addClass('ion-settings');
 			$('#project-state').html('Draft');
 			$('.state-dropdown').slideToggle('fast');
+			$('.view-project-page').removeClass('make-visible');
 		});
 
 	});
