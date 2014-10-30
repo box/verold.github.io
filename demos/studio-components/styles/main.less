@@ -29,7 +29,7 @@ html, html a {
 body {
   font: 400 16px/1.2em @sans-serif-font;
   color: #222;
-  background: #324449;
+  background: #324449; 
 }
 
 
@@ -51,16 +51,25 @@ a{
   text-decoration: none;
 }
 
-
+.sample{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: url(../img/sample.png) no-repeat center center;
+  background-size: cover;
+}
 
 header{
   position: absolute;
-  z-index: 1;
+  z-index: 20;
   top: 0;
   left: 0;
   right: 0;
   height: 44px;
   background: #333;
+  border-bottom: 1px solid #111;
   padding-left: 60px;
   h1{
     color: #fff;
@@ -102,6 +111,7 @@ header{
 
 .sidebar{
   position: absolute;
+  z-index: 10;
   width: 320px;
   top: 44px;
   bottom: 0;
@@ -109,4 +119,49 @@ header{
   background: #444;
 }
 
+
+
+ul.sidebar-tabs{
+  list-style: none;
+  .clearfix;
+  background: #1f1f1f;
+  border-bottom: 1px solid #1f1f1f;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ccc;
+  font-size: 14px;
+  li{
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    width: 50%;
+    cursor: pointer;
+    i{
+      margin-right: .5em;
+    }
+    &.selected-tab{
+      background: #444;
+      color: @blue;
+    }
+    &:hover{
+      color: @blue;
+    }
+  }
+}
+
+.thumbnail{
+  position: relative; /* -> containing block */
+  margin: 10px auto;
+  width: 94%;
+  i{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #fff;
+    .text-shadow(rgba(0,0,0,8));
+    font-size: 24px;
+    cursor: pointer;
+
+  }
+}
 

@@ -423,14 +423,24 @@ ul {
 a {
   text-decoration: none;
 }
+.sample {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: url(../img/sample.png) no-repeat center center;
+  background-size: cover;
+}
 header {
   position: absolute;
-  z-index: 1;
+  z-index: 20;
   top: 0;
   left: 0;
   right: 0;
   height: 44px;
   background: #333;
+  border-bottom: 1px solid #111;
   padding-left: 60px;
 }
 header h1 {
@@ -465,11 +475,66 @@ header h1 {
 }
 .sidebar {
   position: absolute;
+  z-index: 10;
   width: 320px;
   top: 44px;
   bottom: 0;
   right: 0;
   background: #444;
+}
+ul.sidebar-tabs {
+  list-style: none;
+  *zoom: 1;
+  /* IE 6/7 support */
+
+  background: #1f1f1f;
+  border-bottom: 1px solid #1f1f1f;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ccc;
+  font-size: 14px;
+}
+ul.sidebar-tabs:before,
+ul.sidebar-tabs:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+ul.sidebar-tabs:after {
+  clear: both;
+}
+ul.sidebar-tabs li {
+  height: 50px;
+  line-height: 50px;
+  float: left;
+  width: 50%;
+  cursor: pointer;
+}
+ul.sidebar-tabs li i {
+  margin-right: .5em;
+}
+ul.sidebar-tabs li.selected-tab {
+  background: #444;
+  color: #59cfe4;
+}
+ul.sidebar-tabs li:hover {
+  color: #59cfe4;
+}
+.thumbnail {
+  position: relative;
+  /* -> containing block */
+
+  margin: 10px auto;
+  width: 94%;
+}
+.thumbnail i {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: #fff;
+  text-shadow: 0px 0px 5px #000000;
+  font-size: 24px;
+  cursor: pointer;
 }
 /*
 *********************************
@@ -662,16 +727,17 @@ ul.project-menu-editor {
   margin: 10px auto;
   list-style: none;
   font-size: 14px;
-  font-weight: 600;
-  background: #999;
-  color: #333;
+  font-weight: 400;
+  background: #444;
+  color: #ccc;
+  border: 1px solid #333;
 }
 ul.project-menu-editor li {
   display: block;
   position: relative;
   /* containing block */
 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #333;
   padding: 5px 15px;
   cursor: pointer;
 }
@@ -680,7 +746,7 @@ ul.project-menu-editor li span {
   font-weight: 100;
   font-size: 10px;
   text-transform: uppercase;
-  color: #eee;
+  color: #999;
 }
 ul.project-menu-editor li span em {
   font-style: normal;
@@ -691,12 +757,54 @@ ul.project-menu-editor li i {
   vertical-align: middle;
 }
 ul.project-menu-editor li:hover {
-  background: #8c8c8c;
+  background: #373737;
+  color: #59cfe4;
+}
+ul.project-menu-editor li:last-child {
+  border-bottom: none;
 }
 .locked-menu-option {
-  opacity: .4;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25) !important;
+  opacity: .3;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8) !important;
 }
 .locked-menu-option span {
   display: none;
+}
+.locked-menu-option:hover {
+  background: #444 !important;
+  color: #ccc !important;
+}
+/*
+**********************************************
+*
+*   GENERATE THUMBNAIL SHORTCUT ON SCENE
+*
+**********************************************
+*/
+.generate-thumbnail-shortcut {
+  position: absolute;
+  top: 64px;
+  left: 20px;
+  z-index: 2;
+  height: 30px;
+  line-height: 30px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  padding: 0 8px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  text-shadow: 0px 0px 5px #000000;
+}
+.generate-thumbnail-shortcut i {
+  margin-right: 0.4em;
+  font-size: 18px;
+  vertical-align: middle;
+}
+.generate-thumbnail-shortcut:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0);
 }

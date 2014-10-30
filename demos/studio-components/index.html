@@ -59,8 +59,8 @@
 				</li>
 				<li id="private-option" class="locked-state">
 						<i class="state-checkmark ion-checkmark"></i>
-					  <i class="state-icon ion-locked"></i>
-					  <h3>Private</h3>
+					  <i class="state-icon ion-eye-disabled"></i>
+					  <h3>Unlisted</h3>
 					  <a class="pro-only-badge" href="#" target="_blank">Pro Only</a>
 						<h4>project is embeddable but doesn't appear on the public gallery</h4>
 				</li>
@@ -89,12 +89,22 @@
 
 <div class="sidebar"> 
 
+	<ul class="sidebar-tabs">
+		<li><i class="ion-android-mixer"></i>INSPECTOR</li>
+		<li class="selected-tab"><i class="ion-ios7-gear"></i>SETTINGS</li>
+	</ul>
+
+	<div class="thumbnail">
+		<i class="ion-camera"></i>
+		<img src="img/thumb.jpg">
+	</div>
+
 	<!--  PROJECT MENU ********************************** --> 
 
 	<ul class="project-menu-editor">
 
 		<li><i class="ion-play"></i>Preview</li>
-		<li class="locked-menu-option"><i class="ion-share"></i>View Project Page<span>EMBED FROM HERE</span></li>
+		<li id="mo-view-project-page" class="locked-menu-option"><i class="ion-share"></i>View Project Page<span>EMBED FROM HERE</span></li>
 		<li><i class="ion-android-information"></i>Edit Project Info<span><em id="project-info-percentage">0</em>% READY</span></li>
 		<li><i class="ion-ios7-browsers"></i>Duplicate</li>
 		<li><i class="ion-trash-a"></i>Delete</li>
@@ -105,6 +115,17 @@
 
 </div><!-- /sidebar -->
 
+
+
+<!--   GENERATE THUMBNAIL SHORTCUT ON SCENE ********************************** --> 
+
+<div class="generate-thumbnail-shortcut"><i class="ion-camera"></i>Generate Thumbnail</div>
+
+<!--   /GENERATE THUMBNAIL SHORTCUT ON SCENE ********************************** --> 
+
+
+
+<div class="sample"></div>
 	
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
@@ -127,6 +148,7 @@
 			$('#project-state').html('Public');
 			$('.state-dropdown').slideToggle('fast');
 			$('.view-project-page').addClass('make-visible');
+			$('#mo-view-project-page').removeClass('locked-menu-option');
 		});
 
 		$('#private-option').click(function(){
@@ -138,6 +160,7 @@
 			// $('#project-state').html('Private');
 			// $('.state-dropdown').slideToggle('fast');
 			//$('.view-project-page').addClass('make-visible');
+			//$('#mo-view-project-page').removeClass('locked-menu-option');
 		});
 
 		$('#draft-option').click(function(){
@@ -148,6 +171,7 @@
 			$('#project-state').html('Draft');
 			$('.state-dropdown').slideToggle('fast');
 			$('.view-project-page').removeClass('make-visible');
+			$('#mo-view-project-page').addClass('locked-menu-option');
 		});
 
 	});
