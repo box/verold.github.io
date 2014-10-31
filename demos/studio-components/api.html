@@ -37,49 +37,23 @@
 		<img src="img/verold-icon.svg" alt="Verold Studio">
 	</a>
 
-	<h1>Project Title</h1> <a class="view-project-page" href="#"><i class="ion-share"></i></a>
+	<h1>Project Title</h1> 
 
 
-	<!--  STATE SELECTOR ********************************** --> 
-	<div class="state-selector draft-state">
+	<!--  EXPORT BUTTON ********************************** --> 
 
-		<div class="state-selector-btn">
-			<i id="project-state-icon" class="ion-settings"></i>
-			<p id="project-state">Draft</p>
-			<i class="down-arrow ion-arrow-down-b"></i>
+		<div class="export-btn">
+			<p>Export</p>
+			<i class="ion-share"></i>
 		</div>
 
-		<div class="state-dropdown">
-			<ul>
-				<li id="public-option">
-						<i class="state-checkmark ion-checkmark"></i>
-					  <i class="state-icon ion-earth"></i>
-					  <h3>Public</h3>
-						<h4>project appears on the public gallery and is embeddable</h4>
-				</li>
-				<li id="private-option" class="locked-state">
-						<i class="state-checkmark ion-checkmark"></i>
-					  <i class="state-icon ion-eye-disabled"></i>
-					  <h3>Unlisted</h3>
-					  <a class="pro-only-badge" href="#" target="_blank">Pro Only</a>
-						<h4>project is embeddable but doesn't appear on the public gallery</h4>
-				</li>
-				<li id="draft-option" class="selected-state">
-						<i class="state-checkmark ion-checkmark"></i>
-					  <i class="state-icon ion-settings"></i>
-					  <h3>Draft</h3>
-						<h4>project is only visible by you and your collaborators</h4>
-				</li>
-			</ul>
-		</div><!-- /state-dropdown -->
 
-	</div>
-
-	<!-- /STATE SELECTOR ********************************** -->
+	<!-- /EXPORT BUTTON ********************************** -->
 
 
 	<!--  HEADER BUTTONS ********************************** --> 
 	<div class="header-btn"><i class="ion-help-circled"></i>HELP</div>
+	<div class="header-btn"><i class="ion-code"></i>CODE EDITOR</div>
 	<!--  /HEADER BUTTONS ********************************** --> 
 
 
@@ -93,6 +67,22 @@
 		<li class="selected-tab"><i class="ion-ios7-gear"></i>SETTINGS</li>
 	</ul>
 
+	<!--  API PROJECT MENU ********************************** --> 
+
+	<ul class="api-project-menu-editor">
+
+		<li><i class="ion-play"></i>Preview</li>
+		<li><i class="ion-ios7-cog"></i>Create New Build</li>
+
+
+	</ul>
+
+	<!--  /API PROJECT MENU ********************************** --> 
+
+	<p class="build-info">Latest build: <a href="">Build 1</a>. Created on Oct 6, 2014. 6:14:10 AM</p>
+
+
+
 	<div class="thumbnail">
 		<i class="ion-camera"></i>
 		<img src="img/thumb.jpg">
@@ -102,9 +92,7 @@
 
 	<ul class="project-menu-editor">
 
-		<li><i class="ion-play"></i>Preview</li>
-		<li id="mo-view-project-page" class="locked-menu-option"><i class="ion-share"></i>View Project Page<span>EMBED FROM HERE</span></li>
-		<li><i class="ion-android-information"></i>Edit Project Info<span><em id="project-info-percentage">0</em>% READY</span></li>
+		<li><i class="ion-android-information"></i>Edit Project Info</li>
 		<li><i class="ion-ios7-browsers"></i>Duplicate</li>
 		<li><i class="ion-trash-a"></i>Delete</li>
 
@@ -116,11 +104,36 @@
 
 
 
-<!--   GENERATE THUMBNAIL SHORTCUT ON SCENE ********************************** --> 
+<!--  EXPORT MODAL ********************************** --> 
+<div class="export-modal">
 
-<div class="generate-thumbnail-shortcut"><i class="ion-camera"></i>Generate Thumbnail</div>
+	<i id="close-export-modal" class="ion-close-round close-export-modal"></i>
 
-<!--   /GENERATE THUMBNAIL SHORTCUT ON SCENE ********************************** --> 
+	<h3>Export</h3>
+
+	<p class="modal-label">Share link:</p>
+	<div class="modal-dropdown-selector"><span id="">Latest Build</span><i class="ion-arrow-down-b"></i></div>
+	<div class="modal-share-link">http://vrld.co/yjnVAz/</div>
+
+	<h4>Alternative export methods</h4>
+
+	<ul class="alternative-export-methods">
+
+		<li>
+			<div class="export-method-btn">Grab the Code</div>
+			<p class="export-method-description">Download theboilerplate to integrate the project in a external website or application. The 3D content is hosted by Verold.</p>
+		</li>
+
+		<li>
+			<div class="export-method-btn">Download Project</div>
+			<p class="export-method-description">Download the boilerplate to integrate the project in a external website or application. The 3D content is hosted by Verold.</p>
+		</li>
+
+	</ul>
+	
+
+</div>
+<!--  /EXPORT MODAL ********************************** --> 
 
 
 
@@ -171,6 +184,15 @@
 			$('.state-dropdown').slideToggle('fast');
 			$('.view-project-page').removeClass('make-visible');
 			$('#mo-view-project-page').addClass('locked-menu-option');
+		});
+
+
+		$('.export-btn').click(function(){
+			$('.export-modal').toggle();
+		});
+
+		$('#close-export-modal').click(function(){
+			$('.export-modal').toggle();
 		});
 
 	});
