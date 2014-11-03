@@ -40,15 +40,58 @@
 	<h1>Project Title</h1> 
 
 
-	<!--  EXPORT BUTTON ********************************** --> 
+		<!--  STATE SELECTOR ********************************** --> 
+	<div class="state-selector draft-state">
 
-		<div class="export-btn">
-			<p>Export</p>
-			<i class="ion-share"></i>
+		<div class="state-selector-btn">
+			<i id="project-state-icon" class="ion-settings"></i>
+			<p id="project-state">Draft</p>
+			<i class="down-arrow ion-arrow-down-b"></i>
 		</div>
 
+		<div class="state-dropdown">
+			<ul>
+				<li id="draft-option" class="selected-state">
+						<i class="state-checkmark ion-checkmark"></i>
+					  <i class="state-icon ion-settings"></i>
+					  <h3>Draft</h3>
+						<h4>project is only visible by you and your collaborators</h4>
+				</li>
+				<li id="public-option">
+						<i class="state-checkmark ion-checkmark"></i>
+					  <i class="state-icon ion-earth"></i>
+					  <h3>Public</h3>
+						<h4>project appears on the public gallery and is embeddable</h4>
+				</li>
+				<li id="private-option" class="locked-state">
+						<i class="state-checkmark ion-checkmark"></i>
+					  <i class="state-icon ion-locked"></i>
+					  <h3>Private</h3>
+					  <a class="pro-only-badge" href="#" target="_blank">Pro Only</a>
+						<h4>project is embeddable but doesn't appear on the public gallery</h4>
+				</li>
+				<li id="api-option">
+				  <i class="state-icon ion-code-working"></i>
+				  <h3>API Only</h3>
+					<h4>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</h4>
+				</li>
+			</ul>
+		</div><!-- /state-dropdown -->
 
-	<!-- /EXPORT BUTTON ********************************** -->
+	</div>
+
+	<!-- /STATE SELECTOR ********************************** -->
+
+
+
+
+
+	<!--  VIEW PROJECT PAGE ********************************** --> 
+	<div id="view-in-gallery" class="view-project-page">View in Gallery<i class="ion-share"></i></div>
+	<div id="view-private-page" class="view-project-page">View Private Page<i class="ion-share"></i></div>
+	<!--  /VIEW PROJECT PAGE ********************************** --> 
+
+
 
 
 	<!--  HEADER BUTTONS ********************************** --> 
@@ -63,23 +106,27 @@
 <div class="sidebar"> 
 
 	<ul class="sidebar-tabs">
-		<li><i class="ion-android-mixer"></i>INSPECTOR</li>
-		<li class="selected-tab"><i class="ion-ios7-gear"></i>SETTINGS</li>
+		<li>INSPECTOR</li>
+		<li class="selected-tab">SETTINGS</li>
 	</ul>
 
 	<!--  API PROJECT MENU ********************************** --> 
 
-	<ul class="api-project-menu-editor">
+	<div class="build-dashboard">
+		<div class="build-btn">Build</div>
+		<p><a class="build-number" href="">Build 1</a></p>
+		<p class="build-date">Oct 6, 2014. 6:14:10 AM</p>
+		<p><a class="latest-build" href="">vrld.com/yjnVAz/</a></p>
+	</div><!-- /build-dashboard -->
 
-		<li><i class="ion-play"></i>Preview</li>
-		<li><i class="ion-ios7-cog"></i>Create New Build</li>
+	<div class="api-action">Get jsFiddle</div>
 
+	<div class="api-action">Export Project</div>
 
-	</ul>
 
 	<!--  /API PROJECT MENU ********************************** --> 
 
-	<p class="build-info">Latest build: <a href="">Build 1</a>. Created on Oct 6, 2014. 6:14:10 AM</p>
+	
 
 
 
@@ -92,7 +139,9 @@
 
 	<ul class="project-menu-editor">
 
-		<li><i class="ion-android-information"></i>Edit Project Info</li>
+		<li><i class="ion-play"></i>Preview</li>
+		<!-- <li id="mo-view-project-page" class="locked-menu-option"><i class="ion-share"></i>View Project Page<span>EMBED FROM HERE</span></li> -->
+		<li><i class="ion-android-information"></i>Edit Project Info<span><em id="project-info-percentage">0</em>% READY</span></li>
 		<li><i class="ion-ios7-browsers"></i>Duplicate</li>
 		<li><i class="ion-trash-a"></i>Delete</li>
 
@@ -101,39 +150,6 @@
 	<!--  /PROJECT MENU ********************************** --> 
 
 </div><!-- /sidebar -->
-
-
-
-<!--  EXPORT MODAL ********************************** --> 
-<div class="export-modal">
-
-	<i id="close-export-modal" class="ion-close-round close-export-modal"></i>
-
-	<h3>Export</h3>
-
-	<p class="modal-label">Share link:</p>
-	<div class="modal-dropdown-selector"><span id="">Latest Build</span><i class="ion-arrow-down-b"></i></div>
-	<div class="modal-share-link">http://vrld.co/yjnVAz/</div>
-
-	<h4>Alternative export methods</h4>
-
-	<ul class="alternative-export-methods">
-
-		<li>
-			<div class="export-method-btn">Grab the Code</div>
-			<p class="export-method-description">Download theboilerplate to integrate the project in a external website or application. The 3D content is hosted by Verold.</p>
-		</li>
-
-		<li>
-			<div class="export-method-btn">Download Project</div>
-			<p class="export-method-description">Download the boilerplate to integrate the project in a external website or application. The 3D content is hosted by Verold.</p>
-		</li>
-
-	</ul>
-	
-
-</div>
-<!--  /EXPORT MODAL ********************************** --> 
 
 
 
@@ -152,48 +168,61 @@
 			$('.state-dropdown').slideToggle('fast');
 		});
 
+		$('#draft-option').click(function(){
+			$('.state-dropdown ul li').removeClass('selected-state');
+			$(this).addClass('selected-state');
+			$('.state-selector').removeClass('public-state').removeClass('private-state').removeClass('api-state').addClass('draft-state');
+			$('#project-state-icon').removeClass('ion-earth').removeClass('ion-locked').addClass('ion-settings');
+			$('#project-state').html('Draft');
+			$('.state-dropdown').slideToggle('fast');
+			$('#mo-view-project-page').addClass('locked-menu-option');
+			$('.view-project-page').hide();
+			$('.api-action').hide();
+		});
+
 		$('#public-option').click(function(){
 			$('.state-dropdown ul li').removeClass('selected-state');
 			$(this).addClass('selected-state');
-			$('.state-selector').removeClass('draft-state').removeClass('private-state').addClass('public-state');
+			$('.state-selector').removeClass('draft-state').removeClass('private-state').removeClass('api-state').addClass('public-state');
 			$('#project-state-icon').removeClass('ion-settings').removeClass('ion-locked').addClass('ion-earth');
 			$('#project-state').html('Public');
 			$('.state-dropdown').slideToggle('fast');
-			$('.view-project-page').addClass('make-visible');
 			$('#mo-view-project-page').removeClass('locked-menu-option');
+			$('.view-project-page').hide();
+			$('#view-in-gallery').show();
+			$('.api-action').hide();
 		});
 
 		$('#private-option').click(function(){
 			// MUST CHECK IF USER IS PRO TO UNLOCK
 			// $('.state-dropdown ul li').removeClass('selected-state');
 			// $(this).addClass('selected-state');
-			// $('.state-selector').removeClass('draft-state').removeClass('public-state').addClass('private-state');
+			// $('.state-selector').removeClass('draft-state').removeClass('public-state').removeClass('api-state').addClass('private-state');
 			// $('#project-state-icon').removeClass('ion-settings').removeClass('ion-earth').addClass('ion-locked');
 			// $('#project-state').html('Private');
 			// $('.state-dropdown').slideToggle('fast');
-			//$('.view-project-page').addClass('make-visible');
-			//$('#mo-view-project-page').removeClass('locked-menu-option');
+			// $('#mo-view-project-page').removeClass('locked-menu-option');
+			// $('.view-project-page').hide();
+			// $('#view-private-page').show();
+			// $('.api-action').hide();
 		});
 
-		$('#draft-option').click(function(){
+		
+		$('#api-option').click(function(){
 			$('.state-dropdown ul li').removeClass('selected-state');
 			$(this).addClass('selected-state');
-			$('.state-selector').removeClass('public-state').removeClass('private-state').addClass('draft-state');
-			$('#project-state-icon').removeClass('ion-earth').removeClass('ion-locked').addClass('ion-settings');
-			$('#project-state').html('Draft');
+			$('.state-selector').removeClass('draft-state').removeClass('private-state').removeClass('public-state').addClass('api-state');
+			$('#project-state-icon').removeClass('ion-settings').removeClass('ion-locked').removeClass('ion-earth').addClass('ion-code-working');
+			$('#project-state').html('API Only');
 			$('.state-dropdown').slideToggle('fast');
-			$('.view-project-page').removeClass('make-visible');
-			$('#mo-view-project-page').addClass('locked-menu-option');
+			// $('#mo-view-project-page').addClass('locked-menu-option');
+			$('.view-project-page').hide();
+			$('.api-action').show();
 		});
 
 
-		$('.export-btn').click(function(){
-			$('.export-modal').toggle();
-		});
 
-		$('#close-export-modal').click(function(){
-			$('.export-modal').toggle();
-		});
+
 
 	});
 

@@ -91,22 +91,7 @@ header{
 }
 
 
-.view-project-page{
-  color: #fff;
-  font-size: 24px;
-  float: left;
-  margin-left: 8px;
-  line-height: 44px;
-  &:hover{
-    color: @blue;
-  }
-  visibility: hidden;
-}
 
-
-.make-visible.make-visible{
-  visibility: visible;
-}
 
 
 .sidebar{
@@ -116,7 +101,8 @@ header{
   top: 44px;
   bottom: 0;
   right: 0;
-  background: #444;
+  /*background: #444;*/
+  background: #898989;
 }
 
 
@@ -125,7 +111,7 @@ ul.sidebar-tabs{
   list-style: none;
   .clearfix;
   background: #1f1f1f;
-  border-bottom: 1px solid #1f1f1f;
+  /*border-bottom: 1px solid #1f1f1f;*/
   text-align: center;
   text-transform: uppercase;
   color: #ccc;
@@ -140,11 +126,14 @@ ul.sidebar-tabs{
       margin-right: .5em;
     }
     &.selected-tab{
-      background: #444;
-      color: @blue;
+      /*background: #444;*/
+      background: #898989;
+      /*color: @blue;*/
+      color: #fff;
     }
     &:hover{
-      color: @blue;
+      /*color: @blue;*/
+      color: #fff;
     }
   }
 }
@@ -165,15 +154,12 @@ ul.sidebar-tabs{
 }
 
 
-.build-info{
-  width: 94%;
-  margin: 0 auto 15px;
-  font-size: 11px;
-  font-weight: 100;
-  text-align: center;
-  color: #ccc;
-  a{
-    color: @blue;
-    text-decoration: underline;
-  }
+
+
+.camera-preview{
+  z-index: 1;
+  position: absolute;
+  bottom: 5px;
+  right: 330px;
+  width: 200px;
 }

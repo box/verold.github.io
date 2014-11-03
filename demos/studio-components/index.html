@@ -37,7 +37,7 @@
 		<img src="img/verold-icon.svg" alt="Verold Studio">
 	</a>
 
-	<h1>Project Title</h1> <a class="view-project-page" href="#"><i class="ion-share"></i></a>
+	<h1>Project Title</h1>
 
 
 	<!--  STATE SELECTOR ********************************** --> 
@@ -51,6 +51,12 @@
 
 		<div class="state-dropdown">
 			<ul>
+				<li id="draft-option" class="selected-state">
+						<i class="state-checkmark ion-checkmark"></i>
+					  <i class="state-icon ion-settings"></i>
+					  <h3>Draft</h3>
+						<h4>project is only visible by you and your collaborators</h4>
+				</li>
 				<li id="public-option">
 						<i class="state-checkmark ion-checkmark"></i>
 					  <i class="state-icon ion-earth"></i>
@@ -59,16 +65,10 @@
 				</li>
 				<li id="private-option" class="locked-state">
 						<i class="state-checkmark ion-checkmark"></i>
-					  <i class="state-icon ion-eye-disabled"></i>
-					  <h3>Unlisted</h3>
+					  <i class="state-icon ion-locked"></i>
+					  <h3>Private</h3>
 					  <a class="pro-only-badge" href="#" target="_blank">Pro Only</a>
 						<h4>project is embeddable but doesn't appear on the public gallery</h4>
-				</li>
-				<li id="draft-option" class="selected-state">
-						<i class="state-checkmark ion-checkmark"></i>
-					  <i class="state-icon ion-settings"></i>
-					  <h3>Draft</h3>
-						<h4>project is only visible by you and your collaborators</h4>
 				</li>
 			</ul>
 		</div><!-- /state-dropdown -->
@@ -76,6 +76,17 @@
 	</div>
 
 	<!-- /STATE SELECTOR ********************************** -->
+
+
+
+
+
+	<!--  VIEW PROJECT PAGE ********************************** --> 
+	<div id="view-in-gallery" class="view-project-page">View in Gallery<i class="ion-share"></i></div>
+	<div id="view-private-page" class="view-project-page">View Private Page<i class="ion-share"></i></div>
+	<!--  /VIEW PROJECT PAGE ********************************** --> 
+
+
 
 
 	<!--  HEADER BUTTONS ********************************** --> 
@@ -89,8 +100,8 @@
 <div class="sidebar"> 
 
 	<ul class="sidebar-tabs">
-		<li><i class="ion-android-mixer"></i>INSPECTOR</li>
-		<li class="selected-tab"><i class="ion-ios7-gear"></i>SETTINGS</li>
+		<li>INSPECTOR</li>
+		<li class="selected-tab">SETTINGS</li>
 	</ul>
 
 	<div class="thumbnail">
@@ -103,7 +114,7 @@
 	<ul class="project-menu-editor">
 
 		<li><i class="ion-play"></i>Preview</li>
-		<li id="mo-view-project-page" class="locked-menu-option"><i class="ion-share"></i>View Project Page<span>EMBED FROM HERE</span></li>
+		<!-- <li id="mo-view-project-page" class="locked-menu-option"><i class="ion-share"></i>View Project Page<span>EMBED FROM HERE</span></li> -->
 		<li><i class="ion-android-information"></i>Edit Project Info<span><em id="project-info-percentage">0</em>% READY</span></li>
 		<li><i class="ion-ios7-browsers"></i>Duplicate</li>
 		<li><i class="ion-trash-a"></i>Delete</li>
@@ -124,6 +135,19 @@
 
 
 
+<div class="shots-panel">
+	<ul>
+		<li><img src="img/thumb.jpg"></li>
+		<li><img src="img/thumb.jpg"></li>
+		<li>+</li>
+	</ul>
+</div>
+
+
+<div class="camera-preview">
+	<img src="img/thumb.jpg">
+</div>
+
 <div class="sample"></div>
 	
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -139,6 +163,17 @@
 			$('.state-dropdown').slideToggle('fast');
 		});
 
+		$('#draft-option').click(function(){
+			$('.state-dropdown ul li').removeClass('selected-state');
+			$(this).addClass('selected-state');
+			$('.state-selector').removeClass('public-state').removeClass('private-state').addClass('draft-state');
+			$('#project-state-icon').removeClass('ion-earth').removeClass('ion-locked').addClass('ion-settings');
+			$('#project-state').html('Draft');
+			$('.state-dropdown').slideToggle('fast');
+			$('#mo-view-project-page').addClass('locked-menu-option');
+			$('.view-project-page').hide();
+		});
+
 		$('#public-option').click(function(){
 			$('.state-dropdown ul li').removeClass('selected-state');
 			$(this).addClass('selected-state');
@@ -146,8 +181,9 @@
 			$('#project-state-icon').removeClass('ion-settings').removeClass('ion-locked').addClass('ion-earth');
 			$('#project-state').html('Public');
 			$('.state-dropdown').slideToggle('fast');
-			$('.view-project-page').addClass('make-visible');
 			$('#mo-view-project-page').removeClass('locked-menu-option');
+			$('.view-project-page').hide();
+			$('#view-in-gallery').show();
 		});
 
 		$('#private-option').click(function(){
@@ -158,20 +194,13 @@
 			// $('#project-state-icon').removeClass('ion-settings').removeClass('ion-earth').addClass('ion-locked');
 			// $('#project-state').html('Private');
 			// $('.state-dropdown').slideToggle('fast');
-			//$('.view-project-page').addClass('make-visible');
-			//$('#mo-view-project-page').removeClass('locked-menu-option');
+			// $('.view-project-page').addClass('make-visible');
+			// $('#mo-view-project-page').removeClass('locked-menu-option');
+			// $('.view-project-page').hide();
+			// $('#view-private-page').show();
 		});
 
-		$('#draft-option').click(function(){
-			$('.state-dropdown ul li').removeClass('selected-state');
-			$(this).addClass('selected-state');
-			$('.state-selector').removeClass('public-state').removeClass('private-state').addClass('draft-state');
-			$('#project-state-icon').removeClass('ion-earth').removeClass('ion-locked').addClass('ion-settings');
-			$('#project-state').html('Draft');
-			$('.state-dropdown').slideToggle('fast');
-			$('.view-project-page').removeClass('make-visible');
-			$('#mo-view-project-page').addClass('locked-menu-option');
-		});
+		
 
 	});
 
