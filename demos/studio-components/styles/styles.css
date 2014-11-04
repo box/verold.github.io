@@ -459,6 +459,18 @@ header h1 {
   text-align: center;
   padding: 3px 6px;
 }
+.scene-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-right: 320px;
+  padding-top: 44px;
+}
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 .sidebar {
   position: absolute;
   z-index: 10;
@@ -534,9 +546,75 @@ ul.sidebar-tabs li:hover {
 .camera-preview {
   z-index: 1;
   position: absolute;
-  bottom: 5px;
-  right: 330px;
-  width: 200px;
+  bottom: 10px;
+  right: 15px;
+  width: 19%;
+  max-width: 220px;
+}
+.dialog-bg {
+  display: none;
+  backface-visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.25);
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transform: translate3d(0px, 0px, 0px);
+  z-index: 5000;
+}
+.dialog-bg .dialog-box {
+  backface-visibility: hidden;
+  background-color: white;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  color: #464341;
+  cursor: default;
+  left: 50%;
+  margin-bottom: 40px;
+  margin-left: -262.5px;
+  margin-top: -15%;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0px, 0px, 0px);
+  width: 525px;
+  z-index: 1000;
+}
+.dialog-bg .dialog-box .dialog-title {
+  color: #222;
+  font-size: 20px;
+  line-height: 20px;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+.dialog-bg .dialog-box .dialog-message {
+  color: #464341;
+  font-size: 14px;
+  line-height: 20px;
+}
+.dialog-bg .dialog-box .dialog-message p {
+  margin-bottom: 20px;
+}
+.dialog-bg .dialog-box .dialog-yes {
+  margin-right: 10px;
+}
+.dialog-bg .settings-button {
+  background-color: #049cdb !important;
+  border-radius: 0;
+  color: white;
+  display: inline-block;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0;
+  padding: 10px 20px;
+  width: auto;
+  border: 0 none;
+}
+.dialog-bg a {
+  border: 0 none;
+  color: #999;
 }
 /*
 *********************************
@@ -551,7 +629,7 @@ ul.sidebar-tabs li:hover {
 
   float: left;
   height: 30px;
-  width: 110px;
+  width: 115px;
   line-height: 30px;
   margin: 7px 0 0 20px;
   -webkit-border-radius: 3px;
@@ -887,35 +965,38 @@ ul.project-menu-editor li:last-child {
 *
 *   GENERATE THUMBNAIL SHORTCUT ON SCENE
 *
+*   NOT USED
+*
 **********************************************
 */
-.generate-thumbnail-shortcut {
+/*.generate-thumbnail-shortcut{
+
   position: absolute;
-  top: 64px;
+  top: 20px;
   left: 20px;
   z-index: 2;
   height: 30px;
   line-height: 30px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  .border-radius(3px);
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255,255,255,.9);
   font-size: 12px;
   padding: 0 8px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  text-shadow: 0px 0px 5px #000000;
+  border: 1px solid rgba(255,255,255,.9);
+  .text-shadow(rgba(0,0,0,8));
+  i{
+    margin-right: 0.4em;
+    font-size: 18px;
+    vertical-align: middle;
+  }
+  &:hover{
+    background: rgba(255,255,255,.9);
+    color: #111;
+    .text-shadow(rgba(0,0,0,0));
+  }
+
 }
-.generate-thumbnail-shortcut i {
-  margin-right: 0.4em;
-  font-size: 18px;
-  vertical-align: middle;
-}
-.generate-thumbnail-shortcut:hover {
-  background: rgba(255, 255, 255, 0.9);
-  color: #111;
-  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0);
-}
+*/
 /*
 *********************************
 *
@@ -925,10 +1006,10 @@ ul.project-menu-editor li:last-child {
 */
 .shots-panel {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
+  max-width: 66%;
   bottom: 10px;
-  left: 10px;
-  border: 1px solid #fff;
+  left: 30px;
   padding: 5px;
   color: #fff;
 }
@@ -939,6 +1020,8 @@ ul.project-menu-editor li:last-child {
   list-style: none;
   padding: 0;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .shots-panel ul:before,
 .shots-panel ul:after {
@@ -950,22 +1033,58 @@ ul.project-menu-editor li:last-child {
   clear: both;
 }
 .shots-panel ul li {
-  float: left;
-  height: 60px;
-  margin-right: 5px;
+  display: inline-block;
+  height: 62px;
   cursor: pointer;
+  border: 1px solid #fff;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .shots-panel ul li img {
-  height: inherit;
+  height: 60px;
+}
+.shots-panel ul li.selected,
+.shots-panel ul li:hover {
+  border: 1px solid #17c7ff;
 }
 .shots-panel ul li:last-child {
+  position: relative;
+  /* -> containing block */
+
   line-height: 60px;
-  font-size: 30px;
-  padding: 0 10px;
+  font-size: 24px;
+  width: 40px;
   margin-right: 0;
   background: rgba(0, 0, 0, 0.5);
   text-shadow: 0px 0px 5px #000000;
 }
 .shots-panel ul li:last-child:hover {
+  border-color: #17c7ff;
   color: #17c7ff;
+}
+.shots-panel ul li:last-child i {
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+.shots-panel .shots-chevron {
+  position: absolute;
+  height: 62px;
+  line-height: 62px;
+  font-size: 24px;
+  cursor: pointer;
+  text-shadow: 0px 0px 5px #000000;
+}
+.shots-panel .shots-chevron:hover {
+  color: #17c7ff;
+}
+.shots-panel .shots-chevron.chevron-left {
+  right: 101%;
+}
+.shots-panel .shots-chevron.chevron-right {
+  left: 101%;
 }

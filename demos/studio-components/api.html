@@ -41,21 +41,20 @@
 
 
 		<!--  STATE SELECTOR ********************************** --> 
-	<div class="state-selector draft-state">
+	<div class="state-selector api-state">
 
 		<div class="state-selector-btn">
-			<i id="project-state-icon" class="ion-settings"></i>
-			<p id="project-state">Draft</p>
+			<i id="project-state-icon" class="ion-code-working"></i>
+			<p id="project-state">API Only</p>
 			<i class="down-arrow ion-arrow-down-b"></i>
 		</div>
 
 		<div class="state-dropdown">
 			<ul>
-				<li id="draft-option" class="selected-state">
-						<i class="state-checkmark ion-checkmark"></i>
-					  <i class="state-icon ion-settings"></i>
-					  <h3>Draft</h3>
-						<h4>project is only visible by you and your collaborators</h4>
+				<li id="api-option">
+				  <i class="state-icon ion-code-working"></i>
+				  <h3>API Only</h3>
+					<h4>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</h4>
 				</li>
 				<li id="public-option">
 						<i class="state-checkmark ion-checkmark"></i>
@@ -65,16 +64,12 @@
 				</li>
 				<li id="private-option" class="locked-state">
 						<i class="state-checkmark ion-checkmark"></i>
-					  <i class="state-icon ion-locked"></i>
-					  <h3>Private</h3>
+					  <i class="state-icon ion-eye-disabled"></i>
+					  <h3>Unlisted</h3>
 					  <a class="pro-only-badge" href="#" target="_blank">Pro Only</a>
 						<h4>project is embeddable but doesn't appear on the public gallery</h4>
 				</li>
-				<li id="api-option">
-				  <i class="state-icon ion-code-working"></i>
-				  <h3>API Only</h3>
-					<h4>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</h4>
-				</li>
+				
 			</ul>
 		</div><!-- /state-dropdown -->
 
@@ -107,7 +102,7 @@
 
 	<ul class="sidebar-tabs">
 		<li>INSPECTOR</li>
-		<li class="selected-tab">SETTINGS</li>
+		<li class="selected-tab">APPLICATION</li>
 	</ul>
 
 	<!--  API PROJECT MENU ********************************** --> 
@@ -152,8 +147,30 @@
 </div><!-- /sidebar -->
 
 
+<div class="scene-container">
 
-<div class="sample"></div>
+	<div class="scene">
+
+		<div class="sample"></div>
+
+	</div><!--/scene -->
+
+</div><!-- /scene-container -->
+
+
+
+<div id="dialog-bg" class="dialog-bg">
+	<div class="dialog-box">
+	<!-- <h3 class="dialog-title">Title</h3> -->
+		<div class="dialog-message">
+			<p>If you make your project public any published builds will stop working</p>
+		</div>
+		<button id="dialog-yes" class="dialog-yes settings-button" style="background-color: #049cdb !important;">Make Public</button>
+		<a id="dialog-no" href="#cancel">Cancel </a>
+	</div>
+</div><!-- /dialog-bg -->
+
+
 	
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
@@ -181,6 +198,19 @@
 		});
 
 		$('#public-option').click(function(){
+			
+			if($('.state-selector').hasClass('api-state')){
+				$('.dialog-bg').show();
+			}
+			else{
+				$('.state-dropdown').slideToggle('fast');
+			}
+
+		});
+
+
+		$('#dialog-yes').click(function(){
+			$('.dialog-bg').hide();
 			$('.state-dropdown ul li').removeClass('selected-state');
 			$(this).addClass('selected-state');
 			$('.state-selector').removeClass('draft-state').removeClass('private-state').removeClass('api-state').addClass('public-state');
@@ -192,6 +222,12 @@
 			$('#view-in-gallery').show();
 			$('.api-action').hide();
 		});
+
+		$('#dialog-no').click(function(){
+			$('.dialog-bg').hide();
+			$('.state-dropdown').slideToggle('fast');
+		});
+
 
 		$('#private-option').click(function(){
 			// MUST CHECK IF USER IS PRO TO UNLOCK

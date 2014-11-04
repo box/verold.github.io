@@ -65,8 +65,8 @@
 				</li>
 				<li id="private-option" class="locked-state">
 						<i class="state-checkmark ion-checkmark"></i>
-					  <i class="state-icon ion-locked"></i>
-					  <h3>Private</h3>
+					  <i class="state-icon ion-eye-disabled"></i>
+					  <h3>Unlisted</h3>
 					  <a class="pro-only-badge" href="#" target="_blank">Pro Only</a>
 						<h4>project is embeddable but doesn't appear on the public gallery</h4>
 				</li>
@@ -127,28 +127,55 @@
 
 
 
-<!--   GENERATE THUMBNAIL SHORTCUT ON SCENE ********************************** --> 
 
-<div class="generate-thumbnail-shortcut"><i class="ion-camera"></i>Generate Thumbnail</div>
+<div class="scene-container">
 
-<!--   /GENERATE THUMBNAIL SHORTCUT ON SCENE ********************************** --> 
+	<div class="scene">
 
+		<!--   GENERATE THUMBNAIL SHORTCUT ON SCENE ********************************** --> 
 
+		<!-- <div class="generate-thumbnail-shortcut"><i class="ion-camera"></i>Generate Thumbnail</div> -->
 
-<div class="shots-panel">
-	<ul>
-		<li><img src="img/thumb.jpg"></li>
-		<li><img src="img/thumb.jpg"></li>
-		<li>+</li>
-	</ul>
-</div>
+		<!--   /GENERATE THUMBNAIL SHORTCUT ON SCENE ********************************** --> 
 
 
-<div class="camera-preview">
-	<img src="img/thumb.jpg">
-</div>
 
-<div class="sample"></div>
+		<div class="shots-panel">
+			<div class="shots-chevron chevron-left"><i class="ion-chevron-left"></i></div>
+			<div class="shots-chevron chevron-right"><i class="ion-chevron-right"></i></div>
+			<ul>
+				<li><img src="img/thumb.jpg"></li>
+				<li class="selected"><img src="img/thumb.jpg"></li>
+				<li><img src="img/thumb.jpg"></li>
+				<li><img src="img/thumb.jpg"></li>
+				<li><i class="ion-plus-circled"></i></li>
+			</ul>
+
+		</div>
+
+
+		<div class="camera-preview">
+			<img src="img/thumb.jpg">
+		</div>
+
+		<div class="sample"></div>
+
+	</div><!--/scene -->
+
+</div><!-- /scene-container -->
+
+
+<div id="dialog-bg" class="dialog-bg">
+	<div class="dialog-box">
+	<!-- <h3 class="dialog-title">Title</h3> -->
+		<div class="dialog-message">
+			<p>You must generate a thumbnail before you can make the project public</p>
+		</div>
+		<button id="dialog-yes" class="dialog-yes settings-button" style="background-color: #049cdb !important;">Generate Thumbnail</button>
+		<a id="dialog-no" href="#cancel">Cancel </a>
+	</div>
+</div><!-- /dialog-bg -->
+
 	
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
@@ -175,6 +202,19 @@
 		});
 
 		$('#public-option').click(function(){
+			
+			if($('.state-selector').hasClass('draft-state')){
+				$('.dialog-bg').show();
+			}
+			else{
+				$('.state-dropdown').slideToggle('fast');
+			}
+
+		});
+
+
+		$('#dialog-yes').click(function(){
+			$('.dialog-bg').hide();
 			$('.state-dropdown ul li').removeClass('selected-state');
 			$(this).addClass('selected-state');
 			$('.state-selector').removeClass('draft-state').removeClass('private-state').addClass('public-state');
@@ -184,6 +224,11 @@
 			$('#mo-view-project-page').removeClass('locked-menu-option');
 			$('.view-project-page').hide();
 			$('#view-in-gallery').show();
+		});
+
+		$('#dialog-no').click(function(){
+			$('.dialog-bg').hide();
+			$('.state-dropdown').slideToggle('fast');
 		});
 
 		$('#private-option').click(function(){

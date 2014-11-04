@@ -92,6 +92,20 @@ header{
 
 
 
+.scene-container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-right: 320px;
+  padding-top: 44px;
+}
+
+
+.scene{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
 
 .sidebar{
@@ -159,7 +173,79 @@ ul.sidebar-tabs{
 .camera-preview{
   z-index: 1;
   position: absolute;
-  bottom: 5px;
-  right: 330px;
-  width: 200px;
+  bottom: 10px;
+  right: 15px;
+  width: 19%;
+  max-width: 220px;
 }
+
+
+
+.dialog-bg {
+  display: none;
+  backface-visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.25);
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transform: translate3d(0px, 0px, 0px);
+  z-index: 5000;
+  .dialog-box{
+    backface-visibility: hidden;
+    background-color: white;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    color: #464341;
+    cursor: default;
+    left: 50%;
+    margin-bottom: 40px;
+    margin-left: -262.5px;
+    margin-top: -15%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(0px, 0px, 0px);
+    width: 525px;
+    z-index: 1000;
+    .dialog-title{
+      color: #222;
+      font-size: 20px;
+      line-height: 20px;
+      margin-bottom: 30px;
+      margin-top: 0;
+    }
+    .dialog-message{
+      color: #464341;
+      font-size: 14px;
+      line-height: 20px;
+      p{
+        margin-bottom: 20px;
+      }
+    }
+    .dialog-yes {
+      margin-right: 10px;
+    }
+  }
+  .settings-button {
+    background-color: #049cdb !important;
+    border-radius: 0;
+    color: white;
+    display: inline-block;
+    font-weight: normal;
+    line-height: normal;
+    margin: 0;
+    padding: 10px 20px;
+    width: auto;
+    border: 0 none;
+  }
+  a {
+    border: 0 none;
+    color: #999;
+  }
+}
+
+
+
