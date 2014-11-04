@@ -943,7 +943,6 @@ ul.project-menu-editor li:last-child {
   background: #17C7FF;
 }
 .api-action {
-  display: none;
   width: 94%;
   height: 36px;
   line-height: 36px;
@@ -1021,7 +1020,7 @@ ul.project-menu-editor li:last-child {
   padding: 0;
   margin: 0;
   white-space: nowrap;
-  overflow: hidden;
+  overflow-x: auto;
 }
 .shots-panel ul:before,
 .shots-panel ul:after {
@@ -1032,21 +1031,35 @@ ul.project-menu-editor li:last-child {
 .shots-panel ul:after {
   clear: both;
 }
+.shots-panel ul::-webkit-scrollbar {
+  display: none;
+}
 .shots-panel ul li {
   display: inline-block;
-  height: 62px;
+  position: relative;
+  /* -> containing block */
+
+  margin-right: 4px;
+  height: 60px;
+  width: 90px;
   cursor: pointer;
   border: 1px solid #fff;
+  background: rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .shots-panel ul li img {
-  height: 60px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
-.shots-panel ul li.selected,
+.shots-panel ul li.selected-shot,
 .shots-panel ul li:hover {
   border: 1px solid #17c7ff;
+}
+.shots-panel ul li:first-child {
+  margin-right: 0px;
 }
 .shots-panel ul li:last-child {
   position: relative;
@@ -1055,7 +1068,7 @@ ul.project-menu-editor li:last-child {
   line-height: 60px;
   font-size: 24px;
   width: 40px;
-  margin-right: 0;
+  margin: 0;
   background: rgba(0, 0, 0, 0.5);
   text-shadow: 0px 0px 5px #000000;
 }
@@ -1072,6 +1085,7 @@ ul.project-menu-editor li:last-child {
   transform: translate(-50%, 0);
 }
 .shots-panel .shots-chevron {
+  display: none;
   position: absolute;
   height: 62px;
   line-height: 62px;

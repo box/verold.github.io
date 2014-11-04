@@ -141,14 +141,11 @@
 
 
 		<div class="shots-panel">
-			<div class="shots-chevron chevron-left"><i class="ion-chevron-left"></i></div>
-			<div class="shots-chevron chevron-right"><i class="ion-chevron-right"></i></div>
+			<div id="shots-scroll-left" class="shots-chevron chevron-left"><i class="ion-chevron-left"></i></div>
+			<div id="shots-scroll-right" class="shots-chevron chevron-right"><i class="ion-chevron-right"></i></div>
 			<ul>
-				<li><img src="img/thumb.jpg"></li>
-				<li class="selected"><img src="img/thumb.jpg"></li>
-				<li><img src="img/thumb.jpg"></li>
-				<li><img src="img/thumb.jpg"></li>
-				<li><i class="ion-plus-circled"></i></li>
+				<li class="shot-thumb selected-shot"><img src="img/thumb.jpg"></li>
+				<li id="add-shot"><i class="ion-plus-circled"></i></li>
 			</ul>
 
 		</div>
@@ -244,6 +241,46 @@
 			// $('.view-project-page').hide();
 			// $('#view-private-page').show();
 		});
+
+
+		$('.shot-thumb').click(function(){
+			$('.shot-thumb').removeClass('selected-shot');
+			$(this).addClass('selected-shot');
+		});
+		
+		
+		var shotWidth = 94;
+		var addShotWidth = 44; // the add new shot button is 44px wide
+
+		$('#add-shot').click(function(){
+			$('.shot-thumb').removeClass('selected-shot');
+			$(this).before('<li class="shot-thumb selected-shot"></li>');
+			
+
+			var numberOfShots = $('.shots-panel ul').children().length - 1; // one li is the add shot button
+			var listWidth = ((numberOfShots*shotWidth)-4);
+			var shotsPanelWidth = $('.shots-panel').width() - addShotWidth; 
+			
+			$('.shots-panel ul').scrollLeft(listWidth);
+
+			if(listWidth > shotsPanelWidth && numberOfShots>2){
+				$('.shots-chevron').show();
+			}
+
+		});
+
+
+		$('#shots-scroll-right').click(function(){
+			//$('.shots-panel ul').scrollLeft( $('.shots-panel ul').scrollLeft() + shotWidth );
+			$('.shots-panel ul').animate({"scrollLeft": $('.shots-panel ul').scrollLeft() + shotWidth },100)
+
+		});
+
+		$('#shots-scroll-left').click(function(){
+			// $('.shots-panel ul').scrollLeft( $('.shots-panel ul').scrollLeft() - shotWidth );
+			$('.shots-panel ul').animate({"scrollLeft": $('.shots-panel ul').scrollLeft() - shotWidth },100)
+		});
+
 
 		
 

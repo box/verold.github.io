@@ -323,7 +323,6 @@ ul.project-menu-editor{
 }
 
 .api-action{
-  display: none;
   width: 94%;
   height: 36px;
   line-height: 36px;
@@ -416,25 +415,37 @@ ul.project-menu-editor{
     padding: 0;
     margin: 0;
     white-space: nowrap;
-    overflow: hidden;
+    overflow-x: auto;
+    &::-webkit-scrollbar { 
+        display: none; 
+    }
     li{
       display: inline-block;
-      height: 62px;
+      position: relative; /* -> containing block */
+      margin-right: 4px;
+      height: 60px;
+      width: 90px;
       cursor: pointer;
       border: 1px solid #fff;
+      background: rgba(0,0,0,0.5);
       .box-shadow(0 0 10px rgba(0,0,0,.5));
       img{
-        height: 60px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
       }
-      &.selected, &:hover{
+      &.selected-shot, &:hover{
         border: 1px solid @blue;
+      }
+      &:first-child{
+        margin-right: 0px;
       }
       &:last-child{
         position: relative; /* -> containing block */
         line-height: 60px;
         font-size: 24px;
         width: 40px;
-        margin-right: 0;
+        margin: 0;
         background: rgba(0,0,0,0.5);
         .text-shadow(rgba(0,0,0,8));
         &:hover{
@@ -454,6 +465,7 @@ ul.project-menu-editor{
     }
   }
   .shots-chevron{
+    display: none;
     position: absolute;
     height: 62px;
     line-height: 62px;
