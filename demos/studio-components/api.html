@@ -51,7 +51,8 @@
 
 		<div class="state-dropdown">
 			<ul>
-				<li id="api-option">
+				<li id="api-option" class="selected-state">
+					<i class="state-checkmark ion-checkmark"></i>
 				  <i class="state-icon ion-code-working"></i>
 				  <h3>API Only</h3>
 					<h4>project can be published but doesn't appear on the public gallery</h4>
@@ -63,7 +64,6 @@
 						<h4>project can't be published but appears on the public gallery and is embeddable</h4>
 				</li>
 				<li id="private-option" class="locked-state">
-						<i class="state-checkmark ion-checkmark"></i>
 					  <i class="state-icon ion-eye-disabled"></i>
 					  <h3>Unlisted</h3>
 					  <a class="pro-only-badge" href="#" target="_blank">Pro Only</a>
@@ -83,7 +83,7 @@
 
 	<!--  VIEW PROJECT PAGE ********************************** --> 
 	<div id="view-in-gallery" class="view-project-page">View in Gallery<i class="ion-share"></i></div>
-	<div id="view-private-page" class="view-project-page">View Private Page<i class="ion-share"></i></div>
+	<div id="view-private-page" class="view-project-page">View Unlisted Page<i class="ion-share"></i></div>
 	<!--  /VIEW PROJECT PAGE ********************************** --> 
 
 
@@ -159,14 +159,14 @@
 
 
 
-<div id="dialog-bg" class="dialog-bg">
+<div id="public-alert" class="dialog-bg">
 	<div class="dialog-box">
 	<!-- <h3 class="dialog-title">Title</h3> -->
 		<div class="dialog-message">
 			<p>If you make your project public any published builds will stop working</p>
 		</div>
-		<button id="dialog-yes" class="dialog-yes settings-button" style="background-color: #049cdb !important;">Make Public</button>
-		<a id="dialog-no" href="#cancel">Cancel </a>
+		<button id="make-public" class="dialog-yes">Make Public</button>
+		<a id="dont-make-public" class="dialog-no" href="#cancel">Cancel </a>
 	</div>
 </div><!-- /dialog-bg -->
 
@@ -185,22 +185,21 @@
 			$('.state-dropdown').slideToggle('fast');
 		});
 
-		$('#draft-option').click(function(){
+		$('#api-option').click(function(){
 			$('.state-dropdown ul li').removeClass('selected-state');
 			$(this).addClass('selected-state');
-			$('.state-selector').removeClass('public-state').removeClass('private-state').removeClass('api-state').addClass('draft-state');
-			$('#project-state-icon').removeClass('ion-earth').removeClass('ion-locked').addClass('ion-settings');
-			$('#project-state').html('Draft');
+			$('.state-selector').removeClass('public-state').removeClass('private-state').addClass('api-state');
+			$('#project-state-icon').removeClass('ion-earth').removeClass('ion-eye-disabled').addClass('ion-settings');
+			$('#project-state').html('API Only');
 			$('.state-dropdown').slideToggle('fast');
-			$('#mo-view-project-page').addClass('locked-menu-option');
 			$('.view-project-page').hide();
-			$('.api-action').hide();
+			$('.api-action').show();
 		});
 
 		$('#public-option').click(function(){
 			
 			if($('.state-selector').hasClass('api-state')){
-				$('.dialog-bg').show();
+				$('#public-alert').show();
 			}
 			else{
 				$('.state-dropdown').slideToggle('fast');
@@ -209,22 +208,21 @@
 		});
 
 
-		$('#dialog-yes').click(function(){
-			$('.dialog-bg').hide();
+		$('#make-public').click(function(){
+			$('#public-alert').hide();
 			$('.state-dropdown ul li').removeClass('selected-state');
-			$(this).addClass('selected-state');
-			$('.state-selector').removeClass('draft-state').removeClass('private-state').removeClass('api-state').addClass('public-state');
-			$('#project-state-icon').removeClass('ion-settings').removeClass('ion-locked').addClass('ion-earth');
+			$('#public-option').addClass('selected-state');
+			$('.state-selector').removeClass('private-state').removeClass('api-state').addClass('public-state');
+			$('#project-state-icon').removeClass('ion-settings').removeClass('ion-eye-disabled').addClass('ion-earth');
 			$('#project-state').html('Public');
 			$('.state-dropdown').slideToggle('fast');
-			$('#mo-view-project-page').removeClass('locked-menu-option');
 			$('.view-project-page').hide();
 			$('#view-in-gallery').show();
 			$('.api-action').hide();
 		});
 
-		$('#dialog-no').click(function(){
-			$('.dialog-bg').hide();
+		$('#dont-make-public').click(function(){
+			$('#public-alert').hide();
 			$('.state-dropdown').slideToggle('fast');
 		});
 
@@ -234,7 +232,7 @@
 			// $('.state-dropdown ul li').removeClass('selected-state');
 			// $(this).addClass('selected-state');
 			// $('.state-selector').removeClass('draft-state').removeClass('public-state').removeClass('api-state').addClass('private-state');
-			// $('#project-state-icon').removeClass('ion-settings').removeClass('ion-earth').addClass('ion-locked');
+			// $('#project-state-icon').removeClass('ion-settings').removeClass('ion-earth').addClass('ion-eye-disabled');
 			// $('#project-state').html('Private');
 			// $('.state-dropdown').slideToggle('fast');
 			// $('#mo-view-project-page').removeClass('locked-menu-option');
@@ -243,18 +241,7 @@
 			// $('.api-action').hide();
 		});
 
-		
-		$('#api-option').click(function(){
-			$('.state-dropdown ul li').removeClass('selected-state');
-			$(this).addClass('selected-state');
-			$('.state-selector').removeClass('draft-state').removeClass('private-state').removeClass('public-state').addClass('api-state');
-			$('#project-state-icon').removeClass('ion-settings').removeClass('ion-locked').removeClass('ion-earth').addClass('ion-code-working');
-			$('#project-state').html('API Only');
-			$('.state-dropdown').slideToggle('fast');
-			// $('#mo-view-project-page').addClass('locked-menu-option');
-			$('.view-project-page').hide();
-			$('.api-action').show();
-		});
+
 
 
 

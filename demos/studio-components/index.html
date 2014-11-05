@@ -83,7 +83,7 @@
 
 	<!--  VIEW PROJECT PAGE ********************************** --> 
 	<div id="view-in-gallery" class="view-project-page">View in Gallery<i class="ion-share"></i></div>
-	<div id="view-private-page" class="view-project-page">View Private Page<i class="ion-share"></i></div>
+	<div id="view-private-page" class="view-project-page">View Unlisted Page<i class="ion-share"></i></div>
 	<!--  /VIEW PROJECT PAGE ********************************** --> 
 
 
@@ -144,7 +144,7 @@
 			<div id="shots-scroll-left" class="shots-chevron chevron-left"><i class="ion-chevron-left"></i></div>
 			<div id="shots-scroll-right" class="shots-chevron chevron-right"><i class="ion-chevron-right"></i></div>
 			<ul>
-				<li class="shot-thumb selected-shot"><img src="img/thumb.jpg"></li>
+				<li class="initial-shot shot-thumb"><i class="shot-settings ion-ios7-gear"></i><img src="img/thumb.jpg"></li>
 				<li id="add-shot"><i class="ion-plus-circled"></i></li>
 			</ul>
 
@@ -162,14 +162,58 @@
 </div><!-- /scene-container -->
 
 
-<div id="dialog-bg" class="dialog-bg">
+<div id="thumbnail-alert" class="dialog-bg">
 	<div class="dialog-box">
 	<!-- <h3 class="dialog-title">Title</h3> -->
 		<div class="dialog-message">
 			<p>You must generate a thumbnail before you can make the project public</p>
 		</div>
-		<button id="dialog-yes" class="dialog-yes settings-button" style="background-color: #049cdb !important;">Generate Thumbnail</button>
-		<a id="dialog-no" href="#cancel">Cancel </a>
+		<button id="generate-thumb" class="dialog-yes">Generate Thumbnail</button>
+		<a id="dont-generate-thumb" class="dialog-no" href="#cancel">Cancel </a>
+	</div>
+</div><!-- /dialog-bg -->
+
+
+<div id="new-shot" class="dialog-bg">
+	<div class="dialog-box">
+	<h3 class="dialog-title">New Shot</h3>
+		<div class="dialog-message">
+				
+				<label for="list">Camera:</label>
+        <select class"form-list" name="list" id="list" required>
+          <option value="" disabled selected>Select a camera</option>
+          <option value="camera-1">Camera 1</option>
+          <option value="camera-2">Camera 2</option>
+          <option value="camera-3">Camera 3</option>
+          <option value="camera-4">Camera 4</option>
+        </select>
+
+        <p>You can add new cameras from the Scene Graph</p>
+		</div>
+		<button id="confirm-shot" class="dialog-yes">Create Shot</button>
+		<a id="dismiss-shot" class="dialog-no" href="#cancel">Cancel</a>
+	</div>
+</div><!-- /dialog-bg -->
+
+
+
+<div id="edit-shot" class="dialog-bg">
+	<div class="dialog-box">
+	<h3 class="dialog-title">Edit Shot</h3>
+		<div class="dialog-message">
+				
+				<label for="list">Camera:</label>
+        <select class"form-list" name="list" id="list" required>
+          <option value="" disabled selected>Select a camera</option>
+          <option value="camera-1">Camera 1</option>
+          <option value="camera-2">Camera 2</option>
+          <option value="camera-3">Camera 3</option>
+          <option value="camera-4">Camera 4</option>
+        </select>
+		</div>
+		<button id="save-shot-edit" class="dialog-yes">Save</button>
+		<a id="cancel-shot-edit" class="dialog-no" href="#cancel">Cancel</a>
+		<a id="delete-shot" class="dialog-no" href="#cancel">Delete Shot</a>
 	</div>
 </div><!-- /dialog-bg -->
 
@@ -191,7 +235,7 @@
 			$('.state-dropdown ul li').removeClass('selected-state');
 			$(this).addClass('selected-state');
 			$('.state-selector').removeClass('public-state').removeClass('private-state').addClass('draft-state');
-			$('#project-state-icon').removeClass('ion-earth').removeClass('ion-locked').addClass('ion-settings');
+			$('#project-state-icon').removeClass('ion-earth').removeClass('ion-eye-disabled').addClass('ion-settings');
 			$('#project-state').html('Draft');
 			$('.state-dropdown').slideToggle('fast');
 			$('#mo-view-project-page').addClass('locked-menu-option');
@@ -201,7 +245,7 @@
 		$('#public-option').click(function(){
 			
 			if($('.state-selector').hasClass('draft-state')){
-				$('.dialog-bg').show();
+				$('#thumbnail-alert').show();
 			}
 			else{
 				$('.state-dropdown').slideToggle('fast');
@@ -210,12 +254,12 @@
 		});
 
 
-		$('#dialog-yes').click(function(){
-			$('.dialog-bg').hide();
+		$('#generate-thumb').click(function(){
+			$('#thumbnail-alert').hide();
 			$('.state-dropdown ul li').removeClass('selected-state');
-			$(this).addClass('selected-state');
+			$('#public-option').addClass('selected-state');
 			$('.state-selector').removeClass('draft-state').removeClass('private-state').addClass('public-state');
-			$('#project-state-icon').removeClass('ion-settings').removeClass('ion-locked').addClass('ion-earth');
+			$('#project-state-icon').removeClass('ion-settings').removeClass('ion-eye-disabled').addClass('ion-earth');
 			$('#project-state').html('Public');
 			$('.state-dropdown').slideToggle('fast');
 			$('#mo-view-project-page').removeClass('locked-menu-option');
@@ -223,8 +267,8 @@
 			$('#view-in-gallery').show();
 		});
 
-		$('#dialog-no').click(function(){
-			$('.dialog-bg').hide();
+		$('#dont-generate-thumb').click(function(){
+			$('#thumbnail-alert').hide();
 			$('.state-dropdown').slideToggle('fast');
 		});
 
@@ -233,7 +277,7 @@
 			// $('.state-dropdown ul li').removeClass('selected-state');
 			// $(this).addClass('selected-state');
 			// $('.state-selector').removeClass('draft-state').removeClass('public-state').addClass('private-state');
-			// $('#project-state-icon').removeClass('ion-settings').removeClass('ion-earth').addClass('ion-locked');
+			// $('#project-state-icon').removeClass('ion-settings').removeClass('ion-earth').addClass('ion-eye-disabled');
 			// $('#project-state').html('Private');
 			// $('.state-dropdown').slideToggle('fast');
 			// $('.view-project-page').addClass('make-visible');
@@ -243,43 +287,140 @@
 		});
 
 
-		$('.shot-thumb').click(function(){
-			$('.shot-thumb').removeClass('selected-shot');
-			$(this).addClass('selected-shot');
-		});
-		
-		
+
+		// ***********************
+		// ******** SHOTS ********
+		// ***********************
+
 		var shotWidth = 94;
 		var addShotWidth = 44; // the add new shot button is 44px wide
 
-		$('#add-shot').click(function(){
+		var numberOfShots = $('.shots-panel ul').children().length - 1; // one li is the add shot button
+		var listWidth = ((numberOfShots*shotWidth)-4);
+		var shotsPanelWidth = $('.shots-panel').width() - addShotWidth;
+
+		// Variables need to be recalculated as the list changes
+		$.fn.recalculateVariables = function(){
+			numberOfShots = $('.shots-panel ul').children().length - 1; // one li is the add shot button
+			listWidth = ((numberOfShots*shotWidth)-4);
+			shotsPanelWidth = $('.shots-panel').width() - addShotWidth; 
+		}
+
+		// Selects a shot
+		$.fn.selectShot = function(){
 			$('.shot-thumb').removeClass('selected-shot');
-			$(this).before('<li class="shot-thumb selected-shot"></li>');
-			
+			$(this).addClass('selected-shot');
+		}
 
-			var numberOfShots = $('.shots-panel ul').children().length - 1; // one li is the add shot button
-			var listWidth = ((numberOfShots*shotWidth)-4);
-			var shotsPanelWidth = $('.shots-panel').width() - addShotWidth; 
-			
-			$('.shots-panel ul').scrollLeft(listWidth);
 
-			if(listWidth > shotsPanelWidth && numberOfShots>2){
+		// Selects the clicked shot and opens the Edit Shot dialog
+		$.fn.openShotEditor = function() { 
+	   	$('.shot-thumb').removeClass('selected-shot');
+			$(this).closest('.shot-thumb').addClass('selected-shot');
+			if($(this).closest('.shot-thumb').hasClass('initial-shot')){
+				$('#delete-shot').hide();
+			}
+			else{
+				$('#delete-shot').show();
+			}
+			$('#edit-shot').show();
+	  }
+
+	  // Checks if chevrons are neccesary
+	  $.fn.checkChevrons = function(){
+			$(this).recalculateVariables();
+			if(listWidth <= shotsPanelWidth){
+				$('.shots-chevron').hide();
+			}else if(listWidth > shotsPanelWidth && numberOfShots>2){
 				$('.shots-chevron').show();
 			}
+	  }
 
+	  // Deletes shot
+	  $.fn.deleteShot = function(){
+	  	$('#edit-shot').hide();
+			$('.selected-shot').remove();
+			$(this).recalculateVariables();
+			$(this).checkChevrons();
+	  }
+
+
+	  // Automatically scrolls to always show the Add New Shot button
+	  $.fn.autoScroll = function(){
+			$(this).recalculateVariables();
+			$('.shots-panel ul').scrollLeft(listWidth);
+	  }
+
+
+		// Shot is selected on click
+		$('.shot-thumb').click(function(){
+			$(this).selectShot();
+		});
+
+		// Opens new shot dialog
+		$('#add-shot').click(function(){
+			$('#new-shot').show();
 		});
 
 
+		// Click on Chevron Right
 		$('#shots-scroll-right').click(function(){
-			//$('.shots-panel ul').scrollLeft( $('.shots-panel ul').scrollLeft() + shotWidth );
 			$('.shots-panel ul').animate({"scrollLeft": $('.shots-panel ul').scrollLeft() + shotWidth },100)
 
 		});
 
+		// Click on Chevron Left
 		$('#shots-scroll-left').click(function(){
-			// $('.shots-panel ul').scrollLeft( $('.shots-panel ul').scrollLeft() - shotWidth );
 			$('.shots-panel ul').animate({"scrollLeft": $('.shots-panel ul').scrollLeft() - shotWidth },100)
 		});
+
+
+	  // Click on Shots Settings button 
+		$('.shot-settings').click(function(){
+			$(this).openShotEditor();
+		});
+
+
+
+		$('#dismiss-shot').click(function(){
+			$('#new-shot').hide();
+		});
+
+	
+		$('#save-shot-edit').click(function(){
+			$('#edit-shot').hide();
+			$('#delete-shot').show();
+		});
+
+
+		$('#cancel-shot-edit').click(function(){
+			$('#edit-shot').hide();
+			$('#delete-shot').show();
+
+		});
+
+		$('#delete-shot').click(function(){
+			$(this).deleteShot();
+		});
+
+
+		// Creates New Shot
+		$('#confirm-shot').click(function(){
+			$('#new-shot').hide();
+			$('.shot-thumb').removeClass('selected-shot');
+			$('#add-shot').before('<li class="shot-thumb selected-shot"><i class="shot-settings ion-ios7-gear"></i></li>');
+			$('.shot-settings').click(function(){
+				$(this).openShotEditor();
+			});
+			$('.shot-thumb').click(function(){
+				$(this).selectShot();
+			});
+			$('#delete-shot').click(function(){
+				$(this).deleteShot();
+			});
+			$(this).checkChevrons();
+			$(this).autoScroll();
+		}); 
 
 
 		

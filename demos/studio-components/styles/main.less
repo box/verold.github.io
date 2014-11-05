@@ -192,45 +192,46 @@ ul.sidebar-tabs{
   right: 0;
   top: 0;
   transform: translate3d(0px, 0px, 0px);
-  z-index: 5000;
-  .dialog-box{
-    backface-visibility: hidden;
-    background-color: white;
-    box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
-    box-sizing: border-box;
+  z-index: 5000;  
+}
+
+
+.dialog-box{
+  backface-visibility: hidden;
+  background-color: white;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  color: #464341;
+  cursor: default;
+  left: 50%;
+  margin-bottom: 40px;
+  margin-left: -262.5px;
+  margin-top: -15%;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0px, 0px, 0px);
+  width: 525px;
+  z-index: 1000;
+  .dialog-title{
+    color: #222;
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 30px;
+    margin-top: 0;
+  }
+  .dialog-message{
     color: #464341;
-    cursor: default;
-    left: 50%;
-    margin-bottom: 40px;
-    margin-left: -262.5px;
-    margin-top: -15%;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    transform: translate3d(0px, 0px, 0px);
-    width: 525px;
-    z-index: 1000;
-    .dialog-title{
-      color: #222;
-      font-size: 20px;
-      line-height: 20px;
-      margin-bottom: 30px;
-      margin-top: 0;
-    }
-    .dialog-message{
-      color: #464341;
-      font-size: 14px;
-      line-height: 20px;
-      p{
-        margin-bottom: 20px;
-      }
-    }
-    .dialog-yes {
-      margin-right: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 20px 0;
+    p{
+      margin: 20px 0;
     }
   }
-  .settings-button {
-    background-color: #049cdb !important;
+  .dialog-yes {
+    margin-right: 10px;
+    background-color: #049cdb;
     border-radius: 0;
     color: white;
     display: inline-block;
@@ -241,11 +242,35 @@ ul.sidebar-tabs{
     width: auto;
     border: 0 none;
   }
-  a {
+  .dialog-no{
     border: 0 none;
     color: #999;
+    margin-left: 1em;
+  }
+  label{
+    margin-right: .5em;
+  }
+  option{
+    padding: 1em;
+  }
+  select{
+    background: #efefef;
+    padding: 0 1em; 
+    cursor: pointer;
+    height: 40px;
+    width: 40%;
+    border: 0 none;
+    /*-webkit-appearance: none;*/
+    -moz-appearance: none;
+    appearance: none;
+    &::-ms-expand {
+      display: none;
+    }
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #000;
+    }
   }
 }
-
 
 
