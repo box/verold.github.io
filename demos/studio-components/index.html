@@ -143,9 +143,9 @@
 		<div class="shots-panel">
 			<div id="shots-scroll-left" class="shots-chevron chevron-left"><i class="ion-chevron-left"></i></div>
 			<div id="shots-scroll-right" class="shots-chevron chevron-right"><i class="ion-chevron-right"></i></div>
-			<ul>
-				<li class="initial-shot shot-thumb"><i class="shot-settings ion-ios7-gear"></i><img src="img/thumb.jpg"></li>
-				<li id="add-shot"><i class="ion-plus-circled"></i></li>
+			<ul class="sortable">
+				<li class="initial-shot shot-thumb not-sortable"><i class="shot-settings ion-ios7-gear"></i><img src="img/thumb.jpg"></li>
+				<li id="add-shot" class="not-sortable"><i class="ion-plus-circled"></i></li>
 			</ul>
 
 		</div>
@@ -160,6 +160,7 @@
 	</div><!--/scene -->
 
 </div><!-- /scene-container -->
+
 
 
 <div id="thumbnail-alert" class="dialog-bg">
@@ -220,12 +221,16 @@
 	
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+<script type="text/javascript" src="js/jquery.sortable.min.js"></script>
+
+
 
 <script>
 
 
 
 	$(function(){
+
 		
 		$('.state-selector-btn').click(function(){
 			$('.state-dropdown').slideToggle('fast');
@@ -299,6 +304,7 @@
 		var listWidth = ((numberOfShots*shotWidth)-4);
 		var shotsPanelWidth = $('.shots-panel').width() - addShotWidth;
 
+
 		// Variables need to be recalculated as the list changes
 		$.fn.recalculateVariables = function(){
 			numberOfShots = $('.shots-panel ul').children().length - 1; // one li is the add shot button
@@ -339,9 +345,12 @@
 	  // Deletes shot
 	  $.fn.deleteShot = function(){
 	  	$('#edit-shot').hide();
-			$('.selected-shot').remove();
-			$(this).recalculateVariables();
-			$(this).checkChevrons();
+	  	$('.selected-shot').fadeOut();
+	  	setTimeout(function(){
+				$('.selected-shot').remove();
+				$(this).recalculateVariables();
+				$(this).checkChevrons();
+			}, 500);
 	  }
 
 
@@ -349,8 +358,14 @@
 	  $.fn.autoScroll = function(){
 			$(this).recalculateVariables();
 			$('.shots-panel ul').scrollLeft(listWidth);
+			$('#shots-scroll-right').hide();
 	  }
 
+
+
+		$('.sortable').sortable({
+		    items: ':not(.not-sortable)'
+		});
 
 		// Shot is selected on click
 		$('.shot-thumb').click(function(){
@@ -366,13 +381,41 @@
 		// Click on Chevron Right
 		$('#shots-scroll-right').click(function(){
 			$('.shots-panel ul').animate({"scrollLeft": $('.shots-panel ul').scrollLeft() + shotWidth },100)
-
+			
 		});
 
 		// Click on Chevron Left
 		$('#shots-scroll-left').click(function(){
 			$('.shots-panel ul').animate({"scrollLeft": $('.shots-panel ul').scrollLeft() - shotWidth },100)
 		});
+
+
+		// Click on any chevron
+		$('.shots-chevron').click(function(){
+
+			// vars must be calculated after scrolling
+			setTimeout(function(){
+				var distanceFromLeft = $('.shots-panel ul').scrollLeft();
+				var distanceFromRight = listWidth - (distanceFromLeft+shotsPanelWidth);
+
+				if (distanceFromLeft == 0){
+					$('#shots-scroll-left').hide();
+				}else{
+					$('#shots-scroll-left').show();
+				}
+
+				if (distanceFromRight == 0){
+					$('#shots-scroll-right').hide();
+				}else{
+					$('#shots-scroll-right').show();
+				}
+			}, 200);
+			
+			
+
+		});
+
+		
 
 
 	  // Click on Shots Settings button 
@@ -420,6 +463,10 @@
 			});
 			$(this).checkChevrons();
 			$(this).autoScroll();
+
+			$('.sortable').sortable({
+		    items: ':not(.not-sortable)'
+			});
 		}); 
 
 
