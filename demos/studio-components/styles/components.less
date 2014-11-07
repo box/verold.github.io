@@ -409,17 +409,18 @@ ul.project-menu-editor{
   padding: 5px;
   color: #fff;
   
-  ul{
+  >ul{
     .clearfix;
     list-style: none;
     padding: 0;
     margin: 0;
     white-space: nowrap;
     overflow-x: auto;
+    font-size: 0; /* to fight 4px margin between inline-block elements */
     &::-webkit-scrollbar { 
         display: none; 
     }
-    li{
+    >li{
       display: inline-block;
       position: relative; /* -> containing block */
       margin-right: 4px;
@@ -429,12 +430,13 @@ ul.project-menu-editor{
       border: 1px solid rgba(255,255,255,0.5);
       background: rgba(0,0,0,0.5);
       .box-shadow(0 0 10px rgba(0,0,0,.5));
+      margin: 0 2px;
       img{
         position: absolute;
         width: 100%;
         height: 100%;
       }
-      .shot-settings{
+      /*.shot-settings{
         position: absolute;
         z-index: 1;
         bottom: 2px;
@@ -446,9 +448,53 @@ ul.project-menu-editor{
         &:hover{
           color: @blue;
         }
+      }*/
+      ul.shot-actions{
+        display: none;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,.5);
+        .clearfix;
+        li{
+          float: left;
+          position: relative;
+          width: 50%;
+          height: 100%;
+          text-align: center;
+          &.single-action{
+            width: 100%;
+          }
+          i{
+            font-size: 30px;
+            .text-shadow(rgba(0,0,0,8));
+            margin: auto;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+                    transform: translate(-50%,-50%);
+            &:hover{
+              color: @blue;
+            }
+          }
+          &.duplicate-shot{
+
+          }
+          &.delete-shot{
+            
+          }
+        }
       }
       &:hover{
         border: 1px solid #fff;
+        ul.shot-actions{
+          display: block;
+        }
       }
       &.selected-shot{
         border: 1px solid @blue;
@@ -457,14 +503,15 @@ ul.project-menu-editor{
         }
       }
       &:first-child{
-        margin-right: 0px;
+        margin: 0 2px 0 0;
       }
       &:last-child{
         position: relative; /* -> containing block */
         line-height: 60px;
         font-size: 24px;
         width: 40px;
-        margin: 0;
+        margin: 0 0 0 2px;
+
         background: rgba(0,0,0,0.5);
         .text-shadow(rgba(0,0,0,8));
         &:hover{

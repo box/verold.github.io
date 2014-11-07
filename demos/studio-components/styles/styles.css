@@ -1037,7 +1037,7 @@ ul.project-menu-editor li:last-child {
   padding: 5px;
   color: #fff;
 }
-.shots-panel ul {
+.shots-panel > ul {
   *zoom: 1;
   /* IE 6/7 support */
 
@@ -1046,20 +1046,23 @@ ul.project-menu-editor li:last-child {
   margin: 0;
   white-space: nowrap;
   overflow-x: auto;
+  font-size: 0;
+  /* to fight 4px margin between inline-block elements */
+
 }
-.shots-panel ul:before,
-.shots-panel ul:after {
+.shots-panel > ul:before,
+.shots-panel > ul:after {
   display: table;
   content: "";
   line-height: 0;
 }
-.shots-panel ul:after {
+.shots-panel > ul:after {
   clear: both;
 }
-.shots-panel ul::-webkit-scrollbar {
+.shots-panel > ul::-webkit-scrollbar {
   display: none;
 }
-.shots-panel ul li {
+.shots-panel > ul > li {
   display: inline-block;
   position: relative;
   /* -> containing block */
@@ -1073,53 +1076,104 @@ ul.project-menu-editor li:last-child {
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 0 2px;
+  /*.shot-settings{
+        position: absolute;
+        z-index: 1;
+        bottom: 2px;
+        right: 4px;
+        font-size: 18px;
+        height: 18px;
+        line-height: 18px;
+        .text-shadow(rgba(0,0,0,8));
+        &:hover{
+          color: @blue;
+        }
+      }*/
+
 }
-.shots-panel ul li img {
+.shots-panel > ul > li img {
   position: absolute;
   width: 100%;
   height: 100%;
 }
-.shots-panel ul li .shot-settings {
+.shots-panel > ul > li ul.shot-actions {
+  display: none;
   position: absolute;
   z-index: 1;
-  bottom: 2px;
-  right: 4px;
-  font-size: 18px;
-  height: 18px;
-  line-height: 18px;
-  text-shadow: 0px 0px 5px #000000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  *zoom: 1;
+  /* IE 6/7 support */
+
 }
-.shots-panel ul li .shot-settings:hover {
+.shots-panel > ul > li ul.shot-actions:before,
+.shots-panel > ul > li ul.shot-actions:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.shots-panel > ul > li ul.shot-actions:after {
+  clear: both;
+}
+.shots-panel > ul > li ul.shot-actions li {
+  float: left;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+}
+.shots-panel > ul > li ul.shot-actions li.single-action {
+  width: 100%;
+}
+.shots-panel > ul > li ul.shot-actions li i {
+  font-size: 30px;
+  text-shadow: 0px 0px 5px #000000;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.shots-panel > ul > li ul.shot-actions li i:hover {
   color: #17c7ff;
 }
-.shots-panel ul li:hover {
+.shots-panel > ul > li:hover {
   border: 1px solid #fff;
 }
-.shots-panel ul li.selected-shot {
+.shots-panel > ul > li:hover ul.shot-actions {
+  display: block;
+}
+.shots-panel > ul > li.selected-shot {
   border: 1px solid #17c7ff;
 }
-.shots-panel ul li.selected-shot:hover {
+.shots-panel > ul > li.selected-shot:hover {
   border: 1px solid #17c7ff;
 }
-.shots-panel ul li:first-child {
-  margin-right: 0px;
+.shots-panel > ul > li:first-child {
+  margin: 0 2px 0 0;
 }
-.shots-panel ul li:last-child {
+.shots-panel > ul > li:last-child {
   position: relative;
   /* -> containing block */
 
   line-height: 60px;
   font-size: 24px;
   width: 40px;
-  margin: 0;
+  margin: 0 0 0 2px;
   background: rgba(0, 0, 0, 0.5);
   text-shadow: 0px 0px 5px #000000;
 }
-.shots-panel ul li:last-child:hover {
+.shots-panel > ul > li:last-child:hover {
   border-color: #17c7ff;
   color: #17c7ff;
 }
-.shots-panel ul li:last-child i {
+.shots-panel > ul > li:last-child i {
   margin: auto;
   position: absolute;
   left: 50%;

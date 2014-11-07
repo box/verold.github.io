@@ -132,19 +132,18 @@
 
 	<div class="scene">
 
-		<!--   GENERATE THUMBNAIL SHORTCUT ON SCENE ********************************** --> 
-
-		<!-- <div class="generate-thumbnail-shortcut"><i class="ion-camera"></i>Generate Thumbnail</div> -->
-
-		<!--   /GENERATE THUMBNAIL SHORTCUT ON SCENE ********************************** --> 
-
-
 
 		<div class="shots-panel">
 			<div id="shots-scroll-left" class="shots-chevron chevron-left"><i class="ion-chevron-left"></i></div>
 			<div id="shots-scroll-right" class="shots-chevron chevron-right"><i class="ion-chevron-right"></i></div>
 			<ul class="sortable">
-				<li class="initial-shot shot-thumb not-sortable"><i class="shot-settings ion-ios7-gear"></i><img src="img/thumb.jpg"></li>
+				<li class="initial-shot shot-thumb not-sortable">
+					
+					<ul class="shot-actions">
+						<li class="single-action"><i class="duplicate-shot ion-ios7-browsers"></i></li>
+					</ul>
+					
+					<img src="img/thumb.jpg"></li>
 				<li id="add-shot" class="not-sortable"><i class="ion-plus-circled"></i></li>
 			</ul>
 
@@ -198,7 +197,7 @@
 
 
 
-<div id="edit-shot" class="dialog-bg">
+<!-- <div id="edit-shot" class="dialog-bg">
 	<div class="dialog-box">
 	<h3 class="dialog-title">Edit Shot</h3>
 		<div class="dialog-message">
@@ -216,7 +215,7 @@
 		<a id="cancel-shot-edit" class="dialog-no" href="#cancel">Cancel</a>
 		<a id="delete-shot" class="dialog-no" href="#cancel">Delete Shot</a>
 	</div>
-</div><!-- /dialog-bg -->
+</div> -->
 
 	
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -300,14 +299,14 @@
 		var shotWidth = 94;
 		var addShotWidth = 44; // the add new shot button is 44px wide
 
-		var numberOfShots = $('.shots-panel ul').children().length - 1; // one li is the add shot button
+		var numberOfShots = $('.shots-panel > ul').children().length - 1; // one li is the add shot button
 		var listWidth = ((numberOfShots*shotWidth)-4);
 		var shotsPanelWidth = $('.shots-panel').width() - addShotWidth;
 
 
 		// Variables need to be recalculated as the list changes
 		$.fn.recalculateVariables = function(){
-			numberOfShots = $('.shots-panel ul').children().length - 1; // one li is the add shot button
+			numberOfShots = $('.shots-panel > ul').children().length - 1; // one li is the add shot button
 			listWidth = ((numberOfShots*shotWidth)-4);
 			shotsPanelWidth = $('.shots-panel').width() - addShotWidth; 
 		}
@@ -318,19 +317,6 @@
 			$(this).addClass('selected-shot');
 		}
 
-
-		// Selects the clicked shot and opens the Edit Shot dialog
-		$.fn.openShotEditor = function() { 
-	   	$('.shot-thumb').removeClass('selected-shot');
-			$(this).closest('.shot-thumb').addClass('selected-shot');
-			if($(this).closest('.shot-thumb').hasClass('initial-shot')){
-				$('#delete-shot').hide();
-			}
-			else{
-				$('#delete-shot').show();
-			}
-			$('#edit-shot').show();
-	  }
 
 	  // Checks if chevrons are neccesary
 	  $.fn.checkChevrons = function(){
@@ -343,7 +329,7 @@
 	  }
 
 	  $.fn.hideChevron = function(){
-	  	var distanceFromLeft = $('.shots-panel ul').scrollLeft();
+	  	var distanceFromLeft = $('.shots-panel > ul').scrollLeft();
 			var distanceFromRight = listWidth - (distanceFromLeft+shotsPanelWidth);
 
 			if (distanceFromLeft == 0){
@@ -361,7 +347,8 @@
 
 	  // Deletes shot
 	  $.fn.deleteShot = function(){
-	  	$('#edit-shot').hide();
+	  	$('.shot-thumb').removeClass('selected-shot');
+	  	$(this).closest('.shot-thumb').addClass('selected-shot');
 	  	$('.selected-shot').fadeOut();
 	  	setTimeout(function(){
 				$('.selected-shot').remove();
@@ -371,10 +358,37 @@
 	  }
 
 
+	  // Duplicates Shot
+	  // $.fn.duplicateShot = function(){
+
+	  // 	$('.duplicate-shot').click(function(){
+			// 	$(this).closest('.shot-thumb').after('<li class="shot-thumb" style="border-color: yellow"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
+
+			// 	$('.shot-thumb').click(function(){
+			// 		$(this).selectShot();
+			// 	});
+			// 	$('.delete-shot').click(function(){
+			// 		$(this).deleteShot();
+			// 	});
+
+			// 	$(this).checkChevrons();
+			// 	$(this).autoScroll();
+
+			// 	$('.sortable').sortable({
+			//     items: ':not(.not-sortable)'
+			// 	});
+
+			// 	$(this).duplicateShot();
+				
+			// });
+
+	  // }
+
+
 	  // Automatically scrolls to always show the Add New Shot button
 	  $.fn.autoScroll = function(){
 			$(this).recalculateVariables();
-			$('.shots-panel ul').scrollLeft(listWidth);
+			$('.shots-panel > ul').scrollLeft(listWidth);
 			$('#shots-scroll-right').hide();
 	  }
 
@@ -401,13 +415,13 @@
 
 		// Click on Chevron Right
 		$('#shots-scroll-right').click(function(){
-			$('.shots-panel ul').animate({"scrollLeft": $('.shots-panel ul').scrollLeft() + shotWidth },100)
+			$('.shots-panel > ul').animate({"scrollLeft": $('.shots-panel > ul').scrollLeft() + shotWidth },100)
 			
 		});
 
 		// Click on Chevron Left
 		$('#shots-scroll-left').click(function(){
-			$('.shots-panel ul').animate({"scrollLeft": $('.shots-panel ul').scrollLeft() - shotWidth },100)
+			$('.shots-panel > ul').animate({"scrollLeft": $('.shots-panel > ul').scrollLeft() - shotWidth },100)
 		});
 
 
@@ -421,12 +435,6 @@
 
 		});
 
-		
-
-	  // Click on Shots Settings button 
-		$('.shot-settings').click(function(){
-			$(this).openShotEditor();
-		});
 
 
 
@@ -434,20 +442,9 @@
 			$('#new-shot').hide();
 		});
 
-	
-		$('#save-shot-edit').click(function(){
-			$('#edit-shot').hide();
-			$('#delete-shot').show();
-		});
 
 
-		$('#cancel-shot-edit').click(function(){
-			$('#edit-shot').hide();
-			$('#delete-shot').show();
-
-		});
-
-		$('#delete-shot').click(function(){
+		$('.delete-shot').click(function(){
 			$(this).deleteShot();
 		});
 
@@ -456,16 +453,33 @@
 		$('#confirm-shot').click(function(){
 			$('#new-shot').hide();
 			$('.shot-thumb').removeClass('selected-shot');
-			$('#add-shot').before('<li class="shot-thumb selected-shot"><i class="shot-settings ion-ios7-gear"></i></li>');
-			$('.shot-settings').click(function(){
-				$(this).openShotEditor();
-			});
+			$('#add-shot').before('<li class="shot-thumb selected-shot"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
 			$('.shot-thumb').click(function(){
 				$(this).selectShot();
 			});
-			$('#delete-shot').click(function(){
+			$('.delete-shot').click(function(){
 				$(this).deleteShot();
 			});
+			// $('.duplicate-shot').click(function(){
+				
+			// 	$(this).closest('.shot-thumb').after('<li class="shot-thumb" style="border-color: green"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
+
+			// 	$('.shot-thumb').click(function(){
+			// 		$(this).selectShot();
+			// 	});
+			// 	$('.delete-shot').click(function(){
+			// 		$(this).deleteShot();
+			// 	});
+
+			// 	$(this).checkChevrons();
+			// 	$(this).autoScroll();
+
+			// 	$('.sortable').sortable({
+			//     items: ':not(.not-sortable)'
+			// 	});
+
+			// });
+
 			$(this).checkChevrons();
 			$(this).autoScroll();
 
@@ -475,6 +489,26 @@
 		}); 
 
 
+		$('.duplicate-shot').click(function(){
+			$(this).closest('.shot-thumb').after('<li class="shot-thumb"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
+
+			$('.shot-thumb').click(function(){
+				$(this).selectShot();
+			});
+			$('.delete-shot').click(function(){
+				$(this).deleteShot();
+			});
+
+			$(this).checkChevrons();
+			$(this).autoScroll();
+
+			$('.sortable').sortable({
+		    items: ':not(.not-sortable)'
+			});
+
+			// $(this).duplicateShot();
+			
+		});
 		
 
 	});
