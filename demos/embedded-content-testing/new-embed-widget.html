@@ -1,0 +1,165 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ 
+<title>Embedded Content Testing</title>
+ 
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="keywords" content=""/>
+ 
+<!-- Mobile viewport optimization h5bp.com/ad -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- allows zoom -->
+
+ 
+<!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+ 
+
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="apple-touch-icon" href="icon.png"/>
+<link rel="icon" href="icon.png"/> 
+
+
+  
+<link rel="stylesheet" type="text/css" href="styles/normalize.css" />
+<link rel="stylesheet/less" type="text/css" href="styles/styles.less" />
+
+
+<script src="js/less.js"></script>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+	
+</head>
+
+
+
+<body>
+
+
+<div class="main-wrapper">
+
+
+	<h1>New Embed Widget</h1>
+	<br />
+
+
+	<div class="sample">
+		<h3>Default</h3>
+		<p>The new embed widget is reponsive. No matter what the default size for the embed widget is, its maximum width is equal to the width of its container. As the widget resizes, the content automatically aligns with the center of the iframe. The original aspect ratio is not preserved though. You can resize the browser window to see how the embed widget behaves</p>
+		<iframe frameborder="0" width="600" height="400" src="http://studio.verold.com/projects/542bf9400fa7cb0200000ef1/embed"></iframe>
+
+		<code>&lt;iframe frameborder="0" width="600" height="400" src="http://studio.verold.com/projects/542bf9400fa7cb0200000ef1/embed">&lt;/iframe></code>
+	</div>
+
+	<div class="sample">
+		<h3>Default with Shots</h3>
+		<p>This is an example of an embed widget using the new Shots Component we recently launched. <a href="http://vimeo.com/109947401" target="_blank">This video tutorial</a> explains how to work with shots.</p>
+		<iframe frameborder="0" width="600" height="400" src="http://studio.verold.com/projects/5437d5aebd43dc020000085d/embed"></iframe>
+
+		<code>&lt;iframe frameborder="0" width="600" height="400" src="http://studio.verold.com/projects/5437d5aebd43dc020000085d/embed">&lt;/iframe></code>
+	</div>
+
+
+	
+
+
+
+
+	<div class="sample">
+<h3>Fully Reponsive</h3>
+<p>If you want the embed widget to adapt to the width of its container and always preserve the aspect ratio, you'll need add some custom code to your site. First you need to wrap each iframe like this:</p>
+<code>
+<code>
+<pre>
+&lt;div class="embed-wrapper">
+  &lt;!-- embed code goes here -->
+&lt;/div>
+</pre>
+</code>
+</code>
+<p> You also need to add the following CSS code to your stylesheet:</p>
+
+<code>
+<pre>
+.embed-wrapper{
+  position: relative;
+  padding-bottom: 66.66%; /* 2/3 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.embed-wrapper iframe {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</pre>
+</code>
+
+<br>
+<p>You can resize the browser window to see how the embed widget behaves.</p>
+<br>
+
+<div class="embed-wrapper">
+<iframe frameborder="0" src="http://studio.verold.com/projects/53230fe4422d10020000009b/embed"></iframe>
+</div>
+
+<br>
+<p>HTML</p>
+<code>
+<pre>
+&lt;div class="embed-wrapper">
+  &lt;iframe frameborder="0" src="http://studio.verold.com/projects/53230fe4422d10020000009b/embed">&lt;/iframe>
+&lt;/div>
+</pre>
+</code>
+
+<br>
+<p>CSS</p>
+<code>
+<pre>
+.embed-wrapper{
+  position: relative;
+  padding-bottom: 66.66%; /* 2/3 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.embed-wrapper iframe {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</pre>
+</code>
+
+	</div>
+
+
+
+
+
+	
+
+
+
+
+
+</div>	
+
+
+</body>
+</html>
