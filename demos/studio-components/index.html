@@ -342,6 +342,23 @@
 			}
 	  }
 
+	  $.fn.hideChevron = function(){
+	  	var distanceFromLeft = $('.shots-panel ul').scrollLeft();
+			var distanceFromRight = listWidth - (distanceFromLeft+shotsPanelWidth);
+
+			if (distanceFromLeft == 0){
+				$('#shots-scroll-left').hide();
+			}else{
+				$('#shots-scroll-left').show();
+			}
+
+			if (distanceFromRight == 0){
+				$('#shots-scroll-right').hide();
+			}else{
+				$('#shots-scroll-right').show();
+			}
+	  }
+
 	  // Deletes shot
 	  $.fn.deleteShot = function(){
 	  	$('#edit-shot').hide();
@@ -361,8 +378,12 @@
 			$('#shots-scroll-right').hide();
 	  }
 
+	  $(window).resize(function() {
+		  $(this).checkChevrons();
+		  $(this).hideChevron();
+		});
 
-
+	  // Initializes jQuery plugin for rearranging items
 		$('.sortable').sortable({
 		    items: ':not(.not-sortable)'
 		});
@@ -395,28 +416,12 @@
 
 			// vars must be calculated after scrolling
 			setTimeout(function(){
-				var distanceFromLeft = $('.shots-panel ul').scrollLeft();
-				var distanceFromRight = listWidth - (distanceFromLeft+shotsPanelWidth);
-
-				if (distanceFromLeft == 0){
-					$('#shots-scroll-left').hide();
-				}else{
-					$('#shots-scroll-left').show();
-				}
-
-				if (distanceFromRight == 0){
-					$('#shots-scroll-right').hide();
-				}else{
-					$('#shots-scroll-right').show();
-				}
+				$(this).hideChevron();
 			}, 200);
-			
-			
 
 		});
 
 		
-
 
 	  // Click on Shots Settings button 
 		$('.shot-settings').click(function(){
@@ -447,7 +452,7 @@
 		});
 
 
-		// Creates New Shot
+		// Creates New Shot. Most functions need to be called here again. 
 		$('#confirm-shot').click(function(){
 			$('#new-shot').hide();
 			$('.shot-thumb').removeClass('selected-shot');
