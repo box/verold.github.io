@@ -136,7 +136,7 @@
 		<div class="shots-panel">
 			<div id="shots-scroll-left" class="shots-chevron chevron-left"><i class="ion-chevron-left"></i></div>
 			<div id="shots-scroll-right" class="shots-chevron chevron-right"><i class="ion-chevron-right"></i></div>
-			<ul class="sortable">
+			<ul class="shot-list sortable">
 				<li class="initial-shot shot-thumb not-sortable">
 					
 					<ul class="shot-actions">
@@ -296,12 +296,11 @@
 		// ******** SHOTS ********
 		// ***********************
 
-		var shotWidth = 94;
-		var addShotWidth = 44; // the add new shot button is 44px wide
-
-		var numberOfShots = $('.shots-panel > ul').children().length - 1; // one li is the add shot button
-		var listWidth = ((numberOfShots*shotWidth)-4);
-		var shotsPanelWidth = $('.shots-panel').width() - addShotWidth;
+		var shotWidth = 94,
+				addShotWidth = 44, // the add new shot button is 44px wide
+				numberOfShots = $('.shots-panel > ul').children().length - 1, // one li is the add shot button
+				listWidth = ((numberOfShots*shotWidth)-4),
+				shotsPanelWidth = $('.shots-panel').width() - addShotWidth;
 
 
 		// Variables need to be recalculated as the list changes
@@ -309,12 +308,6 @@
 			numberOfShots = $('.shots-panel > ul').children().length - 1; // one li is the add shot button
 			listWidth = ((numberOfShots*shotWidth)-4);
 			shotsPanelWidth = $('.shots-panel').width() - addShotWidth; 
-		}
-
-		// Selects a shot
-		$.fn.selectShot = function(){
-			$('.shot-thumb').removeClass('selected-shot');
-			$(this).addClass('selected-shot');
 		}
 
 
@@ -329,8 +322,8 @@
 	  }
 
 	  $.fn.hideChevron = function(){
-	  	var distanceFromLeft = $('.shots-panel > ul').scrollLeft();
-			var distanceFromRight = listWidth - (distanceFromLeft+shotsPanelWidth);
+	  	var distanceFromLeft = $('.shots-panel > ul').scrollLeft(),
+					distanceFromRight = listWidth - (distanceFromLeft+shotsPanelWidth);
 
 			if (distanceFromLeft == 0){
 				$('#shots-scroll-left').hide();
@@ -344,46 +337,7 @@
 				$('#shots-scroll-right').show();
 			}
 	  }
-
-	  // Deletes shot
-	  $.fn.deleteShot = function(){
-	  	$('.shot-thumb').removeClass('selected-shot');
-	  	$(this).closest('.shot-thumb').addClass('selected-shot');
-	  	$('.selected-shot').fadeOut();
-	  	setTimeout(function(){
-				$('.selected-shot').remove();
-				$(this).recalculateVariables();
-				$(this).checkChevrons();
-			}, 500);
-	  }
-
-
-	  // Duplicates Shot
-	  // $.fn.duplicateShot = function(){
-
-	  // 	$('.duplicate-shot').click(function(){
-			// 	$(this).closest('.shot-thumb').after('<li class="shot-thumb" style="border-color: yellow"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
-
-			// 	$('.shot-thumb').click(function(){
-			// 		$(this).selectShot();
-			// 	});
-			// 	$('.delete-shot').click(function(){
-			// 		$(this).deleteShot();
-			// 	});
-
-			// 	$(this).checkChevrons();
-			// 	$(this).autoScroll();
-
-			// 	$('.sortable').sortable({
-			//     items: ':not(.not-sortable)'
-			// 	});
-
-			// 	$(this).duplicateShot();
-				
-			// });
-
-	  // }
-
+ 
 
 	  // Automatically scrolls to always show the Add New Shot button
 	  $.fn.autoScroll = function(){
@@ -402,11 +356,7 @@
 		    items: ':not(.not-sortable)'
 		});
 
-		// Shot is selected on click
-		$('.shot-thumb').click(function(){
-			$(this).selectShot();
-		});
-
+	
 		// Opens new shot dialog
 		$('#add-shot').click(function(){
 			$('#new-shot').show();
@@ -436,16 +386,8 @@
 		});
 
 
-
-
 		$('#dismiss-shot').click(function(){
 			$('#new-shot').hide();
-		});
-
-
-
-		$('.delete-shot').click(function(){
-			$(this).deleteShot();
 		});
 
 
@@ -453,33 +395,26 @@
 		$('#confirm-shot').click(function(){
 			$('#new-shot').hide();
 			$('.shot-thumb').removeClass('selected-shot');
-			$('#add-shot').before('<li class="shot-thumb selected-shot"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
-			$('.shot-thumb').click(function(){
-				$(this).selectShot();
-			});
-			$('.delete-shot').click(function(){
-				$(this).deleteShot();
-			});
-			// $('.duplicate-shot').click(function(){
-				
-			// 	$(this).closest('.shot-thumb').after('<li class="shot-thumb" style="border-color: green"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
 
-			// 	$('.shot-thumb').click(function(){
-			// 		$(this).selectShot();
-			// 	});
-			// 	$('.delete-shot').click(function(){
-			// 		$(this).deleteShot();
-			// 	});
 
-			// 	$(this).checkChevrons();
-			// 	$(this).autoScroll();
+			// the following code is equivalent to:
+			// $('#add-shot').before('<li class="shot-thumb selected-shot"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
 
-			// 	$('.sortable').sortable({
-			//     items: ':not(.not-sortable)'
-			// 	});
+			var shotObjectContent =
+				$('<ul></ul>',{
+					class: 'shot-actions',
+					html: '<li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li>'
+				});
 
-			// });
+			var shotObject = 
+				$('<li></li>',{
+					class: 'shot-thumb selected-shot',
+					html:  shotObjectContent
+				});
 
+			$('#add-shot').before(shotObject);
+
+			
 			$(this).checkChevrons();
 			$(this).autoScroll();
 
@@ -487,26 +422,67 @@
 		    items: ':not(.not-sortable)'
 			});
 		}); 
+		
 
 
-		$('.duplicate-shot').click(function(){
-			$(this).closest('.shot-thumb').after('<li class="shot-thumb"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
 
-			$('.shot-thumb').click(function(){
-				$(this).selectShot();
-			});
-			$('.delete-shot').click(function(){
-				$(this).deleteShot();
-			});
+		// Event handlers are bound only to the currently selected elements; they must exist on the page at the time your code makes the call to .on() if you're using $("#dataTable tbody tr").on("click", function(event){});
+		//Delegated events have the advantage that they can process events from descendant elements that are added to the document at a later time:  $(staticAncestors).on(eventName, dynamicChild, function() {});
 
-			$(this).checkChevrons();
-			$(this).autoScroll();
+
+		// Select Shots
+		$('.shot-list').on('click', '.shot-thumb', function() {
+			$('.shot-thumb').removeClass('selected-shot');
+			$(this).addClass('selected-shot');
+		});
+
+
+		// Delete Shot
+		$('.shot-list').on('click', '.delete-shot', function() {
+				var $this = $(this);
+			 	$('.shot-thumb').removeClass('selected-shot');
+		  	$this.closest('.shot-thumb').addClass('selected-shot');
+		  	$('.selected-shot').fadeOut();
+		  	setTimeout(function(){
+					$('.selected-shot').remove();
+					$this.recalculateVariables();
+					$this.checkChevrons();
+				}, 500);
+		});
+
+
+		// Duplicate Shot
+		$('.shot-list').on('click', '.duplicate-shot', function() {
+			var $this = $(this);
+			
+			// can't use clone cause we don't want to clone the first shot
+			//$this.closest('.shot-thumb').clone().insertAfter($this.closest('.shot-thumb'));
+
+
+			// The following code is equivalent to:
+			// $this.closest('.shot-thumb').after('<li class="shot-thumb"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
+
+			var shotObjectContent =
+				$('<ul></ul>',{
+					class: 'shot-actions',
+					html: '<li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li>'
+				});
+
+			var shotObject = 
+				$('<li></li>',{
+					class: 'shot-thumb',
+					html:  shotObjectContent
+				});
+
+			$this.closest('.shot-thumb').after(shotObject);
+
+			$this.checkChevrons();
+			$this.autoScroll();
 
 			$('.sortable').sortable({
 		    items: ':not(.not-sortable)'
-			});
 
-			// $(this).duplicateShot();
+			});
 			
 		});
 		
