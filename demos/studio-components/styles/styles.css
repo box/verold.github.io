@@ -1040,6 +1040,7 @@ ul.project-menu-editor li:last-child {
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin: 0 2px;
+  overflow: hidden;
 }
 .shots-panel .shot-list > li img {
   position: absolute;

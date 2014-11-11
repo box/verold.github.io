@@ -435,13 +435,20 @@
 		// Delete Shot
 		$('.shot-list').on('click', '.delete-shot', function() {
 				var $this = $(this);
-			 	$('.shot-thumb').removeClass('selected-shot');
-		  	$this.closest('.shot-thumb').addClass('selected-shot');
-		  	$('.selected-shot').fadeOut(300);
-		  	setTimeout(function(){
-					$('.selected-shot').remove();
-				  $this.listHasChanged();
-				}, 300);
+				$this.recalculateVariables();
+				$('.shot-thumb').removeClass('selected-shot');
+			  $this.closest('.shot-thumb').addClass('selected-shot');
+
+				if(numberOfShots==1){
+					return; //the last standing shot cant be deleted
+				}else if(numberOfShots>1){	
+			  	$('.selected-shot').fadeOut(300);
+			  	setTimeout(function(){
+						$('.selected-shot').remove();
+					  $this.listHasChanged();
+					}, 300);
+				}
+
 		});
 
 
