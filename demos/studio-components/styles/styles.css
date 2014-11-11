@@ -985,43 +985,6 @@ ul.project-menu-editor li:last-child {
   background: #17C7FF;
 }
 /*
-**********************************************
-*
-*   GENERATE THUMBNAIL SHORTCUT ON SCENE
-*
-*   NOT USED
-*
-**********************************************
-*/
-/*.generate-thumbnail-shortcut{
-
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 2;
-  height: 30px;
-  line-height: 30px;
-  .border-radius(3px);
-  cursor: pointer;
-  color: rgba(255,255,255,.9);
-  font-size: 12px;
-  padding: 0 8px;
-  border: 1px solid rgba(255,255,255,.9);
-  .text-shadow(rgba(0,0,0,8));
-  i{
-    margin-right: 0.4em;
-    font-size: 18px;
-    vertical-align: middle;
-  }
-  &:hover{
-    background: rgba(255,255,255,.9);
-    color: #111;
-    .text-shadow(rgba(0,0,0,0));
-  }
-
-}
-*/
-/*
 *********************************
 *
 *   SHOTS PANEL
@@ -1037,7 +1000,7 @@ ul.project-menu-editor li:last-child {
   padding: 5px;
   color: #fff;
 }
-.shots-panel > ul {
+.shots-panel .shot-list {
   *zoom: 1;
   /* IE 6/7 support */
 
@@ -1050,19 +1013,19 @@ ul.project-menu-editor li:last-child {
   /* to fight 4px margin between inline-block elements */
 
 }
-.shots-panel > ul:before,
-.shots-panel > ul:after {
+.shots-panel .shot-list:before,
+.shots-panel .shot-list:after {
   display: table;
   content: "";
   line-height: 0;
 }
-.shots-panel > ul:after {
+.shots-panel .shot-list:after {
   clear: both;
 }
-.shots-panel > ul::-webkit-scrollbar {
+.shots-panel .shot-list::-webkit-scrollbar {
   display: none;
 }
-.shots-panel > ul > li {
+.shots-panel .shot-list > li {
   display: inline-block;
   position: relative;
   /* -> containing block */
@@ -1077,27 +1040,32 @@ ul.project-menu-editor li:last-child {
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin: 0 2px;
-  /*.shot-settings{
-        position: absolute;
-        z-index: 1;
-        bottom: 2px;
-        right: 4px;
-        font-size: 18px;
-        height: 18px;
-        line-height: 18px;
-        .text-shadow(rgba(0,0,0,8));
-        &:hover{
-          color: @blue;
-        }
-      }*/
-
 }
-.shots-panel > ul > li img {
+.shots-panel .shot-list > li img {
   position: absolute;
   width: 100%;
   height: 100%;
 }
-.shots-panel > ul > li ul.shot-actions {
+.shots-panel .shot-list > li .camera-name {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  line-height: 14px;
+  font-size: 10px;
+  padding: 0 4px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  font-weight: 100;
+}
+.shots-panel .shot-list > li ul.shot-actions {
   display: none;
   position: absolute;
   z-index: 1;
@@ -1110,55 +1078,55 @@ ul.project-menu-editor li:last-child {
   /* IE 6/7 support */
 
 }
-.shots-panel > ul > li ul.shot-actions:before,
-.shots-panel > ul > li ul.shot-actions:after {
+.shots-panel .shot-list > li ul.shot-actions:before,
+.shots-panel .shot-list > li ul.shot-actions:after {
   display: table;
   content: "";
   line-height: 0;
 }
-.shots-panel > ul > li ul.shot-actions:after {
+.shots-panel .shot-list > li ul.shot-actions:after {
   clear: both;
 }
-.shots-panel > ul > li ul.shot-actions li {
+.shots-panel .shot-list > li ul.shot-actions li {
   float: left;
   position: relative;
   width: 50%;
   height: 100%;
   text-align: center;
 }
-.shots-panel > ul > li ul.shot-actions li.single-action {
-  width: 100%;
-}
-.shots-panel > ul > li ul.shot-actions li i {
-  font-size: 30px;
+.shots-panel .shot-list > li ul.shot-actions li i {
+  font-size: 22px;
   text-shadow: 0px 0px 5px #000000;
   margin: auto;
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -65%);
+  -ms-transform: translate(-50%, -65%);
+  transform: translate(-50%, -65%);
 }
-.shots-panel > ul > li ul.shot-actions li i:hover {
+.shots-panel .shot-list > li ul.shot-actions li i:hover {
   color: #17c7ff;
 }
-.shots-panel > ul > li:hover {
+.shots-panel .shot-list > li:hover {
   border: 1px solid #fff;
 }
-.shots-panel > ul > li:hover ul.shot-actions {
+.shots-panel .shot-list > li:hover ul.shot-actions {
   display: block;
 }
-.shots-panel > ul > li.selected-shot {
+.shots-panel .shot-list > li.selected-shot {
   border: 1px solid #17c7ff;
 }
-.shots-panel > ul > li.selected-shot:hover {
+.shots-panel .shot-list > li.selected-shot:hover {
   border: 1px solid #17c7ff;
 }
-.shots-panel > ul > li:first-child {
+.shots-panel .shot-list > li.single-shot .shot-actions li:first-child {
+  width: 100%;
+}
+.shots-panel .shot-list > li:first-child {
   margin: 0 2px 0 0;
 }
-.shots-panel > ul > li:last-child {
+.shots-panel .shot-list > li:last-child {
   position: relative;
   /* -> containing block */
 
@@ -1169,11 +1137,11 @@ ul.project-menu-editor li:last-child {
   background: rgba(0, 0, 0, 0.5);
   text-shadow: 0px 0px 5px #000000;
 }
-.shots-panel > ul > li:last-child:hover {
+.shots-panel .shot-list > li:last-child:hover {
   border-color: #17c7ff;
   color: #17c7ff;
 }
-.shots-panel > ul > li:last-child i {
+.shots-panel .shot-list > li:last-child i {
   margin: auto;
   position: absolute;
   left: 50%;

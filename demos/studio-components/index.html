@@ -27,7 +27,6 @@
 </head>
 
 
-
 <body>
 
 
@@ -137,13 +136,14 @@
 			<div id="shots-scroll-left" class="shots-chevron chevron-left"><i class="ion-chevron-left"></i></div>
 			<div id="shots-scroll-right" class="shots-chevron chevron-right"><i class="ion-chevron-right"></i></div>
 			<ul class="shot-list sortable">
-				<li class="initial-shot shot-thumb not-sortable">
-					
+				<li class="shot-thumb single-shot">
 					<ul class="shot-actions">
-						<li class="single-action"><i class="duplicate-shot ion-ios7-browsers"></i></li>
+						<li><i class="duplicate-shot ion-ios7-browsers"></i></li>
+						<li><i class="delete-shot ion-trash-a"></i></li>
 					</ul>
-					
-					<img src="img/thumb.jpg"></li>
+					<p class="camera-name">Camera #</p>
+					<img src="img/thumb.jpg" alt="Shot Thumb">
+				</li>
 				<li id="add-shot" class="not-sortable"><i class="ion-plus-circled"></i></li>
 			</ul>
 
@@ -197,25 +197,6 @@
 
 
 
-<!-- <div id="edit-shot" class="dialog-bg">
-	<div class="dialog-box">
-	<h3 class="dialog-title">Edit Shot</h3>
-		<div class="dialog-message">
-				
-				<label for="list">Camera:</label>
-        <select class"form-list" name="list" id="list" required>
-          <option value="" disabled selected>Select a camera</option>
-          <option value="camera-1">Camera 1</option>
-          <option value="camera-2">Camera 2</option>
-          <option value="camera-3">Camera 3</option>
-          <option value="camera-4">Camera 4</option>
-        </select>
-		</div>
-		<button id="save-shot-edit" class="dialog-yes">Save</button>
-		<a id="cancel-shot-edit" class="dialog-no" href="#cancel">Cancel</a>
-		<a id="delete-shot" class="dialog-no" href="#cancel">Delete Shot</a>
-	</div>
-</div> -->
 
 	
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -313,7 +294,6 @@
 
 	  // Checks if chevrons are neccesary
 	  $.fn.checkChevrons = function(){
-			$(this).recalculateVariables();
 			if(listWidth <= shotsPanelWidth){
 				$('.shots-chevron').hide();
 			}else if(listWidth > shotsPanelWidth && numberOfShots>2){
@@ -339,14 +319,36 @@
 	  }
  
 
-	  // Automatically scrolls to always show the Add New Shot button
+	  // Automatically scrolls to always show the Add New Shot button after adding new shot
 	  $.fn.autoScroll = function(){
 			$(this).recalculateVariables();
 			$('.shots-panel > ul').scrollLeft(listWidth);
 			$('#shots-scroll-right').hide();
 	  }
 
+	  // Last shot standing cant be deleted
+	  $.fn.detectSingleShot = function(){
+	  	if(numberOfShots==1){
+	  		$('.shot-thumb').addClass('single-shot');
+	  	}else{
+	  		$('.shot-thumb').removeClass('single-shot');
+	  	}
+	  }
+
+
+	  $.fn.listHasChanged = function(){
+	  	var $this = $(this);
+	  	$this.recalculateVariables();
+	  	$this.checkChevrons();
+	  	$this.hideChevron();
+	  	$this.detectSingleShot();
+	  	$('.sortable').sortable({
+		    items: ':not(.not-sortable)'
+			});
+	  }
+
 	  $(window).resize(function() {
+	  	$(this).recalculateVariables();
 		  $(this).checkChevrons();
 		  $(this).hideChevron();
 		});
@@ -391,39 +393,32 @@
 		});
 
 
-		// Creates New Shot. Most functions need to be called here again. 
+		// Creates New Shot.
 		$('#confirm-shot').click(function(){
+
+			var $this = $(this);
+
 			$('#new-shot').hide();
 			$('.shot-thumb').removeClass('selected-shot');
-
-
-			// the following code is equivalent to:
-			// $('#add-shot').before('<li class="shot-thumb selected-shot"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
-
-			var shotObjectContent =
-				$('<ul></ul>',{
-					class: 'shot-actions',
-					html: '<li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li>'
-				});
 
 			var shotObject = 
 				$('<li></li>',{
 					class: 'shot-thumb selected-shot',
-					html:  shotObjectContent
+					html:  '<ul class="shot-actions">'+
+								 	'<li><i class="duplicate-shot ion-ios7-browsers"></i></li>'+
+								 	'<li><i class="delete-shot ion-trash-a"></i></li>'+
+								 '</ul>'+
+								 '<p class="camera-name">Camera #</p>'+
+								 '<img src="" alt="">'
 				});
 
 			$('#add-shot').before(shotObject);
 
-			
-			$(this).checkChevrons();
-			$(this).autoScroll();
+			$this.autoScroll();
+	  	$this.listHasChanged();
 
-			$('.sortable').sortable({
-		    items: ':not(.not-sortable)'
-			});
 		}); 
 		
-
 
 
 		// Event handlers are bound only to the currently selected elements; they must exist on the page at the time your code makes the call to .on() if you're using $("#dataTable tbody tr").on("click", function(event){});
@@ -442,48 +437,20 @@
 				var $this = $(this);
 			 	$('.shot-thumb').removeClass('selected-shot');
 		  	$this.closest('.shot-thumb').addClass('selected-shot');
-		  	$('.selected-shot').fadeOut();
+		  	$('.selected-shot').fadeOut(300);
 		  	setTimeout(function(){
 					$('.selected-shot').remove();
-					$this.recalculateVariables();
-					$this.checkChevrons();
-				}, 500);
+				  $this.listHasChanged();
+				}, 300);
 		});
 
 
-		// Duplicate Shot
+		// Duplicate/Clone Shot
 		$('.shot-list').on('click', '.duplicate-shot', function() {
 			var $this = $(this);
-			
-			// can't use clone cause we don't want to clone the first shot
-			//$this.closest('.shot-thumb').clone().insertAfter($this.closest('.shot-thumb'));
-
-
-			// The following code is equivalent to:
-			// $this.closest('.shot-thumb').after('<li class="shot-thumb"><ul class="shot-actions"><li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li></ul></li>');
-
-			var shotObjectContent =
-				$('<ul></ul>',{
-					class: 'shot-actions',
-					html: '<li><i class="duplicate-shot ion-ios7-browsers"></i></li><li><i class="delete-shot ion-trash-a"></i></li>'
-				});
-
-			var shotObject = 
-				$('<li></li>',{
-					class: 'shot-thumb',
-					html:  shotObjectContent
-				});
-
-			$this.closest('.shot-thumb').after(shotObject);
-
-			$this.checkChevrons();
-			$this.autoScroll();
-
-			$('.sortable').sortable({
-		    items: ':not(.not-sortable)'
-
-			});
-			
+			var $thisShot = $this.closest('.shot-thumb');
+			$thisShot.clone().insertAfter($thisShot);
+	  	$this.listHasChanged();
 		});
 		
 
