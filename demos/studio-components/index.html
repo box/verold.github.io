@@ -442,11 +442,10 @@
 				if(numberOfShots==1){
 					return; //the last standing shot cant be deleted
 				}else if(numberOfShots>1){	
-			  	$('.selected-shot').fadeOut(300);
-			  	setTimeout(function(){
-						$('.selected-shot').remove();
-					  $this.listHasChanged();
-					}, 300);
+			  	$('.selected-shot').fadeOut(300, function(){
+			  			$('.selected-shot').remove();
+					  	$this.listHasChanged();
+			  	});
 				}
 
 		});
