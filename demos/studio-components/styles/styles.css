@@ -1130,6 +1130,7 @@ ul.project-menu-editor li:last-child {
   color: #222;
   background: rgba(255, 255, 255, 0.8);
   font-weight: 600;
+  cursor: pointer;
 }
 .camera-name i {
   position: absolute;
@@ -1173,6 +1174,7 @@ ul.project-menu-editor li:last-child {
   overflow: hidden;
   text-overflow: ellipsis;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 .shot-camera-dropdown li:hover {
   background: #ccc;
