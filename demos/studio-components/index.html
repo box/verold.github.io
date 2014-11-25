@@ -137,12 +137,15 @@
 			<div id="shots-scroll-right" class="shots-chevron chevron-right"><i class="ion-chevron-right"></i></div>
 			<ul class="shot-list sortable">
 				<li class="shot-thumb single-shot">
-					<ul class="shot-actions">
-						<li><i class="duplicate-shot ion-ios7-browsers"></i></li>
-						<li><i class="delete-shot ion-trash-a"></i></li>
-					</ul>
-					<p class="camera-name">Camera #</p>
+					<i class="delete-shot ion-close-circled"></i>
+					<div class="camera-name"><span>really_long_camera_name_#</span><i class="ion-arrow-up-b"></i></div>
 					<img src="img/thumb.jpg" alt="Shot Thumb">
+					<ul class="shot-camera-dropdown">
+		        <li>Camera 1</li>
+		        <li>Camera 2</li>
+		        <li>Camera 3</li>
+		        <li>Camera 4</li>
+					</ul>
 				</li>
 				<li id="add-shot" class="not-sortable"><i class="ion-plus-circled"></i></li>
 			</ul>
@@ -277,7 +280,7 @@
 		// ******** SHOTS ********
 		// ***********************
 
-		var shotWidth = 94,
+		var shotWidth = 100,
 				addShotWidth = 44, // the add new shot button is 44px wide
 				numberOfShots = $('.shots-panel > ul').children().length - 1, // one li is the add shot button
 				listWidth = ((numberOfShots*shotWidth)-4),
@@ -293,7 +296,7 @@
 
 
 	  // Checks if chevrons are neccesary
-	  $.fn.checkChevrons = function(){
+	  function checkChevrons(){
 			if(listWidth <= shotsPanelWidth){
 				$('.shots-chevron').hide();
 			}else if(listWidth > shotsPanelWidth && numberOfShots>2){
@@ -301,7 +304,7 @@
 			}
 	  }
 
-	  $.fn.hideChevron = function(){
+	  function hideChevron(){
 	  	var distanceFromLeft = $('.shots-panel > ul').scrollLeft(),
 					distanceFromRight = listWidth - (distanceFromLeft+shotsPanelWidth);
 
@@ -320,14 +323,14 @@
  
 
 	  // Automatically scrolls to always show the Add New Shot button after adding new shot
-	  $.fn.autoScroll = function(){
+	  function autoScroll(){
 			$(this).recalculateVariables();
 			$('.shots-panel > ul').scrollLeft(listWidth);
 			$('#shots-scroll-right').hide();
 	  }
 
 	  // Last shot standing cant be deleted
-	  $.fn.detectSingleShot = function(){
+	  function detectSingleShot(){
 	  	if(numberOfShots==1){
 	  		$('.shot-thumb').addClass('single-shot');
 	  	}else{
@@ -336,12 +339,12 @@
 	  }
 
 
-	  $.fn.listHasChanged = function(){
+	  function listHasChanged(){
 	  	var $this = $(this);
 	  	$this.recalculateVariables();
-	  	$this.checkChevrons();
-	  	$this.hideChevron();
-	  	$this.detectSingleShot();
+	  	checkChevrons();
+	  	hideChevron();
+	  	detectSingleShot();
 	  	$('.sortable').sortable({
 		    items: ':not(.not-sortable)'
 			});
@@ -349,8 +352,8 @@
 
 	  $(window).resize(function() {
 	  	$(this).recalculateVariables();
-		  $(this).checkChevrons();
-		  $(this).hideChevron();
+		  checkChevrons();
+		  hideChevron();
 		});
 
 	  // Initializes jQuery plugin for rearranging items
@@ -382,7 +385,7 @@
 
 			// vars must be calculated after scrolling
 			setTimeout(function(){
-				$(this).hideChevron();
+				hideChevron();
 			}, 200);
 
 		});
@@ -400,22 +403,27 @@
 
 			$('#new-shot').hide();
 			$('.shot-thumb').removeClass('selected-shot');
+			$('.shot-camera-dropdown').hide();
+			$('.camera-name').find('i').removeClass('rotate');
 
 			var shotObject = 
 				$('<li></li>',{
 					class: 'shot-thumb selected-shot',
-					html:  '<ul class="shot-actions">'+
-								 	'<li><i class="duplicate-shot ion-ios7-browsers"></i></li>'+
-								 	'<li><i class="delete-shot ion-trash-a"></i></li>'+
-								 '</ul>'+
-								 '<p class="camera-name">Camera #</p>'+
-								 '<img src="" alt="">'
+					html:  '<i class="delete-shot ion-close-circled"></i>'+
+								 '<div class="camera-name"><span>Camera #</span><i class="ion-arrow-up-b"></i></div>'+
+								 '<img src="" alt="">'+
+								 '<ul class="shot-camera-dropdown">'+
+					       '<li>Camera 1</li>'+
+					       '<li>Camera 2</li>'+
+					       '<li>Camera 3</li>'+
+					       '<li>Camera 4</li>'+
+								'</ul>'
 				});
 
 			$('#add-shot').before(shotObject);
 
-			$this.autoScroll();
-	  	$this.listHasChanged();
+			autoScroll();
+	  	listHasChanged();
 
 		}); 
 		
@@ -429,6 +437,17 @@
 		$('.shot-list').on('click', '.shot-thumb', function() {
 			$('.shot-thumb').removeClass('selected-shot');
 			$(this).addClass('selected-shot');
+			$('.shot-thumb').not(this).find('.shot-camera-dropdown').hide()
+			$('.shot-thumb').not(this).find('.camera-name').find('i').removeClass('rotate');
+				
+		});
+
+
+		//Click on camera name
+		$('.shot-list').on('click', '.camera-name', function() {
+			$('.camera-name').not(this).siblings('.shot-camera-dropdown').hide();
+			$(this).siblings('.shot-camera-dropdown').slideToggle('fast');
+			$(this).find('i').toggleClass('rotate');
 		});
 
 
@@ -444,7 +463,7 @@
 				}else if(numberOfShots>1){	
 			  	$('.selected-shot').fadeOut(300, function(){
 			  			$('.selected-shot').remove();
-					  	$this.listHasChanged();
+					  	listHasChanged();
 			  	});
 				}
 
@@ -456,7 +475,7 @@
 			var $this = $(this);
 			var $thisShot = $this.closest('.shot-thumb');
 			$thisShot.clone().insertAfter($thisShot);
-	  	$this.listHasChanged();
+	  	listHasChanged();
 		});
 		
 

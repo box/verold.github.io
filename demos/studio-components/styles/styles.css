@@ -785,7 +785,7 @@ ul.sidebar-tabs li:hover {
   vertical-align: middle;
 }
 .pro-only-badge:hover {
-  color: #17c7ff;
+  color: #59cfe4;
 }
 .locked-state {
   cursor: not-allowed;
@@ -820,7 +820,7 @@ ul.sidebar-tabs li:hover {
   vertical-align: middle;
 }
 .header-btn:hover {
-  color: #17c7ff;
+  color: #59cfe4;
 }
 /*
 *********************************
@@ -851,7 +851,7 @@ ul.sidebar-tabs li:hover {
   vertical-align: middle;
 }
 .view-project-page:hover {
-  color: #17c7ff;
+  color: #59cfe4;
 }
 /*
 *********************************
@@ -1000,12 +1000,12 @@ ul.project-menu-editor li:last-child {
   padding: 5px;
   color: #fff;
 }
-.shots-panel .shot-list {
+.shot-list {
   *zoom: 1;
   /* IE 6/7 support */
 
   list-style: none;
-  padding: 0;
+  padding: 10px 0 20px;
   margin: 0;
   white-space: nowrap;
   overflow-x: auto;
@@ -1013,136 +1013,80 @@ ul.project-menu-editor li:last-child {
   /* to fight 4px margin between inline-block elements */
 
 }
-.shots-panel .shot-list:before,
-.shots-panel .shot-list:after {
+.shot-list:before,
+.shot-list:after {
   display: table;
   content: "";
   line-height: 0;
 }
-.shots-panel .shot-list:after {
+.shot-list:after {
   clear: both;
 }
-.shots-panel .shot-list::-webkit-scrollbar {
+.shot-list::-webkit-scrollbar {
   display: none;
 }
-.shots-panel .shot-list > li {
+.shot-list > li {
   display: inline-block;
   position: relative;
   /* -> containing block */
 
-  margin-right: 4px;
   height: 60px;
   width: 90px;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   background: rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  margin: 0 2px;
-  overflow: hidden;
-}
-.shots-panel .shot-list > li img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.shots-panel .shot-list > li .camera-name {
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 14px;
-  line-height: 14px;
-  font-size: 10px;
-  padding: 0 4px;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.5);
-  font-weight: 100;
-}
-.shots-panel .shot-list > li ul.shot-actions {
-  display: none;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5);
-  *zoom: 1;
-  /* IE 6/7 support */
+  margin: 0 5px;
+  /*overflow: hidden;*/
 
 }
-.shots-panel .shot-list > li ul.shot-actions:before,
-.shots-panel .shot-list > li ul.shot-actions:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.shots-panel .shot-list > li ul.shot-actions:after {
-  clear: both;
-}
-.shots-panel .shot-list > li ul.shot-actions li {
-  float: left;
-  position: relative;
-  width: 50%;
-  height: 100%;
-  text-align: center;
-}
-.shots-panel .shot-list > li ul.shot-actions li i {
-  font-size: 22px;
-  text-shadow: 0px 0px 5px #000000;
-  margin: auto;
+.shot-list > li img {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -65%);
-  -ms-transform: translate(-50%, -65%);
-  transform: translate(-50%, -65%);
+  width: 100%;
+  height: 100%;
 }
-.shots-panel .shot-list > li ul.shot-actions li i:hover {
-  color: #17c7ff;
-}
-.shots-panel .shot-list > li:hover {
+.shot-list > li:hover {
   border: 1px solid #fff;
 }
-.shots-panel .shot-list > li:hover ul.shot-actions {
+.shot-list > li:hover .delete-shot {
   display: block;
 }
-.shots-panel .shot-list > li.selected-shot {
-  border: 1px solid #17c7ff;
+.shot-list > li:hover .camera-name {
+  background: #fff;
 }
-.shots-panel .shot-list > li.selected-shot:hover {
-  border: 1px solid #17c7ff;
+.shot-list > li.selected-shot {
+  border: 1px solid #59cfe4;
 }
-.shots-panel .shot-list > li.single-shot .shot-actions li:first-child {
-  width: 100%;
+.shot-list > li.selected-shot:hover {
+  border: 1px solid #59cfe4;
 }
-.shots-panel .shot-list > li:first-child {
-  margin: 0 2px 0 0;
+.shot-list > li.selected-shot .camera-name {
+  background: #59cfe4;
 }
-.shots-panel .shot-list > li:last-child {
+.shot-list > li.single-shot .delete-shot {
+  display: none;
+}
+.shot-list > li:first-child {
+  margin: 0 5px 0 0;
+}
+.shot-list > li:last-child {
   position: relative;
-  /* -> containing block */
-
-  line-height: 60px;
+  top: 17px;
+  height: 77px;
+  line-height: 77px;
   font-size: 24px;
   width: 40px;
-  margin: 0 0 0 2px;
+  margin: 0 0 0 5px;
   background: rgba(0, 0, 0, 0.5);
   text-shadow: 0px 0px 5px #000000;
 }
-.shots-panel .shot-list > li:last-child:hover {
-  border-color: #17c7ff;
-  color: #17c7ff;
+.shot-list > li:last-child:hover {
+  border-color: #59cfe4;
+  color: #59cfe4;
 }
-.shots-panel .shot-list > li:last-child i {
+.shot-list > li:last-child i {
   margin: auto;
   position: absolute;
   left: 50%;
@@ -1150,21 +1094,94 @@ ul.project-menu-editor li:last-child {
   -ms-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
 }
-.shots-panel .shots-chevron {
+.shots-chevron {
   display: none;
   position: absolute;
-  height: 62px;
-  line-height: 62px;
+  bottom: 0;
+  line-height: 110px;
   font-size: 24px;
   cursor: pointer;
   text-shadow: 0px 0px 5px #000000;
 }
-.shots-panel .shots-chevron:hover {
-  color: #17c7ff;
+.shots-chevron:hover {
+  color: #59cfe4;
 }
-.shots-panel .shots-chevron.chevron-left {
+.shots-chevron.chevron-left {
   right: 101%;
 }
-.shots-panel .shots-chevron.chevron-right {
+.shots-chevron.chevron-right {
   left: 101%;
+}
+.camera-name {
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: -1px;
+  width: calc(102%);
+  height: 18px;
+  line-height: 18px;
+  font-size: 10px;
+  padding: 0 14px 0 4px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  color: #222;
+  background: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+.camera-name i {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  font-size: 16px;
+}
+.delete-shot {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  right: -10px;
+  height: 21px;
+  width: 21px;
+  font-size: 20px;
+  line-height: 20px;
+  background: #222;
+  color: #fff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+}
+.shot-camera-dropdown {
+  display: none;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: -1px;
+  width: calc(102%);
+  background: #efefef;
+  list-style: none;
+}
+.shot-camera-dropdown li {
+  display: block;
+  color: #222;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.shot-camera-dropdown li:hover {
+  background: #ccc;
+}
+.rotate.rotate {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  top: -1px;
 }

@@ -360,157 +360,183 @@ ul.project-menu-editor{
   left: 30px;
   padding: 5px;
   color: #fff;
-  
-  .shot-list{
-    .clearfix;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    white-space: nowrap;
-    overflow-x: auto;
-    font-size: 0; /* to fight 4px margin between inline-block elements */
-    &::-webkit-scrollbar { 
-        display: none; 
+}
+
+
+.shot-list{
+  .clearfix;
+  list-style: none;
+  padding: 10px 0 20px;
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: auto;
+  font-size: 0; /* to fight 4px margin between inline-block elements */
+  &::-webkit-scrollbar { 
+      display: none; 
+  }
+  >li{
+    display: inline-block;
+    position: relative; /* -> containing block */
+    height: 60px;
+    width: 90px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.8);
+    background: rgba(0,0,0,0.5);
+    .box-shadow(0 0 10px rgba(0,0,0,.5));
+    margin: 0 5px;
+    /*overflow: hidden;*/
+    img{
+      position: absolute;
+      width: 100%;
+      height: 100%;
     }
-    >li{
-      display: inline-block;
-      position: relative; /* -> containing block */
-      margin-right: 4px;
-      height: 60px;
-      width: 90px;
-      cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.5);
-      background: rgba(0,0,0,0.5);
-      .box-shadow(0 0 10px rgba(0,0,0,.5));
-      margin: 0 2px;
-      overflow: hidden;
-      img{
-        position: absolute;
-        width: 100%;
-        height: 100%;
+    &:hover{
+      border: 1px solid #fff;
+      .delete-shot{
+        display: block;;
       }
       .camera-name{
-        position: absolute;
-        z-index: 1;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 14px;
-        line-height: 14px;
-        font-size: 10px;
-        padding: 0 4px;
-        margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: center;
-        color: #fff;
-        background: rgba(0,0,0,0.5);
-        font-weight: 100;
+        background: #fff;
       }
-      ul.shot-actions{
-        display: none;
-        position: absolute;
-        z-index: 1;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(0,0,0,.5);
-        .clearfix;
-        li{
-          float: left;
-          position: relative;
-          width: 50%;
-          height: 100%;
-          text-align: center;
-          i{
-            font-size: 22px;
-            .text-shadow(rgba(0,0,0,8));
-            margin: auto;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            -webkit-transform: translate(-50%,-65%);
-                -ms-transform: translate(-50%,-65%);
-                    transform: translate(-50%,-65%);
-            &:hover{
-              color: @blue;
-            }
-          }
-          &.duplicate-shot{
-
-          }
-          &.delete-shot{
-            
-          }
-        }
-      }
+    }
+    &.selected-shot{
+      border: 1px solid @blue;
       &:hover{
-        border: 1px solid #fff;
-        ul.shot-actions{
-          display: block;
-        }
-      }
-      &.selected-shot{
         border: 1px solid @blue;
-        &:hover{
-          border: 1px solid @blue;
-        }
       }
-      &.single-shot{
-        .shot-actions{
-          li:first-child{
-            width: 100%;
-          }
-        }
+      .camera-name{
+        background: @blue;
       }
-      &:first-child{
-        margin: 0 2px 0 0;
+    }
+    &.single-shot{
+      .delete-shot{
+        display: none;
       }
-      &:last-child{
-        position: relative; /* -> containing block */
-        line-height: 60px;
-        font-size: 24px;
-        width: 40px;
-        margin: 0 0 0 2px;
+    }
+    &:first-child{
+      margin: 0 5px 0 0;
+    }
+    &:last-child{
+      position: relative; 
+      top: 17px;
+      height: 77px;
+      line-height: 77px;
+      font-size: 24px;
+      width: 40px;
+      
+      margin: 0 0 0 5px;
 
-        background: rgba(0,0,0,0.5);
-        .text-shadow(rgba(0,0,0,8));
-        &:hover{
-          border-color: @blue;
-          color: @blue;
-        }
-        i{
-          margin: auto;
-          position: absolute;
-          left: 50%;
-          -webkit-transform: translate(-50%,0);
-              -ms-transform: translate(-50%,0);
-                  transform: translate(-50%,0);
+      background: rgba(0,0,0,0.5);
+      .text-shadow(rgba(0,0,0,8));
+      &:hover{
+        border-color: @blue;
+        color: @blue;
+      }
+      i{
+        margin: auto;
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translate(-50%,0);
+            -ms-transform: translate(-50%,0);
+                transform: translate(-50%,0);
 
-        }
       }
     }
   }
-  .shots-chevron{
-    display: none;
+}
+
+
+.shots-chevron{
+  display: none;
+  position: absolute;
+  bottom: 0;
+  line-height: 110px;
+  font-size: 24px;
+  cursor: pointer;
+  .text-shadow(rgba(0,0,0,8));
+  &:hover{
+    color: @blue;
+  }
+  &.chevron-left{
+    right: 101%;
+  }
+  &.chevron-right{
+    left: 101%;
+  }
+}
+
+
+.camera-name{
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: -1px;
+  width: calc(100%+2px);
+  height: 18px;
+  line-height: 18px;
+  font-size: 10px;
+  padding: 0 14px 0 4px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  color: #222;
+  background: rgba(255,255,255,0.8);
+  font-weight: 600;
+  i{
     position: absolute;
-    height: 62px;
-    line-height: 62px;
-    font-size: 24px;
-    cursor: pointer;
-    .text-shadow(rgba(0,0,0,8));
+    top: 1px;
+    right: 5px;
+    font-size: 16px;
+  }
+}
+
+.delete-shot{
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  right: -10px;
+  height: 21px;
+  width: 21px;
+  font-size: 20px;
+  line-height: 20px;
+  background: #222;
+  color: #fff;
+  .border-radius(50%);
+  text-align: center;
+}
+
+.shot-camera-dropdown{
+  display: none;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: -1px;
+  width: calc(100%+2px);
+  background: #efefef;
+  list-style: none;
+  li{
+    display: block;
+    color: #222;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid rgba(0,0,0,.2);
     &:hover{
-      color: @blue;
-    }
-    &.chevron-left{
-      right: 101%;
-    }
-    &.chevron-right{
-      left: 101%;
+      background: #ccc;
     }
   }
+
+}
+
+
+.rotate.rotate{
+  .transform(rotate(180deg));
+  top: -1px;
 }
 
 
