@@ -363,12 +363,14 @@ ul.project-menu-editor{
 }
 
 
+
 .shot-list{
   .clearfix;
   list-style: none;
   padding: 10px 0 20px;
   margin: 0;
   white-space: nowrap;
+  max-width: 100%;
   overflow-x: auto;
   font-size: 0; /* to fight 4px margin between inline-block elements */
   &::-webkit-scrollbar { 
@@ -518,6 +520,8 @@ ul.project-menu-editor{
   width: calc(100%+2px);
   background: #efefef;
   list-style: none;
+  max-height: 80px;
+  overflow: auto;
   li{
     display: block;
     color: #222;
@@ -532,7 +536,16 @@ ul.project-menu-editor{
       background: #ccc;
     }
   }
+}
 
+
+.used-camera{
+  opacity: .5;
+}
+
+.current-camera.current-camera{
+  background: #666;
+  color: #fff;
 }
 
 

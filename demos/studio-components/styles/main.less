@@ -226,12 +226,21 @@ ul.sidebar-tabs{
     line-height: 20px;
     margin: 20px 0;
     p{
-      margin: 20px 0;
+      display: inline-block;
+      margin-left: 20px;
+      color: #999;
+      a{
+        color: #999;
+        text-decoration:underline;
+        &:hover{
+          color: @blue;
+        }
+      }
     }
   }
   .dialog-yes {
     margin-right: 10px;
-    background-color: #049cdb;
+    background-color: @blue;
     border-radius: 0;
     color: white;
     display: inline-block;
@@ -241,6 +250,8 @@ ul.sidebar-tabs{
     padding: 10px 20px;
     width: auto;
     border: 0 none;
+    .border-radius(3px);
+    color: @grey;
   }
   .dialog-no{
     border: 0 none;

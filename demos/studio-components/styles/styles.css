@@ -596,11 +596,20 @@ ul.sidebar-tabs li:hover {
   margin: 20px 0;
 }
 .dialog-box .dialog-message p {
-  margin: 20px 0;
+  display: inline-block;
+  margin-left: 20px;
+  color: #999;
+}
+.dialog-box .dialog-message p a {
+  color: #999;
+  text-decoration: underline;
+}
+.dialog-box .dialog-message p a:hover {
+  color: #59cfe4;
 }
 .dialog-box .dialog-yes {
   margin-right: 10px;
-  background-color: #049cdb;
+  background-color: #59cfe4;
   border-radius: 0;
   color: white;
   display: inline-block;
@@ -610,6 +619,10 @@ ul.sidebar-tabs li:hover {
   padding: 10px 20px;
   width: auto;
   border: 0 none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #3d4351;
 }
 .dialog-box .dialog-no {
   border: 0 none;
@@ -1008,6 +1021,7 @@ ul.project-menu-editor li:last-child {
   padding: 10px 0 20px;
   margin: 0;
   white-space: nowrap;
+  max-width: 100%;
   overflow-x: auto;
   font-size: 0;
   /* to fight 4px margin between inline-block elements */
@@ -1164,6 +1178,8 @@ ul.project-menu-editor li:last-child {
   width: calc(102%);
   background: #efefef;
   list-style: none;
+  max-height: 80px;
+  overflow: auto;
 }
 .shot-camera-dropdown li {
   display: block;
@@ -1178,6 +1194,13 @@ ul.project-menu-editor li:last-child {
 }
 .shot-camera-dropdown li:hover {
   background: #ccc;
+}
+.used-camera {
+  opacity: .5;
+}
+.current-camera.current-camera {
+  background: #666;
+  color: #fff;
 }
 .rotate.rotate {
   -webkit-transform: rotate(180deg);

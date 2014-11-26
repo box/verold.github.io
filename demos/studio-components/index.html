@@ -135,16 +135,19 @@
 		<div class="shots-panel">
 			<div id="shots-scroll-left" class="shots-chevron chevron-left"><i class="ion-chevron-left"></i></div>
 			<div id="shots-scroll-right" class="shots-chevron chevron-right"><i class="ion-chevron-right"></i></div>
+
 			<ul class="shot-list sortable">
 				<li class="shot-thumb single-shot">
 					<i class="delete-shot ion-close-circled"></i>
-					<div class="camera-name"><span>really_long_camera_name_#</span><i class="ion-arrow-up-b"></i></div>
+					<div class="camera-name"><span>Camera 1</span><i class="ion-arrow-up-b"></i></div>
 					<img src="img/thumb.jpg" alt="Shot Thumb">
 					<ul class="shot-camera-dropdown">
-		        <li>Camera 1</li>
-		        <li>Camera 2</li>
-		        <li>Camera 3</li>
+		        <li class="current-camera">Camera 1</li>
+		        <li class="used-camera">Camera 2</li>
+		        <li class="used-camera">Camera 3</li>
 		        <li>Camera 4</li>
+		        <li>Camera 5</li>
+		        <li>Camera 6</li>
 					</ul>
 				</li>
 				<li id="add-shot" class="not-sortable"><i class="ion-plus-circled"></i></li>
@@ -189,9 +192,11 @@
           <option value="camera-2">Camera 2</option>
           <option value="camera-3">Camera 3</option>
           <option value="camera-4">Camera 4</option>
+          <option value="camera-4">Camera 5</option>
+          <option value="camera-4">Camera 6</option>
         </select>
 
-        <p>You can add new cameras from the Scene Graph</p>
+        <p>or <a href="javascript:void(0)">Create New Camera</a></p>
 		</div>
 		<button id="confirm-shot" class="dialog-yes">Create Shot</button>
 		<a id="dismiss-shot" class="dialog-no" href="#cancel">Cancel</a>
@@ -413,10 +418,12 @@
 								 '<div class="camera-name"><span>Camera #</span><i class="ion-arrow-up-b"></i></div>'+
 								 '<img src="" alt="">'+
 								 '<ul class="shot-camera-dropdown">'+
-					       '<li>Camera 1</li>'+
-					       '<li>Camera 2</li>'+
-					       '<li>Camera 3</li>'+
+					       '<li class="used-camera">Camera 1</li>'+
+					       '<li class="current-camera">Camera 2</li>'+
+					       '<li class="used-camera">Camera 3</li>'+
 					       '<li>Camera 4</li>'+
+					       '<li>Camera 5</li>'+
+					       '<li>Camera 6</li>'+
 								'</ul>'
 				});
 
