@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Room Configurator</title>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:600' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+		<div id="verold3d">
+		<div id="rotate-object-left"></div>
+		<div id="rotate-object-right"></div>
+		  <div id="command-pannel">
+		    <div id="command-pannel-wrapper">
+		      <div id="command-builder"></div>
+		      <div id="command-material"></div>
+		      <div id="command-objects"></div>
+		      <div id="command-main-outline"></div>
+		      <div id="command-main">
+		        <div id="command-main-inside">
+		          <div id="command-main-zoomIn"></div>
+		          <div id="command-main-zoomOut"></div>
+		          <div id="command-main-turnRight"></div>
+		          <div id="command-main-turnLeft"></div>
+		        </div>
+		        <div id="command-main-grid"></div>
+		        <div id="command-main-wallCut"></div>
+		        <div id="command-main-aggro"></div>
+		        <div id="command-main-remove"></div>
+		      </div>
+		      <div id="command-aside-objects">
+		        <div id="aside-top">
+		          <div id="aside-top-door" class="aside-top-menu">Door</div>
+		          <div id="aside-top-window" class="aside-top-menu">Window</div>
+		          <div id="aside-top-table" class="aside-top-menu">Table</div>
+		          <div id="aside-top-sofa" class="aside-top-menu">Sofa</div>
+		          <div id="aside-top-chair" class="aside-top-menu">Chair</div>
+		          <div id="aside-top-randObject" class="aside-top-menu">Misc</div>
+		        </div>
+		        <div id="aside-bot">
+		          <div id="container-obj">
+		            <div id="object00" class="obj-draggable"></div>
+		            <div id="object01" class="obj-draggable"></div>
+		            <div id="object02" class="obj-draggable"></div>
+		            <div id="object03" class="obj-draggable"></div>
+		            <div id="object04" class="obj-draggable"></div>
+		            <div id="object05" class="obj-draggable"></div>
+		          </div>
+		        </div>
+		      </div>  
+		      <div id="command-aside-changes">
+		        <div id="aside-right">
+		          <div id="text-left"></div>
+		          <div id="texturepicker"></div>
+		          <div id="text-right"></div>
+		        </div>
+		        <div id="aside-left">
+		          <div id="colorpicker"><input type="color" name="favcolor" id="colorTag"></div>
+		          <div id="accept">OK</div>
+		        </div>
+		      </div>
+		    </div>
+		    
+		    
+		  </div>
+		</div>
+
+	<div id="load-scene" class="load-scene">
+    <div class="load-progress">
+      <a id="load-text">LOADING 3D</a>
+      <div class="load-bar-wrapper">
+        <div id="load-bar" class="load-bar"></div>
+      </div>
+    </div>
+
+    <div class="load-screen-logo"><img src="http://assets.verold.com/dark-logo.png"></div>
+  </div>
+	<script src="//commondatastorage.googleapis.com/assets.verold.com/runtime/verold.loader.js"></script>
+	<script>
+	verold.load('body', 'https://vrld.co/PsX2YB.json');
+	</script>
+</body>
+</html>
